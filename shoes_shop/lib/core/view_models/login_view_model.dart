@@ -23,26 +23,9 @@ class LoginViewModel extends BaseViewModel {
       setState(ViewState.Idle);
       return false;
     } else {
-      errorMessage = message;
       setState(ViewState.Idle);
       return success;
     }
 
-    // if (userName.isEmpty || passWord.isEmpty) {
-    //   errorMessage = message;
-    //   setState(ViewState.Idle);
-    //   return false;
-    // } else {
-    //   var success = await _authenticationService.login(account);
-    //   if (!success) {
-    //     errorMessage = message;
-    //     setState(ViewState.Idle);
-    //     return false;
-    //   } else {
-    //     errorMessage = 'aaaaaa';
-    //     setState(ViewState.Idle);
-    //     return success;
-    //   }
-    // }
   }
 }

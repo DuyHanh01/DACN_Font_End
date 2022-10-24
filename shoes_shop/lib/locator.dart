@@ -10,7 +10,7 @@ void setupLocator() {
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => Api());
 
-  locator.registerFactory(() => LoginViewModel());
+  locator.registerLazySingleton(() => LoginViewModel());
   locator.registerFactory(() => HomeViewModel());
 
 }

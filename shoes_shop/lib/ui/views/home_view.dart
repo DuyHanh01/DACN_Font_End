@@ -51,7 +51,7 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          'Hi! ${user.username}}',
+                          'Hi! ${user.username}',
                           style: Theme.of(context).textTheme.subtitle2!.copyWith(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
