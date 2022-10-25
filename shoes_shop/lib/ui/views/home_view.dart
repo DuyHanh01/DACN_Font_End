@@ -7,6 +7,7 @@ import 'package:shoes_shop/core/view_models/home_view_model.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/main_drawer.dart';
+import 'package:shoes_shop/ui/widgets/press_back_button_again_to_exit_app.dart';
 import 'package:shoes_shop/ui/widgets/search.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,7 +32,7 @@ class _HomeViewState extends State<HomeView> {
     Size size = MediaQuery.of(context).size;
     Account user = Provider.of<Account>(context);
     return WillPopScope(
-      onWillPop: () async {return false;},
+      onWillPop: () async {return onWillPop();},
       child: Scaffold(
         body: Column(
           children: <Widget>[

@@ -23,6 +23,7 @@ class LoginViewModel extends BaseViewModel {
       setState(ViewState.Idle);
       return false;
     } else {
+      errorMessage = message;
       setState(ViewState.Idle);
       return success;
     }

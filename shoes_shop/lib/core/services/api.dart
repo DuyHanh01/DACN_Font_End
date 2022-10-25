@@ -9,7 +9,7 @@ import 'package:shoes_shop/core/models/token.dart';
 /// The service responsible for networking requests
 class Api {
   String token = '';
-  static const endpoint = 'http://192.168.81.16/ShoesStore.com/api';
+  static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
   static String showName = '';
 
   String Username = '';

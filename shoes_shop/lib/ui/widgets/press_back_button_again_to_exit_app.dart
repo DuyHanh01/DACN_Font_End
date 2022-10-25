@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fluttertoast/fluttertoast.dart';
 
 DateTime? currentBackPressTime;
@@ -10,7 +12,6 @@ Future<bool> onWillPop() {
     Fluttertoast.showToast(msg: 'Tap back again to leave');
     return Future.value(false);
   }else{
-    Fluttertoast.cancel();
-    return Future.value(true);
+    exit(0);
   }
 }
