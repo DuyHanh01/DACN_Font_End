@@ -9,15 +9,14 @@ class User {
   User.initial()
       : id = 0,
         email = '',
-        password =  ' ',
-        role =  ' ';
+        password = ' ',
+        role = ' ';
 
-  User.fromJson(Map<String, dynamic> json) :
-        id = json['id'],
+  User.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
         email = json['email'],
         password = json['password'],
         role = json['role'];
-
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

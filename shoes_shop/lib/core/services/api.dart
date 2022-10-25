@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
+import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/models/token.dart';
 
@@ -14,6 +15,7 @@ class Api {
 
   String Username = '';
   String Password = '';
+  String Repassword = '';
   DateTime ExpiredDateTime = DateTime.now();
   var client = http.Client();
 
@@ -21,7 +23,8 @@ class Api {
     return (to.difference(from).inSeconds).round();
   }
 
-  Future<String> CheckToken(DateTime ExpiredDateTime, String token1,
+  //check token
+  Future<String> checkToken(DateTime ExpiredDateTime, String token1,
       String? userName, String? passWord) async {
     final expiredDateTime = ExpiredDateTime;
     final dateNow = DateTime.now();
@@ -42,6 +45,7 @@ class Api {
     }
   }
 
+  //get token
   Future<Token> getToken(String userName, String passWord) async {
     String username = userName;
     String password = passWord;
@@ -78,7 +82,8 @@ class Api {
     }
   }
 
-  Future<BaseResult<Account>> postUser(Account account) async {
+  //login user
+  Future<BaseResult<Account>> login(Account account) async {
     var body = json.encode(account);
     final response = await client.post(
       Uri.parse('$endpoint/Login'),
@@ -104,9 +109,34 @@ class Api {
     }
   }
 
-  // Ví dụ về check token
+  //register user
+  Future<BaseResult<Register>> register(Register register) async {
+    var body = json.encode(register);
+    final response = await client.post(
+      Uri.parse('$endpoint/register'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: body,
+    );
+    var s;
+    if (response.statusCode == 200) {
+      Username = register.username;
+      Password = register.password!;
+      Repassword = register.Repassword!;
+
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
+  }
+
+  //get all shoes
   Future<BaseResult<Shoes>> getAllShoes() async {
-    token = await CheckToken(ExpiredDateTime, token, Username, Password);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     var token2 = token;
     final response = await client.get(
       Uri.parse('$endpoint/getAllShoes'),

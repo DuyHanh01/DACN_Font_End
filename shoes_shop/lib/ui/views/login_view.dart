@@ -17,13 +17,14 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-
   final TextEditingController _controllerUser = TextEditingController();
   final TextEditingController _controllerPass = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {return onWillPop();},
+      onWillPop: () {
+        return onWillPop();
+      },
       child: BaseView<LoginViewModel>(
         builder: (BuildContext context, LoginViewModel model, Widget? child) =>
             Scaffold(
@@ -59,11 +60,13 @@ class _LoginViewState extends State<LoginView> {
                                 child: const Text(
                                   'Sign In',
                                   style: TextStyle(
-                                      fontSize: 18, fontWeight: FontWeight.w600),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 onPressed: () async {
                                   var loginSuccess = await model.login(
-                                      _controllerUser.text, _controllerPass.text);
+                                      _controllerUser.text,
+                                      _controllerPass.text);
                                   if (loginSuccess) {
                                     Navigator.pushNamed(context, '/');
                                   }
@@ -72,7 +75,9 @@ class _LoginViewState extends State<LoginView> {
                             ),
                       UIHelper.verticalSpaceMedium(),
                       AlreadyHaveAnAccountCheck(
-                        press: () {},
+                        press: () {
+                          Navigator.pushNamed(context, '/register');
+                        },
                       ),
                     ],
                   ),
