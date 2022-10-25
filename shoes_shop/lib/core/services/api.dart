@@ -8,40 +8,37 @@ import 'package:shoes_shop/core/models/token.dart';
 
 /// The service responsible for networking requests
 class Api {
-  late String token;
-  static const endpoint = 'http://192.168.1.5/ShoesStore.com/api';
+  String token = '';
+  static const endpoint = 'http://192.168.81.16/ShoesStore.com/api';
   static String showName = '';
 
-  late String Username;
-  late String Password;
-  late DateTime ExpiredDateTime;
+  String Username = '';
+  String Password = '';
+  DateTime ExpiredDateTime = DateTime.now();
   var client = http.Client();
 
   int daysBetween(DateTime from, DateTime to) {
     return (to.difference(from).inSeconds).round();
   }
 
-  String CheckToken(DateTime ExpiredDateTime, String token1, String? userName,
-      String? passWord) {
-    late String access_Token;
-    //the birthday's date
+  Future<String> CheckToken(DateTime ExpiredDateTime, String token1,
+      String? userName, String? passWord) async {
     final expiredDateTime = ExpiredDateTime;
     final dateNow = DateTime.now();
-    int difference = daysBetween(expiredDateTime, dateNow);
-
+    int difference = daysBetween(dateNow, expiredDateTime);
+    await Future.delayed(Duration(seconds: 1));
     if (userName == null || passWord == null) {
-      access_Token = '';
-      return access_Token;
+      return token = '';
     } else if (token1 != '' && difference > 0) {
-      return access_Token = token;
+      return token = token;
     } else if (token1 != '' && difference <= 0) {
       getToken(userName, passWord);
-      return access_Token = token;
+      return token = token;
     } else if (userName != null && passWord != null && token1 == '') {
       getToken(userName, passWord);
-      return access_Token = token;
+      return token = token;
     } else {
-      return access_Token = "";
+      return token = "";
     }
   }
 
@@ -67,20 +64,17 @@ class Api {
       },
     );
     if (response.statusCode == 200) {
-      // var s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      // var c = Token.fromJson(s.data);
       var s = Token.fromJson(jsonDecode(response.body));
       token = s.access_token.toString();
-
       int expires_in = 0;
-      expires_in = s.expires_in;
+      expires_in = s.expires_in!;
       ExpiredDateTime = DateTime.now().add(Duration(seconds: expires_in));
-      var showToken = token;
       return Token.fromJson(jsonDecode(response.body));
     } else {
+      var s = Token.fromJson(jsonDecode(response.body));
       ExpiredDateTime = DateTime.now();
       token = '';
-      return Token('', '', 0);
+      return Token('', '', 0, s.error_description);
     }
   }
 
@@ -100,34 +94,37 @@ class Api {
 
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       var c = Account.fromJson(s.data[0]);
+
       getToken(Username, Password);
 
-      return BaseResult(s.isSuccess, s.status, s.message, c);
+      return BaseResult(s.isSuccess, s.status, s.Message, c);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      return BaseResult(s.isSuccess, s.status, s.message, null);
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
     }
   }
 
   // Ví dụ về check token
   Future<BaseResult<Shoes>> getAllShoes() async {
-    CheckToken(ExpiredDateTime, token, Username, Password);
-    final response = await client.post(
+    token = await CheckToken(ExpiredDateTime, token, Username, Password);
+    var token2 = token;
+    final response = await client.get(
       Uri.parse('$endpoint/getAllShoes'),
       headers: <String, String>{
         'Authorization': 'bearer $token',
       },
     );
     var s;
+
     if (response.statusCode == 200) {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       var c = Shoes.fromJson(s.data[0]);
 
       /// tạo list rồi add vào.
-      return BaseResult(s.isSuccess, s.status, s.message, c);
+      return BaseResult(s.isSuccess, s.status, s.Message, c);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      return BaseResult(s.isSuccess, s.status, s.message, null);
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
     }
   }
 }

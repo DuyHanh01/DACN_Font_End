@@ -10,9 +10,8 @@ class AuthenticationService {
   StreamController<Account> accountController = StreamController<Account>();
   Future<bool> login(Account account) async {
     var fetchedAccount = await _api.postUser(account);
-
     var isSuccessLogin = fetchedAccount.isSuccess;
-    message = fetchedAccount.message!;
+    message = fetchedAccount.Message!;
     if (isSuccessLogin != null && isSuccessLogin) {
       if (fetchedAccount.data != null) {
         accountController.add(fetchedAccount.data!);
