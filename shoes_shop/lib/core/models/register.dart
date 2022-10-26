@@ -1,21 +1,25 @@
 class Register {
-  String username;
+  int? accountid;
+  String? username;
   String? password;
   String? Repassword;
-  Register(this.username, this.password, this.Repassword);
+  Register(this.accountid,this.username, this.password, this.Repassword);
 
   Register.initial()
-      : username = '',
+      : accountid = 0,
+        username = '',
         password = '',
         Repassword = '';
 
   Register.fromJson(Map<String, dynamic> json)
-      : username = json['username'],
+      : accountid = json['accountid'],
+        username = json['username'],
         password = json['password'],
         Repassword = json['Repassword'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['accountid'] = accountid;
     data['username'] = username;
     data['password'] = password;
     data['Repassword'] = Repassword;

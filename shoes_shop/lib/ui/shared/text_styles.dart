@@ -16,12 +16,14 @@ const wellComeStyle = TextStyle(
       )
     ]);
 
+const appBarStyle =
+    TextStyle(fontSize: 16, color: AppColors.primaryColor, fontWeight: FontWeight.w900);
+
+const numberSoppingCart = TextStyle(
+    color: AppColors.white, fontSize: 10, fontWeight: FontWeight.bold);
+
 const dialogStyle = TextStyle(
-    fontSize: 18.0,
-    fontWeight: FontWeight.w500,
-    color: AppColors.primaryColor);
+    fontSize: 18.0, fontWeight: FontWeight.w500, color: AppColors.primaryColor);
 
 const dialogDescriptionStyle = TextStyle(
-    fontSize: 15.0,
-    fontWeight: FontWeight.w500,
-    color: AppColors.blackGray);
+    fontSize: 15.0, fontWeight: FontWeight.w500, color: AppColors.blackGray);

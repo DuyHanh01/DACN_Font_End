@@ -17,7 +17,7 @@ class AuthenticationService {
     message = fetchedAccount.Message!;
     if (isSuccessLogin != null && isSuccessLogin) {
       if (fetchedAccount.data != null) {
-        accountController.add(fetchedAccount.data!);
+        accountController.add(fetchedAccount.data[0]!);
       }
     }
     return isSuccessLogin ?? false;
@@ -29,4 +29,5 @@ class AuthenticationService {
     message = fetchedRegister.Message!;
     return isSuccessRegister ?? false;
   }
+
 }

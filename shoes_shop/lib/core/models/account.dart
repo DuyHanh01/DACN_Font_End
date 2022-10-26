@@ -1,6 +1,6 @@
 class Account {
   int? accountId;
-  String username;
+  String? username;
   String? password;
   int? roleId;
   bool? active;

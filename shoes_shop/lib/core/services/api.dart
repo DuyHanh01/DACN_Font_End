@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
+import 'package:shoes_shop/core/models/brand.dart';
 import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/models/token.dart';
@@ -84,6 +85,7 @@ class Api {
 
   //login user
   Future<BaseResult<Account>> login(Account account) async {
+    var accounts = <Account>[];
     var body = json.encode(account);
     final response = await client.post(
       Uri.parse('$endpoint/Login'),
@@ -94,23 +96,27 @@ class Api {
     );
     var s;
     if (response.statusCode == 200) {
-      Username = account.username;
+      Username = account.username!;
       Password = account.password!;
 
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      var c = Account.fromJson(s.data[0]);
+      List<dynamic> data = s.data;
+      for (var register in data) {
+        accounts.add(Account.fromJson(register));
+      }
 
       getToken(Username, Password);
 
-      return BaseResult(s.isSuccess, s.status, s.Message, c);
+      return BaseResult(s.isSuccess, s.status, s.Message, accounts);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      return BaseResult(s.isSuccess, s.status, s.Message, null);
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
     }
   }
 
   //register user
   Future<BaseResult<Register>> register(Register register) async {
+    var registers = <Register>[];
     var body = json.encode(register);
     final response = await client.post(
       Uri.parse('$endpoint/register'),
@@ -121,40 +127,49 @@ class Api {
     );
     var s;
     if (response.statusCode == 200) {
-      Username = register.username;
+      Username = register.username!;
       Password = register.password!;
       Repassword = register.Repassword!;
 
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var register in data) {
+        registers.add(Register.fromJson(register));
+      }
 
-      return BaseResult(s.isSuccess, s.status, s.Message, null);
+      return BaseResult(s.isSuccess, s.status, s.Message, registers);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      return BaseResult(s.isSuccess, s.status, s.Message, null);
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
     }
   }
 
-  //get all shoes
-  Future<BaseResult<Shoes>> getAllShoes() async {
+  //get all brands
+  Future<BaseResult<Brand>> getAllBrands() async {
+    var brands = <Brand>[];
     token = await checkToken(ExpiredDateTime, token, Username, Password);
-    var token2 = token;
     final response = await client.get(
-      Uri.parse('$endpoint/getAllShoes'),
+      Uri.parse('$endpoint/getAllBrands'),
       headers: <String, String>{
         'Authorization': 'bearer $token',
       },
     );
+
     var s;
 
     if (response.statusCode == 200) {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      var c = Shoes.fromJson(s.data[0]);
+      List<dynamic> data = s.data;
+
+      for (var brand in data) {
+        brands.add(Brand.fromJson(brand));
+      }
 
       /// tạo list rồi add vào.
-      return BaseResult(s.isSuccess, s.status, s.Message, c);
+      return BaseResult(s.isSuccess, s.status, s.Message, brands);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-      return BaseResult(s.isSuccess, s.status, s.Message, null);
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
     }
   }
 }

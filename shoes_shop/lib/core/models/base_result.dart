@@ -2,7 +2,7 @@ class BaseResult<T> {
   bool? isSuccess;
   int? status;
   String? Message;
-  T? data;
+  List<T?> data;
 
   BaseResult(this.isSuccess, this.status, this.Message, this.data);
 
@@ -10,7 +10,7 @@ class BaseResult<T> {
       : isSuccess = false,
         status = 0,
         Message = "",
-        data = null;
+        data = [];
 
   BaseResult.fromJson(Map<String, dynamic> json)
       : isSuccess = json['isSuccess'],
