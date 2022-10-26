@@ -17,7 +17,7 @@ class AuthenticationService {
     message = fetchedAccount.Message!;
     if (isSuccessLogin != null && isSuccessLogin) {
       if (fetchedAccount.data != null) {
-        accountController.add(fetchedAccount.data[0]!);
+        accountController.add(fetchedAccount.data![0]!);
       }
     }
     return isSuccessLogin ?? false;
@@ -27,6 +27,11 @@ class AuthenticationService {
     var fetchedRegister = await _api.register(register);
     var isSuccessRegister= fetchedRegister.isSuccess;
     message = fetchedRegister.Message!;
+    if (isSuccessRegister != null && isSuccessRegister) {
+      if (fetchedRegister.data != null) {
+        registerController.add(fetchedRegister.data![0]!);
+      }
+    }
     return isSuccessRegister ?? false;
   }
 

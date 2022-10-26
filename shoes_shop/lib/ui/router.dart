@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shoes_shop/ui/views/home_view.dart';
-import 'package:shoes_shop/ui/views/login_view.dart';
-import 'package:shoes_shop/ui/views/register_view.dart';
-import 'package:shoes_shop/ui/views/wellcome_view.dart';
+import 'package:shoes_shop/ui/views/home/home_view.dart';
+import 'package:shoes_shop/ui/views/login/login_view.dart';
+import 'package:shoes_shop/ui/views/register/register_view.dart';
+import 'package:shoes_shop/ui/views/wellcome/wellcome_view.dart';
 
 class MainRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {

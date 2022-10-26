@@ -50,6 +50,10 @@ class AppUI {
   static const String imgTopLogin = '${imagePath}top_login.png';
   static const String img = '${imagePath}img.jpg';
   static const String search = '${svgPath}search.svg';
+  static const String favorite = '${svgPath}favorite.svg';
+  static const String home = '${svgPath}home.svg';
+  static const String notification = '${svgPath}notification.svg';
+  static const String profile = '${svgPath}profile.svg';
 }
 
 class CustomAppTheme {

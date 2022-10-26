@@ -7,16 +7,15 @@ class BrandService {
 
   String message = "";
 
-  List<Brand?> _brand = <Brand>[];
-  List<Brand?> get brands => _brand;
-
+  List<Brand?>? _brand = <Brand>[];
+  List<Brand?>? get brands => _brand;
 
   Future<bool> getAllBrands() async {
     var fetchedBrand = await _api.getAllBrands();
-    var isSuccessBrand= fetchedBrand.isSuccess;
+    var isSuccessBrand = fetchedBrand.isSuccess;
     _brand = fetchedBrand.data;
     message = fetchedBrand.Message!;
+
     return isSuccessBrand ?? false;
   }
-
 }

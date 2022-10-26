@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 
-class BrandTitle extends StatelessWidget {
+class CategoryTitle extends StatelessWidget {
   final String title;
   final String trailingTitle;
   final VoidCallback? onPressMore;
 
-  const BrandTitle(
-      {Key? key,
-      required this.title,
-      required this.trailingTitle,
-      this.onPressMore})
-      : super(key: key);
+  const CategoryTitle({
+    Key? key,
+    required this.title,
+    required this.trailingTitle,
+    this.onPressMore,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

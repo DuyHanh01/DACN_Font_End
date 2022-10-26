@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/register_view_model.dart';
+import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/already_have_an_account_acheck.dart';
@@ -54,11 +55,8 @@ class _RegisterViewState extends State<RegisterView> {
                                 primary: AppColors.primaryColor,
                                 onPrimary: AppColors.white,
                               ),
-                              child: const Text(
-                                'Register',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w600),
-                              ),
+                              child: const Text('Register',
+                                  style: signInSignUpStyle),
                               onPressed: () async {
                                 var registerSuccess = await model.register(
                                     _controllerUser.text,

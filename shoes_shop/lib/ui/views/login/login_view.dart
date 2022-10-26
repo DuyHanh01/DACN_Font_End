@@ -1,12 +1,13 @@
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/login_view_model.dart';
+import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
 import 'package:shoes_shop/ui/widgets/login_header.dart';
 import 'package:shoes_shop/ui/widgets/press_back_button_again_to_exit_app.dart';
-import '../shared/ui_helpers.dart';
-import '../widgets/already_have_an_account_acheck.dart';
+import '../../shared/ui_helpers.dart';
+import '../../widgets/already_have_an_account_acheck.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -59,9 +60,7 @@ class _LoginViewState extends State<LoginView> {
                                 ),
                                 child: const Text(
                                   'Sign In',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
+                                  style: signInSignUpStyle,
                                 ),
                                 onPressed: () async {
                                   var loginSuccess = await model.login(

@@ -16,8 +16,10 @@ const wellComeStyle = TextStyle(
       )
     ]);
 
-const appBarStyle =
-    TextStyle(fontSize: 16, color: AppColors.primaryColor, fontWeight: FontWeight.w900);
+const appBarStyle = TextStyle(
+    fontSize: 16, color: AppColors.primaryColor, fontWeight: FontWeight.w900);
+
+const signInSignUpStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 
 const numberSoppingCart = TextStyle(
     color: AppColors.white, fontSize: 10, fontWeight: FontWeight.bold);

@@ -1,5 +1,5 @@
 class Account {
-  int? accountId;
+  int accountId;
   String? username;
   String? password;
   int? roleId;
