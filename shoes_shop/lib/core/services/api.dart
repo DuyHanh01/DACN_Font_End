@@ -5,6 +5,7 @@ import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
 import 'package:shoes_shop/core/models/brand.dart';
 import 'package:shoes_shop/core/models/register.dart';
+import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/models/token.dart';
 
 /// The service responsible for networking requests
@@ -166,6 +167,35 @@ class Api {
       }
 
       return BaseResult(s.isSuccess, s.status, s.Message, brands);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //get all shoes
+  Future<BaseResult<Shoes?>> getAllShoes(int accountid) async {
+    var shoes = <Shoes>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getAllShoesActive/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var brand in data) {
+        shoes.add(Shoes.fromJson(brand));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, []);

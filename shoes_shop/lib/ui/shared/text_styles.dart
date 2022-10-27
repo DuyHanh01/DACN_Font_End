@@ -16,6 +16,16 @@ const wellComeStyle = TextStyle(
       )
     ]);
 
+const shoesTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
+
+const shoesPriceOld = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: AppColors.darkGray,
+    decoration: TextDecoration.lineThrough);
+
+const shoesSalePrice = TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.red);
+
 const appBarStyle = TextStyle(
     fontSize: 16, color: AppColors.primaryColor, fontWeight: FontWeight.w900);
 

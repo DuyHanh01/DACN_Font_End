@@ -7,7 +7,7 @@ import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/already_have_an_account_acheck.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
-import 'package:shoes_shop/ui/widgets/register_header.dart';
+import 'package:shoes_shop/ui/views/register/components/register_header.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -63,7 +63,7 @@ class _RegisterViewState extends State<RegisterView> {
                                     _controllerPass.text,
                                     _controllerRePass.text);
                                 if (registerSuccess) {
-                                  Navigator.pushNamed(context, '/');
+                                  Navigator.pushNamed(context, '/login');
                                 }
                               },
                             ),

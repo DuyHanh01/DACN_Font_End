@@ -10,6 +10,7 @@ import 'package:shoes_shop/ui/views/home/components/brand_list.dart';
 import 'package:shoes_shop/ui/views/home/components/bottom_navigationbar_menu.dart';
 import 'package:shoes_shop/ui/views/home/components/category_title.dart';
 import 'package:shoes_shop/ui/views/home/components/feed_news.dart';
+import 'package:shoes_shop/ui/views/home/components/popular_list.dart';
 import 'package:shoes_shop/ui/widgets/main_drawer.dart';
 import 'package:shoes_shop/ui/widgets/press_back_button_again_to_exit_app.dart';
 import 'package:shoes_shop/ui/widgets/search.dart';
@@ -51,6 +52,7 @@ class _HomeViewState extends State<HomeView> {
                 CategoryTitle(title: 'Category', trailingTitle: 'View All'),
                 HomeBrandList(),
                 CategoryTitle(title: 'Popular', trailingTitle: 'View All'),
+                HomePopularList(),
               ],
             ),
             bottomNavigationBar: const ButtonMenu(),
