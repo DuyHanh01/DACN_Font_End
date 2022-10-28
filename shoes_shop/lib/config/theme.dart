@@ -21,12 +21,14 @@ class AppSizes {
 class AppColors {
   static const red = Color(0xFFDB3022);
   static const black = Color(0xFF222222);
+  static const grey = Color.fromRGBO(97, 97, 97, 1);
   static const blackGray = Color(0xFF393939);
   static const lightGray = Color(0xFF9B9B9B);
   static const darkGray = Color(0xFF979797);
   static const white = Color(0xFFFFFFFF);
+  static const darkWhite = Color.fromRGBO(246, 246, 246, 1);
   static const orange = Color(0xFFFFBA49);
-  static const background = Color(0xFFE5E5E5);
+  static const background = Color(0xEEF5F1F1);
   static const backgroundLight = Color(0xFFF9F9F9);
   static const transparent = Color(0x00000000);
   static const success = Color(0xFF2AA952);
@@ -48,6 +50,9 @@ class AppUI {
   static const String imgGetStarted2 = '${imagePath}shoes_background_1.jpg';
   static const String imgGetStarted3 = '${imagePath}shoes_background_2.png';
   static const String imgTopLogin = '${imagePath}top_login.png';
+  static const String jordanDior = '${imagePath}jordan_dior.jpg';
+  static const String newTag = '${imagePath}new_tag.png';
+  static const String saleTag = '${imagePath}sale_tag.png';
   static const String img = '${imagePath}img.jpg';
   static const String search = '${svgPath}search.svg';
   static const String favorite = '${svgPath}favorite.svg';
@@ -69,7 +74,7 @@ class CustomAppTheme {
       errorColor: AppColors.red,
       dividerColor: Colors.transparent,
       appBarTheme: theme.appBarTheme.copyWith(
-        color: AppColors.primaryColor,
+        color: AppColors.white,
         iconTheme: const IconThemeData(color: AppColors.black),
         toolbarTextStyle: theme.textTheme
             .copyWith(

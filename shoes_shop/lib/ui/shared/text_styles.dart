@@ -27,7 +27,7 @@ const shoesPriceOld = TextStyle(
 const shoesSalePrice = TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.red);
 
 const appBarStyle = TextStyle(
-    fontSize: 16, color: AppColors.primaryColor, fontWeight: FontWeight.w900);
+    fontSize: 18,color: AppColors.primaryColor, fontWeight: FontWeight.w900);
 
 const signInSignUpStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 

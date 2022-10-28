@@ -64,11 +64,10 @@ class _HomeViewState extends State<HomeView> {
 
 AppBar appBar() {
   return AppBar(
-    backgroundColor: AppColors.white,
-    shadowColor: AppColors.primaryColor.withOpacity(0.2),
+    elevation: 0,
     centerTitle: true,
     title: const Text(
-      'Vũ Hạnh Sneaker',
+      'VHIT Sneaker',
       style: appBarStyle,
     ),
     actions: [

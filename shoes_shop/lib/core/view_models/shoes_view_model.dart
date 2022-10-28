@@ -27,4 +27,26 @@ class ShoesViewModel extends BaseViewModel{
       return success;
     }
   }
+
+  bool checkTimeSale(Shoes? shoes) {
+    if(shoes!.endday!=null && DateTime.parse(shoes.endday!).compareTo(DateTime.now())>0){
+      return true;
+    }
+      return false;
+  }
+
+  bool checkShoeNew(Shoes? shoes) {
+    if(shoes!.shoenew==true){
+      return true;
+    }
+    return false;
+  }
+
+  bool checkPurchased(Shoes? shoes) {
+    if(shoes!.purchased!=null){
+      return true;
+    }
+    return false;
+  }
+
 }

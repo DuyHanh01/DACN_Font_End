@@ -17,7 +17,7 @@ class Search extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                  offset: const Offset(0, 10),
+                  offset: const Offset(0, 5),
                   blurRadius: 10,
                   color: AppColors.primaryColor.withOpacity(0.3))
             ]),

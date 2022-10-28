@@ -3,7 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingHome extends StatelessWidget {
 
-  const RatingHome({Key? key}) : super(key: key);
+  final double size;
+  const RatingHome({Key? key, required this.size}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class RatingHome extends StatelessWidget {
             direction: Axis.horizontal,
             allowHalfRating: true,
             itemCount: 5,
-            itemSize: 12,
+            itemSize: size,
             itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Colors.amber,
