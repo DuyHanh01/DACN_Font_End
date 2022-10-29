@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/brand_view_model.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
@@ -48,7 +47,7 @@ class _HomeBrandListState extends State<HomeBrandList> {
                                 borderRadius: BorderRadius.circular(15),
                                 image: DecorationImage(
                                   image: const AssetImage(
-                                    AppUI.imgGetStarted3,
+                                    AppUI.imgGetStarted2,
                                   ),
                                   fit: BoxFit.cover,
                                   colorFilter: ColorFilter.mode(
@@ -60,19 +59,18 @@ class _HomeBrandListState extends State<HomeBrandList> {
                                 ),
                               ),
                               alignment: Alignment.center,
-                              child: SvgPicture.asset(
-                                AppUI.profile,
-                                height: 24,
-                                width: 24,
-                                color: currentSelected == i
-                                    ? Colors.white
-                                    : AppColors.lightGray,
-                              ),
+                              child: Image.asset(AppUI.nikeBrand,
+                                  height: 24,
+                                  width: 24,
+                                  color: currentSelected == i
+                                      ? Colors.white
+                                      : AppColors.lightGray),
                             ),
                             const SizedBox(height: 5),
                             Text(
                               model.brands![i]!.brandname!,
                               style: TextStyle(
+                                color: AppColors.black,
                                 fontWeight: currentSelected == i
                                     ? FontWeight.bold
                                     : FontWeight.normal,

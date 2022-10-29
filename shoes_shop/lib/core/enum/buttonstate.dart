@@ -1,0 +1,1 @@
+enum ButtonState { init, submitting, completed }

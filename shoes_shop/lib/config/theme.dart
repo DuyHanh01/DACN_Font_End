@@ -28,7 +28,7 @@ class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const darkWhite = Color.fromRGBO(246, 246, 246, 1);
   static const orange = Color(0xFFFFBA49);
-  static const background = Color(0xEEF5F1F1);
+  static const background = Color(0xFFE5E5E5);
   static const backgroundLight = Color(0xFFF9F9F9);
   static const transparent = Color(0x00000000);
   static const success = Color(0xFF2AA952);
@@ -51,6 +51,7 @@ class AppUI {
   static const String imgGetStarted3 = '${imagePath}shoes_background_2.png';
   static const String imgTopLogin = '${imagePath}top_login.png';
   static const String jordanDior = '${imagePath}jordan_dior.jpg';
+  static const String nikeBrand = '${imagePath}nike_brand.png';
   static const String newTag = '${imagePath}new_tag.png';
   static const String saleTag = '${imagePath}sale_tag.png';
   static const String img = '${imagePath}img.jpg';
@@ -59,6 +60,8 @@ class AppUI {
   static const String home = '${svgPath}home.svg';
   static const String notification = '${svgPath}notification.svg';
   static const String profile = '${svgPath}profile.svg';
+  static const String back = '${svgPath}back.svg';
+  static const String cart = '${svgPath}cart_icon.svg';
 }
 
 class CustomAppTheme {

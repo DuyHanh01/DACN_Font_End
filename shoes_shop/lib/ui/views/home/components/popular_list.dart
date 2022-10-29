@@ -6,7 +6,7 @@ import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
-import 'package:shoes_shop/ui/views/detail/detail_screen.dart';
+import 'package:shoes_shop/ui/views/detail/detail_view.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
 class HomePopularList extends StatefulWidget {
@@ -37,8 +37,8 @@ class _HomePopularListState extends State<HomePopularList> {
                     return GestureDetector(
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: ((context) => DetailScreen(
-                              shoes: model.shoes![i]!, shoesViewModel: model)),
+                          builder: ((context) => DetailView(
+                              shoes: model.shoes![i]!)),
                         ),
                       ),
                       child: Card(

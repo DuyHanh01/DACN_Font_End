@@ -51,9 +51,10 @@ class _DetailScreenSelectSizeState extends State<DetailScreenSelectSize> {
               width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: AppColors.grey.withOpacity(0.3)),
                 color: currentSelected == i
                     ? AppColors.primaryColor
-                    : AppColors.grey,
+                    : AppColors.white,
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.white.withOpacity(.7),

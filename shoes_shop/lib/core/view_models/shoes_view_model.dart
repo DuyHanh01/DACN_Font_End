@@ -28,6 +28,15 @@ class ShoesViewModel extends BaseViewModel{
     }
   }
 
+  Shoes? findById(String id) {
+    return shoes?.firstWhere((prod) => prod?.shoeid == id);
+  }
+
+  Shoes? getShoes(int shoeid) {
+    Shoes? shoess = shoes?.firstWhere((prod) => prod!.shoeid == shoeid);
+    return shoess;
+  }
+
   bool checkTimeSale(Shoes? shoes) {
     if(shoes!.endday!=null && DateTime.parse(shoes.endday!).compareTo(DateTime.now())>0){
       return true;

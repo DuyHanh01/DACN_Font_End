@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/core/enum/buttonstate.dart';
+import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 bool isAnimating = true;
 
-//enum to declare 3 state of button
-enum ButtonState { init, submitting, completed }
-
 class ButtonStates extends StatefulWidget {
-  const ButtonStates({super.key});
+  ButtonStates({Key? key}) : super(key: key);
 
   @override
   State<ButtonStates> createState() => _ButtonStatesState();
@@ -22,6 +21,8 @@ class _ButtonStatesState extends State<ButtonStates> {
     final buttonWidth = MediaQuery.of(context).size.width;
 
     // update the UI depending on below variable values
+    CartViewModel cartViewModel = CartViewModel();
+
     final isInit = isAnimating || state == ButtonState.init;
     final isDone = state == ButtonState.completed;
 
@@ -50,7 +51,8 @@ class _ButtonStatesState extends State<ButtonStates> {
           fixedSize: const Size.fromHeight(53),
         ),
         child: const Text(
-          "Add to bag", style: shoesTextStyle,
+          "Add to bag",
+          style: shoesTextStyle,
         ),
         onPressed: () async {
           // here when button is pressed

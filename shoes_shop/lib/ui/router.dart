@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/ui/views/cart/cart_view.dart';
 import 'package:shoes_shop/ui/views/home/home_view.dart';
 import 'package:shoes_shop/ui/views/login/login_view.dart';
 import 'package:shoes_shop/ui/views/register/register_view.dart';
@@ -13,6 +14,8 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => const WellComeView());
       case '/login':
         return MaterialPageRoute(builder: (_) => const LoginView());
+      case '/cart':
+        return MaterialPageRoute(builder: (_) => const CartView());
       case '/register':
         return MaterialPageRoute(builder: (_) => const RegisterView());
       default:
