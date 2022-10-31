@@ -20,16 +20,16 @@ class CartCard extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 0.88,
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Image.asset(AppUI.nikeBrand),
+              child: Image.network(cart.image1),
             ),
           ),
         ),
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -38,7 +38,7 @@ class CartCard extends StatelessWidget {
               style: shoesTextStyle,
               maxLines: 2,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text.rich(
               TextSpan(
                 text: "\$${cart.price}",

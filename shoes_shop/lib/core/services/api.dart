@@ -5,6 +5,8 @@ import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
 import 'package:shoes_shop/core/models/brand.dart';
 import 'package:shoes_shop/core/models/register.dart';
+import 'package:shoes_shop/core/models/saledetails.dart';
+import 'package:shoes_shop/core/models/sales.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/models/sizetable.dart';
 import 'package:shoes_shop/core/models/token.dart';
@@ -146,7 +148,7 @@ class Api {
   }
 
   //get all brands
-  Future<BaseResult<Brand?>> getAllBrands() async {
+  Future<BaseResult<Brand>> getAllBrands() async {
     var brands = <Brand>[];
     token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.get(
@@ -175,7 +177,7 @@ class Api {
   }
 
   //get all shoes
-  Future<BaseResult<Shoes?>> getAllShoes(int accountid) async {
+  Future<BaseResult<Shoes>> getAllShoes(int accountid) async {
     var shoes = <Shoes>[];
     token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.get(
@@ -204,7 +206,7 @@ class Api {
   }
 
   //get sizetable by shoeid
-  Future<BaseResult<SizeTable?>> getSizeTableByShoeId(int shoeid) async {
+  Future<BaseResult<SizeTable>> getSizeTableByShoeId(int shoeid) async {
     var sizes = <SizeTable>[];
     token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.get(
@@ -226,6 +228,64 @@ class Api {
       }
 
       return BaseResult(s.isSuccess, s.status, s.Message, sizes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //get sales
+  Future<BaseResult<Sales>> getAllSales() async {
+    var sales = <Sales>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getAllSales/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var sale in data) {
+        sales.add(Sales.fromJson(sale));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, sales);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //get sale details by saleId
+  Future<BaseResult<SaleDetails>> getSaleDetailsBySaleId(int saleid) async {
+    var saleDetails = <SaleDetails>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getSaleDetailsBySaleId/$saleid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var saledetail in data) {
+        saleDetails.add(SaleDetails.fromJson(saledetail));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, saleDetails);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, []);

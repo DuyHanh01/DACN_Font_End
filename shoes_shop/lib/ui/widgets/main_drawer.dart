@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/home_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 
@@ -63,7 +64,7 @@ class MainDrawer extends StatelessWidget {
                           TextButton(
                             onPressed: () {
                               model.logout();
-                              Navigator.of(context).pushNamed('/login');
+                              Navigator.of(context).pushNamed(RoutePaths.login);
                             },
                             child: const Text('OK',
                                 style:

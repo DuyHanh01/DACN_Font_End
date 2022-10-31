@@ -2,7 +2,7 @@ class Cart {
   final String shoeid;
   final String shoename;
   final double price;
-  // final String image1;
+  final String image1;
   // final String size;
   final int purchased;
 
@@ -10,7 +10,7 @@ class Cart {
       : shoeid = '',
         shoename = '',
         price = 0,
-        // image1 = '',
+        image1 = '',
         // size = '',
         purchased = 0;
 
@@ -18,7 +18,7 @@ class Cart {
       {required this.shoeid,
       required this.shoename,
       required this.price,
-      // required this.size,
-      // required this.image1,
+      required this.image1,
+        //required this.size,
       required this.purchased});
 }

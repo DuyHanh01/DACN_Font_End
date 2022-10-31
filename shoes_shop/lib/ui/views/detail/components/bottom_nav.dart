@@ -48,7 +48,7 @@ class BottomNav extends StatelessWidget {
           IconButton(
               onPressed: () {
                 cartViewModel.addItem(shoes.shoeid.toString(),
-                    shoes.price, shoes.shoename, "1");
+                    shoes.price, shoes.shoename,shoes.image1, "1");
               },
               icon: Icon(Icons.shopping_cart))
           // Expanded(

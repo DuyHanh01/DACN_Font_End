@@ -45,7 +45,7 @@ class SelectSize extends StatelessWidget {
                 itemCount: sizesList.length,
                 itemBuilder: (ctx, i) {
                   return GestureDetector(
-                    onTap: (){print(model.sizetables![0]);},
+                    onTap: (){print(model.sizetables![0]?.shoeid);},
                     child: Container(
                       margin: const EdgeInsets.only(left: 10),
                       height: 50,

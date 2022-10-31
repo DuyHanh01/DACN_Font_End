@@ -13,7 +13,7 @@ class Shoes {
   bool active;
   int brandid;
   int categoryid;
-  String? image1;
+  String image1;
   String? image2;
   String? image3;
   String? image4;

@@ -30,11 +30,10 @@ class HomePopularList extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (ctx, i) {
                     return GestureDetector(
-                      onTap: () =>
-                          Navigator.of(context).pushNamed(
-                            RoutePaths.detailView,
-                            arguments: model.shoes![i],
-                          ),
+                      onTap: () => Navigator.of(context).pushNamed(
+                        RoutePaths.detailView,
+                        arguments: model.shoes![i],
+                      ),
                       child: Card(
                         elevation: .7,
                         child: Column(
@@ -50,8 +49,8 @@ class HomePopularList extends StatelessWidget {
                                         topRight: Radius.circular(10),
                                       ),
                                       image: DecorationImage(
-                                        image:
-                                             NetworkImage(model.shoes![i]!.image1!),
+                                        image: NetworkImage(
+                                            model.shoes![i]!.image1!),
                                         fit: BoxFit.cover,
                                         colorFilter: ColorFilter.mode(
                                           AppColors.black.withOpacity(.05),

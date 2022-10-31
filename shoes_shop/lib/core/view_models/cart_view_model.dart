@@ -22,8 +22,8 @@ class CartViewModel extends BaseViewModel {
     String shoeid,
     double price,
     String shoename,
+    String image1,
     String purchased,
-    // String? image1,
     // String size,
   ) {
     //   if (_carts.contains(shoeid)) {
@@ -46,7 +46,7 @@ class CartViewModel extends BaseViewModel {
         shoename: shoename,
         price: price,
         // size: size,
-        // image1: image1!,
+        image1: image1,
         purchased: 1,
       ),
     );

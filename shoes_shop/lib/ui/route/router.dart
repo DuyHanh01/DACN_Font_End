@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/core/models/sales.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/views/cart/cart_view.dart';
@@ -6,6 +7,7 @@ import 'package:shoes_shop/ui/views/detail/detail_view.dart';
 import 'package:shoes_shop/ui/views/home/home_view.dart';
 import 'package:shoes_shop/ui/views/login/login_view.dart';
 import 'package:shoes_shop/ui/views/register/register_view.dart';
+import 'package:shoes_shop/ui/views/saledetails/saledetails_view.dart';
 import 'package:shoes_shop/ui/views/wellcome/wellcome_view.dart';
 
 class MainRouter {
@@ -24,6 +26,9 @@ class MainRouter {
       case RoutePaths.detailView:
         final event = settings.arguments as Shoes;
         return MaterialPageRoute(builder: (_) => DetailView(shoes: event));
+      case RoutePaths.saleDetails:
+        final event = settings.arguments as Sales;
+        return MaterialPageRoute(builder: (_) => SaleDetailsView(sales: event));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -50,8 +50,6 @@ class AppUI {
   static const String imgGetStarted2 = '${imagePath}shoes_background_1.jpg';
   static const String imgGetStarted3 = '${imagePath}shoes_background_2.png';
   static const String imgTopLogin = '${imagePath}top_login.png';
-  static const String jordanDior = '${imagePath}jordan_dior.jpg';
-  static const String nikeBrand = '${imagePath}nike_brand.png';
   static const String newTag = '${imagePath}new_tag.png';
   static const String saleTag = '${imagePath}sale_tag.png';
   static const String img = '${imagePath}img.jpg';

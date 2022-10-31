@@ -19,7 +19,7 @@ class DetailView extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return BaseView<ShoesViewModel>(
         onModelReady: (model) => model.getShoes(shoes.shoeid),
-        builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
+        builder: (BuildContext context, ShoesViewModel model, Widget? chill) =>
             Scaffold(
               appBar: buildAppBar(context),
               body: Body(size: size, model: model, shoes: shoes),
