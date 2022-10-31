@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/services/api.dart';
 import 'package:shoes_shop/locator.dart';
@@ -5,6 +7,8 @@ import 'package:shoes_shop/locator.dart';
 class ShoesService {
   final Api _api = locator<Api>();
 
+  //StreamController<List<Shoes?>?> listShoesController = StreamController<List<Shoes>>();
+  //StreamController<Shoes?> shoesController = StreamController<Shoes?>();
   String message = "";
 
   List<Shoes?>? _shoes = <Shoes>[];
@@ -13,9 +17,15 @@ class ShoesService {
   Future<bool> getAllShoes(int accountid) async {
     var fetchedShoes = await _api.getAllShoes(accountid);
     var isSuccessShoes = fetchedShoes.isSuccess;
-    _shoes = fetchedShoes.data;
-    message = fetchedShoes.Message!;
 
+    message = fetchedShoes.Message!;
+    if (isSuccessShoes != null && isSuccessShoes) {
+      if (fetchedShoes.data != null) {
+        _shoes = fetchedShoes.data;
+        //listShoesController.add(fetchedShoes.data);
+      }
+    }
     return isSuccessShoes ?? false;
   }
+
 }

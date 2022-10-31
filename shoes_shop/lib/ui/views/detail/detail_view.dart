@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
+import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
@@ -10,20 +11,19 @@ import 'package:shoes_shop/ui/views/detail/components/app_bar.dart';
 import 'package:shoes_shop/ui/views/detail/components/cart_counter.dart';
 import 'package:shoes_shop/ui/views/detail/components/select_size.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
-import 'package:shoes_shop/ui/views/detail/components/animation_button.dart';
 
 // ignore: must_be_immutable
 class DetailView extends StatelessWidget {
   Shoes shoes;
 
-  DetailView({Key? key, required this.shoes})
-      : super(key: key);
+  DetailView({Key? key, required this.shoes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cartViewModel = Provider.of<CartViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return BaseView<ShoesViewModel>(
-      onModelReady: (model) => model.getShoes(shoes.shoeid),
+        onModelReady: (model) => model.getShoes(shoes.shoeid),
         builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
             Scaffold(
               appBar: buildAppBar(context),
@@ -147,7 +147,7 @@ class DetailView extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Badge(
                           badgeContent:
-                              const Text('0', style: numberSoppingCart),
+                              Text('${cartViewModel.carts.length}', style: numberSoppingCart),
                           badgeColor: AppColors.red,
                           child: IconButton(
                             icon: const Icon(
@@ -160,9 +160,15 @@ class DetailView extends StatelessWidget {
                           )),
                     ),
                     const SizedBox(width: 35),
-                    Expanded(
-                      child: ButtonStates(),
-                    ),
+                    IconButton(
+                        onPressed: () {
+                          cartViewModel.addItem(shoes.shoeid.toString(),
+                              shoes.price, shoes.shoename, "1");
+                        },
+                        icon: Icon(Icons.shopping_cart))
+                    // Expanded(
+                    //   child: ButtonStates(),
+                    // ),
                   ],
                 ),
               ),

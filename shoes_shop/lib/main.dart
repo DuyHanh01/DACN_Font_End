@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
+import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
+import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/locator.dart';
 import 'package:shoes_shop/ui/router.dart';
 
@@ -16,10 +19,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<Account>(
-      initialData: Account.initial(),
-      create: (BuildContext context) =>
-      locator<AuthenticationService>().accountController.stream,
+    return MultiProvider(
+      providers: [
+        StreamProvider<Account>(
+            initialData: Account.initial(),
+            create: (BuildContext context) =>
+                locator<AuthenticationService>().accountController.stream),
+        ChangeNotifierProvider.value(
+          value: CartViewModel(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Provider Architecture',

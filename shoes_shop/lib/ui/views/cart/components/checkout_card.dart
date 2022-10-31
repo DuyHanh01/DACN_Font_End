@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shoes_shop/core/utils/utils.dart';
+import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/widgets/default_button.dart';
 
 class CheckoutCard extends StatelessWidget {
   const CheckoutCard({
-    Key? key,
+    Key? key, required this.cartViewModel,
   }) : super(key: key);
+  final CartViewModel cartViewModel;
 
 
   @override
@@ -45,7 +46,7 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$${sumCart()}",
+                        text: "\$${cartViewModel.totalAmount}",
                         style: shoesTextStyle.copyWith(fontSize: 18),
                       ),
                     ],
@@ -64,13 +65,5 @@ class CheckoutCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  double sumCart (){
-    double sum = 0;
-    for (var element in Utils.carts) {
-      sum += element.price*element.purchased;
-    }
-    return sum;
   }
 }

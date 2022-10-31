@@ -19,6 +19,7 @@ void setupLocator() {
   locator.registerLazySingleton(() => ShoesService());
 
   locator.registerFactory(() => LoginViewModel());
+  locator.registerFactory(() => CartViewModel());
   locator.registerFactory(() => RegisterViewModel());
   locator.registerFactory(() => BrandViewModel());
   locator.registerFactory(() => ShoesViewModel());

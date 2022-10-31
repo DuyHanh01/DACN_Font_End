@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/buttonstate.dart';
-import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 bool isAnimating = true;
@@ -21,8 +20,6 @@ class _ButtonStatesState extends State<ButtonStates> {
     final buttonWidth = MediaQuery.of(context).size.width;
 
     // update the UI depending on below variable values
-    CartViewModel cartViewModel = CartViewModel();
-
     final isInit = isAnimating || state == ButtonState.init;
     final isDone = state == ButtonState.completed;
 

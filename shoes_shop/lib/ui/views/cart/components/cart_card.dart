@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/cart.dart';
+import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 class CartCard extends StatelessWidget {
   const CartCard({
@@ -21,7 +22,7 @@ class CartCard extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Color(0xFFF5F6F9),
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Image.asset(AppUI.nikeBrand),
@@ -34,7 +35,7 @@ class CartCard extends StatelessWidget {
           children: [
             Text(
               cart.shoename,
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              style: shoesTextStyle,
               maxLines: 2,
             ),
             SizedBox(height: 10),

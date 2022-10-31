@@ -1,9 +1,12 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 AppBar appBar(BuildContext context) {
+  final cartViewModel = Provider.of<CartViewModel>(context);
   return AppBar(
     elevation: 0,
     centerTitle: true,
@@ -15,7 +18,7 @@ AppBar appBar(BuildContext context) {
       Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Badge(
-              badgeContent: const Text('0', style: numberSoppingCart),
+              badgeContent: Text(cartViewModel.carts.length.toString(), style: numberSoppingCart),
               badgeColor: AppColors.red,
               child: IconButton(
                 icon: const Icon(

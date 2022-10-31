@@ -1,5 +1,5 @@
 class Cart {
-  final int shoeid;
+  final String shoeid;
   final String shoename;
   final double price;
   // final String image1;
@@ -7,7 +7,7 @@ class Cart {
   final int purchased;
 
   Cart.initial()
-      : shoeid = 0,
+      : shoeid = '',
         shoename = '',
         price = 0,
         // image1 = '',

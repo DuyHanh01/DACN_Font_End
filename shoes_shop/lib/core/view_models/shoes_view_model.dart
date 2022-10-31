@@ -8,6 +8,7 @@ class ShoesViewModel extends BaseViewModel{
   final ShoesService _shoesService = locator<ShoesService>();
 
   String errorMessage = '';
+
   List<Shoes?>? get shoes => _shoesService.shoes;
 
   Future<bool> getAllShoes(int accountid) async {
@@ -28,13 +29,8 @@ class ShoesViewModel extends BaseViewModel{
     }
   }
 
-  Shoes? findById(String id) {
-    return shoes?.firstWhere((prod) => prod?.shoeid == id);
-  }
-
   Shoes? getShoes(int shoeid) {
-    Shoes? shoess = shoes?.firstWhere((prod) => prod!.shoeid == shoeid);
-    return shoess;
+    return shoes?.firstWhere((prod) => prod!.shoeid == shoeid);
   }
 
   bool checkTimeSale(Shoes? shoes) {

@@ -19,7 +19,7 @@ class HomePopularList extends StatefulWidget {
 class _HomePopularListState extends State<HomePopularList> {
   @override
   Widget build(BuildContext context) {
-    Account account = Provider.of<Account>(context);
+    Account account = Provider.of<Account>(context, listen: false);
     return BaseView<ShoesViewModel>(
         onModelReady: (model) => model.getAllShoes(account.accountId),
         builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
@@ -37,8 +37,8 @@ class _HomePopularListState extends State<HomePopularList> {
                     return GestureDetector(
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: ((context) => DetailView(
-                              shoes: model.shoes![i]!)),
+                          builder: ((context) =>
+                              DetailView(shoes: model.shoes![i]!)),
                         ),
                       ),
                       child: Card(
@@ -56,7 +56,8 @@ class _HomePopularListState extends State<HomePopularList> {
                                         topRight: Radius.circular(10),
                                       ),
                                       image: DecorationImage(
-                                        image: const AssetImage(AppUI.jordanDior),
+                                        image:
+                                            const AssetImage(AppUI.jordanDior),
                                         fit: BoxFit.cover,
                                         colorFilter: ColorFilter.mode(
                                           AppColors.black.withOpacity(.05),
