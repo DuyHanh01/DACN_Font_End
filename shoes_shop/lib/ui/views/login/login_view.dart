@@ -1,6 +1,7 @@
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/login_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
@@ -67,7 +68,7 @@ class _LoginViewState extends State<LoginView> {
                                       _controllerUser.text,
                                       _controllerPass.text);
                                   if (loginSuccess) {
-                                    Navigator.pushNamed(context, '/');
+                                    Navigator.pushNamed(context, RoutePaths.home);
                                   }
                                 },
                               ),
@@ -75,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
                       UIHelper.verticalSpaceMedium(),
                       AlreadyHaveAnAccountCheck(
                         press: () {
-                          Navigator.pushNamed(context, '/register');
+                          Navigator.pushNamed(context, RoutePaths.register);
                         },
                       ),
                     ],

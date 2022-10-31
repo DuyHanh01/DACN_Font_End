@@ -6,6 +6,7 @@ import 'package:shoes_shop/core/models/base_result.dart';
 import 'package:shoes_shop/core/models/brand.dart';
 import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
+import 'package:shoes_shop/core/models/sizetable.dart';
 import 'package:shoes_shop/core/models/token.dart';
 
 /// The service responsible for networking requests
@@ -191,11 +192,40 @@ class Api {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       List<dynamic> data = s.data;
 
-      for (var brand in data) {
-        shoes.add(Shoes.fromJson(brand));
+      for (var shoe in data) {
+        shoes.add(Shoes.fromJson(shoe));
       }
 
       return BaseResult(s.isSuccess, s.status, s.Message, shoes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //get sizetable by shoeid
+  Future<BaseResult<SizeTable?>> getSizeTableByShoeId(int shoeid) async {
+    var sizes = <SizeTable>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getSizeByShoesId/$shoeid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var size in data) {
+        sizes.add(SizeTable.fromJson(size));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, sizes);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, []);

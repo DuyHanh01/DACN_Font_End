@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 AppBar appBar(BuildContext context) {
@@ -25,7 +26,7 @@ AppBar appBar(BuildContext context) {
                   Icons.shopping_cart_outlined,
                   size: 25,
                 ),
-                onPressed: () {Navigator.pushNamed(context, '/cart');},
+                onPressed: () {Navigator.pushNamed(context, RoutePaths.cart);},
               ))),
       const SizedBox(width: 15)
     ],

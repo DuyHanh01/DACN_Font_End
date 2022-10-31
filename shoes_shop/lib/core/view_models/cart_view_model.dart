@@ -1,3 +1,4 @@
+import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/view_models/base_view_model.dart';
 
@@ -55,7 +56,7 @@ class CartViewModel extends BaseViewModel {
 
   void removeItem(String shoeid) {
     _carts.remove(carts.firstWhere((prod) => prod.shoeid == shoeid));
-    notifyListeners();
+    setState(ViewState.Idle);
   }
 
   // void removeSingleItem(String shoeid) {
@@ -82,6 +83,6 @@ class CartViewModel extends BaseViewModel {
 
   void clear() {
     _carts = [];
-    notifyListeners();
+    setState(ViewState.Idle);
   }
 }

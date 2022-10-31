@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/register_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
@@ -63,7 +64,7 @@ class _RegisterViewState extends State<RegisterView> {
                                     _controllerPass.text,
                                     _controllerRePass.text);
                                 if (registerSuccess) {
-                                  Navigator.pushNamed(context, '/login');
+                                  Navigator.pushNamed(context, RoutePaths.login);
                                 }
                               },
                             ),
@@ -71,7 +72,7 @@ class _RegisterViewState extends State<RegisterView> {
                     UIHelper.verticalSpaceMedium(),
                     AlreadyHaveAnAccountCheck(
                       press: () {
-                        Navigator.pushNamed(context, '/login');
+                        Navigator.pushNamed(context, RoutePaths.login);
                       },
                     ),
                   ],

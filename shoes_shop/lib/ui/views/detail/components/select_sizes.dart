@@ -9,31 +9,33 @@ class SizeModel {
   SizeModel({required this.title});
 }
 
-List<SizeModel> sizesList = [
-  SizeModel(title: '38'),
-  SizeModel(title: '39'),
-  SizeModel(title: '40'),
-  SizeModel(title: '41'),
-  SizeModel(title: '42'),
-  SizeModel(title: '43'),
-  SizeModel(title: '44'),
-  SizeModel(title: '45'),
-  SizeModel(title: '46'),
-  SizeModel(title: '47'),
-  SizeModel(title: '48'),
-];
+class DetailScreenSelectSize extends StatefulWidget {
+  const DetailScreenSelectSize({Key? key}) : super(key: key);
 
-class SelectSize extends StatelessWidget {
-  final Shoes shoes;
-  final int currentSelected;
-  const SelectSize(
-      {Key? key,
-      required this.shoes,
-      required this.currentSelected})
-      : super(key: key);
+  @override
+  State<DetailScreenSelectSize> createState() => _DetailScreenSelectSizeState();
+}
+
+class _DetailScreenSelectSizeState extends State<DetailScreenSelectSize> {
+  int currentSelected = 2;
+
+  List<SizeModel> sizesList = [
+    SizeModel(title: '38'),
+    SizeModel(title: '39'),
+    SizeModel(title: '40'),
+    SizeModel(title: '41'),
+    SizeModel(title: '42'),
+    SizeModel(title: '43'),
+    SizeModel(title: '44'),
+    SizeModel(title: '45'),
+    SizeModel(title: '46'),
+    SizeModel(title: '47'),
+    SizeModel(title: '48'),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final shoes = ModalRoute.of(context)!.settings.arguments as Shoes;
     return BaseView<SizeTableViewModel>(
         onModelReady: (model) => model.getSizeTableByShoeId(shoes.shoeid),
         builder: (BuildContext context, SizeTableViewModel model,
@@ -45,7 +47,11 @@ class SelectSize extends StatelessWidget {
                 itemCount: sizesList.length,
                 itemBuilder: (ctx, i) {
                   return GestureDetector(
-                    onTap: (){print(model.sizetables![0]);},
+                    onTap: () {
+                      setState(() {
+                        currentSelected = i;
+                      });
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(left: 10),
                       height: 50,

@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
-import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/locator.dart';
-import 'package:shoes_shop/ui/router.dart';
-
+import 'package:shoes_shop/ui/route/router.dart';
 void main() {
   setupLocator();
   runApp(const MyApp());

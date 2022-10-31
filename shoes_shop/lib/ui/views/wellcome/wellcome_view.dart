@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
 import 'package:shoes_shop/ui/widgets/press_back_button_again_to_exit_app.dart';
 
@@ -157,7 +158,7 @@ class _WellComeViewState extends State<WellComeView> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login');
+                      Navigator.pushNamed(context, RoutePaths.login);
                     },
                   )),
             ],

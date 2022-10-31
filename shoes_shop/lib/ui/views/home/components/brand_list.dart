@@ -59,7 +59,7 @@ class _HomeBrandListState extends State<HomeBrandList> {
                                 ),
                               ),
                               alignment: Alignment.center,
-                              child: Image.asset(AppUI.nikeBrand,
+                              child: Image.network(model.brands![i]!.logo!,
                                   height: 24,
                                   width: 24,
                                   color: currentSelected == i

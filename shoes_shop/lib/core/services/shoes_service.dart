@@ -7,8 +7,6 @@ import 'package:shoes_shop/locator.dart';
 class ShoesService {
   final Api _api = locator<Api>();
 
-  //StreamController<List<Shoes?>?> listShoesController = StreamController<List<Shoes>>();
-  //StreamController<Shoes?> shoesController = StreamController<Shoes?>();
   String message = "";
 
   List<Shoes?>? _shoes = <Shoes>[];
@@ -22,10 +20,8 @@ class ShoesService {
     if (isSuccessShoes != null && isSuccessShoes) {
       if (fetchedShoes.data != null) {
         _shoes = fetchedShoes.data;
-        //listShoesController.add(fetchedShoes.data);
       }
     }
     return isSuccessShoes ?? false;
   }
-
 }

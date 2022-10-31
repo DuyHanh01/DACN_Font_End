@@ -3,20 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
-import 'package:shoes_shop/ui/views/detail/detail_view.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
-class HomePopularList extends StatefulWidget {
+class HomePopularList extends StatelessWidget {
   const HomePopularList({Key? key}) : super(key: key);
 
-  @override
-  State<HomePopularList> createState() => _HomePopularListState();
-}
-
-class _HomePopularListState extends State<HomePopularList> {
   @override
   Widget build(BuildContext context) {
     Account account = Provider.of<Account>(context, listen: false);
@@ -35,12 +30,11 @@ class _HomePopularListState extends State<HomePopularList> {
                 delegate: SliverChildBuilderDelegate(
                   (ctx, i) {
                     return GestureDetector(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: ((context) =>
-                              DetailView(shoes: model.shoes![i]!)),
-                        ),
-                      ),
+                      onTap: () =>
+                          Navigator.of(context).pushNamed(
+                            RoutePaths.detailView,
+                            arguments: model.shoes![i],
+                          ),
                       child: Card(
                         elevation: .7,
                         child: Column(
@@ -57,7 +51,7 @@ class _HomePopularListState extends State<HomePopularList> {
                                       ),
                                       image: DecorationImage(
                                         image:
-                                            const AssetImage(AppUI.jordanDior),
+                                             NetworkImage(model.shoes![i]!.image1!),
                                         fit: BoxFit.cover,
                                         colorFilter: ColorFilter.mode(
                                           AppColors.black.withOpacity(.05),
