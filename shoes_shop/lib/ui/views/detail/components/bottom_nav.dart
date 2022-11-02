@@ -7,7 +7,11 @@ import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 class BottomNav extends StatelessWidget {
-  BottomNav({Key? key, required this.cartViewModel, required this.shoes, required this.shoesViewModel})
+  const BottomNav(
+      {Key? key,
+      required this.cartViewModel,
+      required this.shoes,
+      required this.shoesViewModel})
       : super(key: key);
   final CartViewModel cartViewModel;
   final Shoes shoes;
@@ -52,10 +56,13 @@ class BottomNav extends StatelessWidget {
           IconButton(
               onPressed: () {
                 int total = shoesViewModel.x;
-                cartViewModel.addItem(shoes.shoeid.toString(), shoes.price,
-                    shoes.shoename, shoes.image1, total);
+                shoesViewModel.checkTimeSale(shoes)
+                    ? cartViewModel.addItem(shoes.shoeid.toString(),
+                        shoes.saleprice!, shoes.shoename, shoes.image1, total)
+                    : cartViewModel.addItem(shoes.shoeid.toString(),
+                        shoes.price, shoes.shoename, shoes.image1, total);
               },
-              icon: Icon(Icons.shopping_cart))
+              icon: const Icon(Icons.shopping_cart))
           // Expanded(
           //   child: ButtonStates(),
           // ),

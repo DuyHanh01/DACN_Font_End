@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/sales.dart';
-import 'package:shoes_shop/core/view_models/saledetails_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/views/saledetails/components/app_bar.dart';
 import 'package:shoes_shop/ui/views/saledetails/components/body.dart';
@@ -12,9 +14,10 @@ class SaleDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<SaleDetailsViewModel>(
-        onModelReady: (model) => model.getAllSaleDetailsById(sales.saleid),
-        builder: (BuildContext context, SaleDetailsViewModel model,
+    final account = Provider.of<Account>(context);
+    return BaseView<ShoesViewModel>(
+        onModelReady: (model) => model.getAllShoesBySaleId(account.accountId,sales.saleid),
+        builder: (BuildContext context, ShoesViewModel model,
                 Widget? child) =>
             Scaffold(appBar: buildAppBar(context), body: Body(model: model)));
   }

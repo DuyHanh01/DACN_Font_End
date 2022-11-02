@@ -8,9 +8,8 @@ import 'package:shoes_shop/ui/views/detail/components/app_bar.dart';
 import 'package:shoes_shop/ui/views/detail/components/body.dart';
 import 'package:shoes_shop/ui/views/detail/components/bottom_nav.dart';
 
-// ignore: must_be_immutable
 class DetailView extends StatelessWidget {
-  DetailView({Key? key, required this.shoes}) : super(key: key);
+  const DetailView({Key? key, required this.shoes}) : super(key: key);
   final Shoes shoes;
 
   @override

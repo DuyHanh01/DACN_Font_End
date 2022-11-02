@@ -14,7 +14,7 @@ import 'package:shoes_shop/core/models/token.dart';
 /// The service responsible for networking requests
 class Api {
   String token = '';
-  static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
+  static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
   static String showName = '';
 
   String Username = '';
@@ -56,7 +56,6 @@ class Api {
     String credentials = '$username:$password';
     Codec<String, String> stringToBase64 = utf8.fuse(base64);
     String encoded = stringToBase64.encode(credentials);
-    String decoded = stringToBase64.decode(encoded);
 
     final response = await client.post(
       Uri.parse('$endpoint/token'),
@@ -286,6 +285,35 @@ class Api {
       }
 
       return BaseResult(s.isSuccess, s.status, s.Message, saleDetails);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //get all shoes
+  Future<BaseResult<Shoes>> getAllShoesBySaleId(int accountid, int saleid) async {
+    var shoes = <Shoes>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getAllShoesBySaleId/$saleid/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var shoe in data) {
+        shoes.add(Shoes.fromJson(shoe));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, []);

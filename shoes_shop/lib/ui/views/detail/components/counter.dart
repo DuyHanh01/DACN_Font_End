@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
-import 'package:shoes_shop/ui/views/base_view.dart';
 
 class Counter extends StatelessWidget {
-  Counter({Key? key, required this.model}) : super(key: key);
+  const Counter({Key? key, required this.model}) : super(key: key);
   final ShoesViewModel model;
 
   @override
@@ -18,7 +17,6 @@ class Counter extends StatelessWidget {
             press: () {
               if (model.x > 1) {
                 model.subPurchased();
-                print(model.x);
               }
             },
           ),
@@ -33,7 +31,6 @@ class Counter extends StatelessWidget {
               icon: Icons.add,
               press: () {
                 model.addPurchased();
-                print(model.x);
               }),
         ],
       ),

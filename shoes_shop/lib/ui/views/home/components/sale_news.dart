@@ -38,7 +38,7 @@ class _SaleNewsState extends State<SaleNews> {
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
-                            image: const AssetImage(AppUI.imgGetStarted2),
+                            image: NetworkImage(model.sales![i]!.imgsale),
                             fit: BoxFit.cover,
                             colorFilter: ColorFilter.mode(
                               Colors.black.withOpacity(.6),

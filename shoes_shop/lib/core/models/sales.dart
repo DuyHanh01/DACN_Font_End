@@ -7,7 +7,7 @@ class Sales {
   final String endday;
   final String content;
   final double percent;
-  // final String imgsale;
+  final String imgsale;
 
   Sales(
       {required this.saleid,
@@ -17,7 +17,8 @@ class Sales {
       required this.startday,
       required this.endday,
       required this.content,
-      required this.percent});
+      required this.percent,
+      required this.imgsale});
 
   Sales.fromJson(Map<String, dynamic> json)
       : saleid = json['saleid'],
@@ -27,8 +28,8 @@ class Sales {
         startday = json['startday'],
         endday = json['endday'],
         content = json['content'],
-        percent = json['percent'];
-        // imgsale = json['imgsale'];
+        percent = json['percent'],
+        imgsale = json['imgsale'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -40,8 +41,7 @@ class Sales {
     data['endday'] = endday;
     data['content'] = content;
     data['percent'] = percent;
-    // data['imgsale'] = imgsale;
+    data['imgsale'] = imgsale;
     return data;
   }
-
 }

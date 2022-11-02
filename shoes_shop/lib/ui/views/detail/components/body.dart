@@ -8,7 +8,7 @@ import 'package:shoes_shop/ui/views/detail/components/select_size.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
 class Body extends StatelessWidget {
-  Body({Key? key, required this.size, required this.model, required this.shoes})
+  const Body({Key? key, required this.size, required this.model, required this.shoes})
       : super(key: key);
   final Size size;
   final ShoesViewModel model;
