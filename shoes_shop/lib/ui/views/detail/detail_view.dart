@@ -10,7 +10,7 @@ import 'package:shoes_shop/ui/views/detail/components/bottom_nav.dart';
 
 // ignore: must_be_immutable
 class DetailView extends StatelessWidget {
-  const DetailView({Key? key, required this.shoes}) : super(key: key);
+  DetailView({Key? key, required this.shoes}) : super(key: key);
   final Shoes shoes;
 
   @override
@@ -18,13 +18,13 @@ class DetailView extends StatelessWidget {
     final cartViewModel = Provider.of<CartViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return BaseView<ShoesViewModel>(
-        onModelReady: (model) => model.getShoes(shoes.shoeid),
+      onModelReady: (model)=>model.x,
         builder: (BuildContext context, ShoesViewModel model, Widget? chill) =>
             Scaffold(
               appBar: buildAppBar(context),
               body: Body(size: size, model: model, shoes: shoes),
               bottomNavigationBar:
-                  BottomNav(cartViewModel: cartViewModel, shoes: shoes),
+                  BottomNav(cartViewModel: cartViewModel, shoes: shoes, shoesViewModel: model),
             ));
   }
 }

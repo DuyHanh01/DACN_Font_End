@@ -4,6 +4,7 @@ import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/locator.dart';
 import 'package:shoes_shop/ui/route/router.dart';
 void main() {
@@ -24,6 +25,10 @@ class MyApp extends StatelessWidget {
                 locator<AuthenticationService>().accountController.stream),
         ChangeNotifierProvider.value(
           value: CartViewModel(),
+        ),
+
+        ChangeNotifierProvider.value(
+          value: ShoesViewModel(),
         ),
       ],
       child: MaterialApp(

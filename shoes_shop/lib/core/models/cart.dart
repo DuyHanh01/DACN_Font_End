@@ -1,10 +1,10 @@
 class Cart {
-  final String shoeid;
-  final String shoename;
-  final double price;
-  final String image1;
+  String shoeid;
+  String shoename;
+  double price;
+  String image1;
   // final String size;
-  final int purchased;
+  int purchased;
 
   Cart.initial()
       : shoeid = '',

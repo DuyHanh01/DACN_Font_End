@@ -19,7 +19,7 @@ AppBar appBar(BuildContext context) {
       Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Badge(
-              badgeContent: Text(cartViewModel.carts.length.toString(), style: numberSoppingCart),
+              badgeContent: Text(cartViewModel.itemCount.toString(), style: numberSoppingCart),
               badgeColor: AppColors.red,
               child: IconButton(
                 icon: const Icon(

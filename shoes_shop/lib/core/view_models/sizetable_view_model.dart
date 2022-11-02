@@ -29,8 +29,5 @@ class SizeTableViewModel extends BaseViewModel{
     }
   }
 
-  Function? changeButton(int currentSelected, int i){
-    currentSelected = i;
-    setState(ViewState.Idle);
-  }
+
 }

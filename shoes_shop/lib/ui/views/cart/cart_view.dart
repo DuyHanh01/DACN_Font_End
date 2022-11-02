@@ -17,7 +17,7 @@ class CartView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
       appBar: buildAppBar(context, cartViewModel),
-      body: Body(cartViewModel: cartViewModel,),
+      body: Body(cartViewModel: cartViewModel),
       bottomNavigationBar: CheckoutCard(
         cartViewModel: cartViewModel,
       ),

@@ -3,13 +3,12 @@ import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
-import 'package:shoes_shop/ui/views/detail/components/cart_counter.dart';
+import 'package:shoes_shop/ui/views/detail/components/counter.dart';
 import 'package:shoes_shop/ui/views/detail/components/select_size.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
 class Body extends StatelessWidget {
-  const Body(
-      {Key? key, required this.size, required this.model, required this.shoes})
+  Body({Key? key, required this.size, required this.model, required this.shoes})
       : super(key: key);
   final Size size;
   final ShoesViewModel model;
@@ -28,7 +27,7 @@ class Body extends StatelessWidget {
                 bottomLeft: Radius.circular(25),
                 bottomRight: Radius.circular(25)),
             image: DecorationImage(
-              image: NetworkImage(shoes.image1!),
+              image: NetworkImage(shoes.image1),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                 AppColors.black.withOpacity(.08),
@@ -55,12 +54,25 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   model.checkTimeSale(shoes)
-                      ? Text(
-                          '\$${shoes.saleprice}',
-                          style: shoesTextStyle.copyWith(
-                              fontSize: 18,
-                              letterSpacing: 0.25,
-                              color: AppColors.grey),
+                      ? Text.rich(
+                          TextSpan(
+                            text: '',
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '\$${shoes.saleprice} ',
+                                  style: shoesSalePrice.copyWith(
+                                    fontSize: 18,
+                                    letterSpacing: 0.25,
+                                  )),
+                              TextSpan(
+                                text: '\$${shoes.price}',
+                                style: shoesPriceOld.copyWith(
+                                    fontSize: 18,
+                                    letterSpacing: 0.25,
+                                    color: AppColors.grey),
+                              )
+                            ],
+                          ),
                         )
                       : Text(
                           '\$${shoes.price}',
@@ -83,7 +95,7 @@ class Body extends StatelessWidget {
           child: RatingHome(size: 40),
         ),
         const SizedBox(height: 10),
-        const CartCounter(),
+        Counter(model: model),
         const SizedBox(height: 15),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -93,7 +105,7 @@ class Body extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        SelectSize(shoes: shoes, currentSelected: 0),
+        SelectSize(shoes: shoes),
         const SizedBox(height: 15),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),

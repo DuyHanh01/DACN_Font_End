@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/ui/views/cart/components/cart_card.dart';
 
@@ -17,7 +16,7 @@ class Body extends StatelessWidget {
     return ListView.builder(
       itemCount: cartViewModel.carts.length,
       itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 0.5, horizontal: 5),
         child: Dismissible(
           key: UniqueKey(),
           direction: DismissDirection.endToStart,
@@ -37,7 +36,7 @@ class Body extends StatelessWidget {
               ],
             ),
           ),
-          child: CartCard(cart: cartViewModel.carts[index]),
+          child: CartCard(cart: cartViewModel.carts[index], cartViewModel: cartViewModel),
         ),
       ),
     );

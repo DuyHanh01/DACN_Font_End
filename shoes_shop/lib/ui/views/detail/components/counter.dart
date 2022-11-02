@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
+import 'package:shoes_shop/ui/views/base_view.dart';
 
-class CartCounter extends StatefulWidget {
-  const CartCounter({super.key});
+class Counter extends StatelessWidget {
+  Counter({Key? key, required this.model}) : super(key: key);
+  final ShoesViewModel model;
 
-  @override
-  _CartCounterState createState() => _CartCounterState();
-}
-
-class _CartCounterState extends State<CartCounter> {
-  int numOfItems = 1;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,27 +16,24 @@ class _CartCounterState extends State<CartCounter> {
           buildOutlineButton(
             icon: Icons.remove,
             press: () {
-              if (numOfItems > 1) {
-                setState(() {
-                  numOfItems--;
-                });
+              if (model.x > 1) {
+                model.subPurchased();
+                print(model.x);
               }
             },
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
-              // if our item is less  then 10 then  it shows 01 02 like that
-              numOfItems.toString().padLeft(2, "0"),
+              model.x.toString().padLeft(2, "0"),
               style: shoesTextStyle.copyWith(fontSize: 22),
             ),
           ),
           buildOutlineButton(
               icon: Icons.add,
               press: () {
-                setState(() {
-                  numOfItems++;
-                });
+                model.addPurchased();
+                print(model.x);
               }),
         ],
       ),

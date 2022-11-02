@@ -7,6 +7,7 @@ class Sales {
   final String endday;
   final String content;
   final double percent;
+  // final String imgsale;
 
   Sales(
       {required this.saleid,
@@ -27,6 +28,7 @@ class Sales {
         endday = json['endday'],
         content = json['content'],
         percent = json['percent'];
+        // imgsale = json['imgsale'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -38,6 +40,7 @@ class Sales {
     data['endday'] = endday;
     data['content'] = content;
     data['percent'] = percent;
+    // data['imgsale'] = imgsale;
     return data;
   }
 

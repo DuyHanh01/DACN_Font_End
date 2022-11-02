@@ -23,19 +23,23 @@ List<SizeModel> sizesList = [
   SizeModel(title: '48'),
 ];
 
-class SelectSize extends StatelessWidget {
+class SelectSize extends StatefulWidget {
   final Shoes shoes;
-  final int currentSelected;
   const SelectSize(
       {Key? key,
-      required this.shoes,
-      required this.currentSelected})
+      required this.shoes})
       : super(key: key);
 
   @override
+  State<SelectSize> createState() => _SelectSizeState();
+}
+
+class _SelectSizeState extends State<SelectSize> {
+  int? currentSelected;
+  @override
   Widget build(BuildContext context) {
     return BaseView<SizeTableViewModel>(
-        onModelReady: (model) => model.getSizeTableByShoeId(shoes.shoeid),
+        onModelReady: (model) => model.getSizeTableByShoeId(widget.shoes.shoeid),
         builder: (BuildContext context, SizeTableViewModel model,
                 Widget? child) =>
             SizedBox(
@@ -45,7 +49,9 @@ class SelectSize extends StatelessWidget {
                 itemCount: sizesList.length,
                 itemBuilder: (ctx, i) {
                   return GestureDetector(
-                    onTap: (){print(model.sizetables![0]?.shoeid);},
+                    onTap: (){setState(() {
+                      currentSelected = i;
+                    });},
                     child: Container(
                       margin: const EdgeInsets.only(left: 10),
                       height: 50,

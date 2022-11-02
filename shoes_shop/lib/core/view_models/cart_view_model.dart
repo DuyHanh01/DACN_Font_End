@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/view_models/base_view_model.dart';
@@ -18,44 +20,52 @@ class CartViewModel extends BaseViewModel {
     return total;
   }
 
+  Cart? getCart(String shoeid) {
+    return _carts.firstWhereOrNull((element) => element.shoeid == shoeid);
+  }
+
   void addItem(
     String shoeid,
     double price,
     String shoename,
     String image1,
-    String purchased,
+    int purchased,
     // String size,
   ) {
-    //   if (_carts.contains(shoeid)) {
-    //     // change quantity...
-    //     _carts.(
-    //       shoeid,
-    //       (existingCartItem) => Cart(
-    //         shoeid: existingCartItem.shoeid,
-    //         shoename: existingCartItem.shoename,
-    //         price: existingCartItem.price,
-    //         // size: existingCartItem.size,
-    //         // image1: existingCartItem.image1,
-    //         purchased: existingCartItem.purchased + 1,
-    //       ),
-    //     );
-    //   } else {
-    _carts.add(
-      Cart(
-        shoeid: shoeid,
-        shoename: shoename,
-        price: price,
-        // size: size,
-        image1: image1,
-        purchased: 1,
-      ),
-    );
-    //}
-    notifyListeners();
+    if (_carts.contains(getCart(shoeid))) {
+      // change quantity...
+      Cart? cart = getCart(shoeid);
+      cart!.purchased += 1;
+    } else {
+      _carts.add(
+        Cart(
+          shoeid: shoeid,
+          shoename: shoename,
+          price: price,
+          // size: size,
+          image1: image1,
+          purchased: purchased,
+        ),
+      );
+      //}
+      setState(ViewState.Idle);
+    }
   }
 
   void removeItem(String shoeid) {
     _carts.remove(carts.firstWhere((prod) => prod.shoeid == shoeid));
+    setState(ViewState.Idle);
+  }
+
+  void addPurchased(Cart cart) {
+    cart.purchased += 1;
+    setState(ViewState.Idle);
+  }
+
+  void subPurchased(Cart cart) {
+    if (cart.purchased >= 1) {
+      cart.purchased -= 1;
+    }
     setState(ViewState.Idle);
   }
 
