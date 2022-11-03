@@ -12,12 +12,14 @@ class LoginViewModel extends BaseViewModel {
 
   Future<bool> login(String username, String password) async {
     setState(ViewState.Busy);
-    String message = _authenticationService.message;
+
     var userName = username;
     var passWord = password;
 
     var account = Account(0, userName, passWord, 0);
     var success = await _authenticationService.login(account);
+    String message = _authenticationService.message;
+
     if (!success) {
       errorMessage = message;
       setState(ViewState.Idle);

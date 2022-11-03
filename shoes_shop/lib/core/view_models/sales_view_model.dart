@@ -13,9 +13,10 @@ class SalesViewModel extends BaseViewModel{
 
   Future<bool> getAllSales() async {
     setState(ViewState.Busy);
-    String message = _salesService.message;
+
 
     var success = await _salesService.getAllSales();
+    String message = _salesService.message;
 
     if (!success) {
       errorMessage = message;

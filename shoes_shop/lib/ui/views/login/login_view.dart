@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/login_view_model.dart';
@@ -44,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       LoginHeader(
-                        model.errorMessage,
+                        //model.errorMessage,
                         controllerUser: _controllerUser,
                         controllerPass: _controllerPass,
                       ),
@@ -67,8 +68,18 @@ class _LoginViewState extends State<LoginView> {
                                   var loginSuccess = await model.login(
                                       _controllerUser.text,
                                       _controllerPass.text);
+                                  Fluttertoast.showToast(
+                                      msg: model.errorMessage,
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: AppColors.red.withOpacity(0.7),
+                                      textColor: AppColors.white,
+                                      fontSize: 14.0
+                                  );
                                   if (loginSuccess) {
-                                    Navigator.pushNamed(context, RoutePaths.home);
+                                    Navigator.pushNamed(
+                                        context, RoutePaths.home);
                                   }
                                 },
                               ),

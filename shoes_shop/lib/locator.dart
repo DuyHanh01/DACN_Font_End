@@ -37,4 +37,5 @@ void setupLocator() {
   locator.registerFactory(() => ShoesViewModel());
   locator.registerFactory(() => HomeViewModel());
 
+
 }

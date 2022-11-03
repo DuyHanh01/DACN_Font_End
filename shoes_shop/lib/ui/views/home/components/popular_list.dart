@@ -4,7 +4,7 @@ import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
-import 'package:shoes_shop/ui/widgets/shoe_item.dart';
+import 'package:shoes_shop/ui/views/home/components/shoe_item.dart';
 
 class HomePopularList extends StatelessWidget {
   const HomePopularList({Key? key}) : super(key: key);

@@ -6,12 +6,6 @@ class BaseResult<T> {
 
   BaseResult(this.isSuccess, this.status, this.Message, this.data);
 
-  BaseResult.initial()
-      : isSuccess = false,
-        status = 0,
-        Message = "",
-        data = null;
-
   BaseResult.fromJson(Map<String, dynamic> json)
       : isSuccess = json['isSuccess'],
         status = json['status'],

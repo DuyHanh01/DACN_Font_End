@@ -13,13 +13,15 @@ class RegisterViewModel extends BaseViewModel {
   Future<bool> register(
       String username, String password, String rePassword) async {
     setState(ViewState.Busy);
-    String message = _authenticationService.message;
+
     var userName = username;
     var passWord = password;
     var rePassWord = rePassword;
 
     var register = Register(null,userName, passWord, rePassWord);
     var success = await _authenticationService.register(register);
+    String message = _authenticationService.message;
+
     if (!success) {
       errorMessage = message;
       setState(ViewState.Idle);

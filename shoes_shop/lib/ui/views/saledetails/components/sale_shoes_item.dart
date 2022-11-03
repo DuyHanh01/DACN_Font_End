@@ -5,10 +5,11 @@ import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
-class SaleShoeItem extends StatelessWidget {
+// ignore: must_be_immutable
+class SaleShoesItem extends StatelessWidget {
   ShoesViewModel model;
   int index;
-  SaleShoeItem({Key? key, required this.model, required this.index}) : super(key: key);
+  SaleShoesItem({Key? key, required this.model, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

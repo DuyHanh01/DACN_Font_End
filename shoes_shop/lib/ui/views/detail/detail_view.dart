@@ -4,7 +4,7 @@ import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
-import 'package:shoes_shop/ui/views/detail/components/app_bar.dart';
+import 'package:shoes_shop/ui/widgets/app_bar.dart';
 import 'package:shoes_shop/ui/views/detail/components/body.dart';
 import 'package:shoes_shop/ui/views/detail/components/bottom_nav.dart';
 

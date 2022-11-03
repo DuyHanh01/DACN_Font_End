@@ -14,12 +14,11 @@ import 'package:shoes_shop/core/models/token.dart';
 /// The service responsible for networking requests
 class Api {
   String token = '';
-  static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
-  static String showName = '';
+  static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
 
   String Username = '';
   String Password = '';
-  String Repassword = '';
+  //String Repassword = '';
   DateTime ExpiredDateTime = DateTime.now();
   var client = http.Client();
 
@@ -129,9 +128,9 @@ class Api {
     );
     var s;
     if (response.statusCode == 200) {
-      Username = register.username!;
-      Password = register.password!;
-      Repassword = register.Repassword!;
+      // Username = register.username!;
+      // Password = register.password!;
+      // Repassword = register.Repassword!;
 
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       List<dynamic> data = s.data;
@@ -291,12 +290,41 @@ class Api {
     }
   }
 
-  //get all shoes
+  //get all shoes by saleid
   Future<BaseResult<Shoes>> getAllShoesBySaleId(int accountid, int saleid) async {
     var shoes = <Shoes>[];
     token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.get(
       Uri.parse('$endpoint/getAllShoesBySaleId/$saleid/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var shoe in data) {
+        shoes.add(Shoes.fromJson(shoe));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //get all shoes by brandid
+  Future<BaseResult<Shoes>> getAllShoesByBrandId(int accountid, int brandid) async {
+    var shoes = <Shoes>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getShoesByBrandId/$brandid/$accountid'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'bearer $token',

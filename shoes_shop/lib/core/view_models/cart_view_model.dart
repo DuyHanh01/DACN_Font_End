@@ -35,7 +35,7 @@ class CartViewModel extends BaseViewModel {
     if (_carts.contains(getCart(shoeid))) {
       // change quantity...
       Cart? cart = getCart(shoeid);
-      cart!.purchased += 1;
+      cart!.purchased += purchased;
     } else {
       _carts.add(
         Cart(

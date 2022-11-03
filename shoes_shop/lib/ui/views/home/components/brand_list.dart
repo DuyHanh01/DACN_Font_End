@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/brand_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 
 class HomeBrandList extends StatefulWidget {
@@ -32,6 +33,10 @@ class _HomeBrandListState extends State<HomeBrandList> {
                         onTap: () {
                           setState(() {
                             currentSelected = i;
+                            Navigator.of(context).pushNamed(
+                              RoutePaths.brandShoes,
+                              arguments: model.brands![i],
+                            );
                           });
                         },
                         child: Column(

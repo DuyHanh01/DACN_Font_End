@@ -12,9 +12,9 @@ class BrandViewModel extends BaseViewModel{
 
   Future<bool> getAllBrands() async {
     setState(ViewState.Busy);
-    String message = _brandService.message;
 
     var success = await _brandService.getAllBrands();
+    String message = _brandService.message;
 
     if (!success) {
       errorMessage = message;

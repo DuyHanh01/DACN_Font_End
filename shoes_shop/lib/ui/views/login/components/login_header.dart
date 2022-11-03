@@ -6,9 +6,9 @@ import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 class LoginHeader extends StatelessWidget {
   final TextEditingController controllerUser;
   final TextEditingController controllerPass;
-  final String validationMessage;
+  //final String validationMessage;
 
-  const LoginHeader(this.validationMessage,
+  const LoginHeader(
       {Key? key, required this.controllerUser, required this.controllerPass})
       : super(key: key);
 
@@ -22,8 +22,8 @@ class LoginHeader extends StatelessWidget {
           'Enter your email'),
       LoginTextField(true, controllerPass, TextInputType.visiblePassword,
           'Enter your password'),
-      Text(validationMessage,
-          style: const TextStyle(color: AppColors.red)),
+      // Text(validationMessage,
+      //     style: const TextStyle(color: AppColors.red)),
       TextButton(
         onPressed: () {},
         child: const Text(

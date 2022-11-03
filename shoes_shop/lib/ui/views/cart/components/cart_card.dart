@@ -42,6 +42,13 @@ class CartCard extends StatelessWidget {
                 maxLines: 2,
               ),
               const SizedBox(height: 10),
+              const Text(
+                'size: 43',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600, color: AppColors.black),
+                maxLines: 2,
+              ),
+              const SizedBox(height: 10),
               Text.rich(
                 TextSpan(
                   text: "\$${cart.price}",

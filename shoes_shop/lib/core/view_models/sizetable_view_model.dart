@@ -13,10 +13,11 @@ class SizeTableViewModel extends BaseViewModel{
 
   Future<bool> getSizeTableByShoeId(int shoeid) async {
     setState(ViewState.Busy);
-    String message = _sizeTableService.message;
+
 
     var shoeId = shoeid;
     var success = await _sizeTableService.getSizeTableByShoeId(shoeId);
+    String message = _sizeTableService.message;
 
     if (!success) {
       errorMessage = message;
@@ -29,5 +30,9 @@ class SizeTableViewModel extends BaseViewModel{
     }
   }
 
+  void changeButton(int current, int index) {
+    current = index;
+    setState(ViewState.Idle);
+  }
 
 }

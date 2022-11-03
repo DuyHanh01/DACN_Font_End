@@ -13,10 +13,11 @@ class SaleDetailsViewModel extends BaseViewModel {
 
   Future<bool> getAllSaleDetailsById(int saleid) async {
     setState(ViewState.Busy);
-    String message = _saleDetailsService.message;
+
 
     var saleId = saleid;
     var success = await _saleDetailsService.getSaleDetailsBySaleId(saleId);
+    String message = _saleDetailsService.message;
 
     if (!success) {
       errorMessage = message;
