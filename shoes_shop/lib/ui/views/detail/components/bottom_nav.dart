@@ -10,8 +10,8 @@ class BottomNav extends StatelessWidget {
   const BottomNav(
       {Key? key,
       required this.cartViewModel,
-      required this.shoes,
-      required this.shoesViewModel})
+      required this.shoesViewModel,
+      required this.shoes})
       : super(key: key);
   final CartViewModel cartViewModel;
   final Shoes shoes;
@@ -56,11 +56,17 @@ class BottomNav extends StatelessWidget {
           IconButton(
               onPressed: () {
                 int total = shoesViewModel.x;
+                int size = shoesViewModel.size;
                 shoesViewModel.checkTimeSale(shoes)
-                    ? cartViewModel.addItem(shoes.shoeid.toString(),
-                        shoes.saleprice!, shoes.shoename, shoes.image1, total)
+                    ? cartViewModel.addItem(
+                        shoes.shoeid.toString(),
+                        shoes.saleprice!,
+                        shoes.shoename,
+                        shoes.image1,
+                        total,
+                        size)
                     : cartViewModel.addItem(shoes.shoeid.toString(),
-                        shoes.price, shoes.shoename, shoes.image1, total);
+                        shoes.price, shoes.shoename, shoes.image1, total, size);
               },
               icon: const Icon(Icons.shopping_cart))
           // Expanded(

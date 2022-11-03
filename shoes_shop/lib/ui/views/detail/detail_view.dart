@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
@@ -17,13 +18,17 @@ class DetailView extends StatelessWidget {
     final cartViewModel = Provider.of<CartViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return BaseView<ShoesViewModel>(
-      onModelReady: (model)=>model.x,
+        onModelReady: (model) => model.x,
         builder: (BuildContext context, ShoesViewModel model, Widget? chill) =>
-            Scaffold(
-              appBar: buildAppBar(context),
-              body: Body(size: size, model: model, shoes: shoes),
-              bottomNavigationBar:
-                  BottomNav(cartViewModel: cartViewModel, shoes: shoes, shoesViewModel: model),
-            ));
+            model.state == ViewState.Busy
+                ? const CircularProgressIndicator()
+                : Scaffold(
+                    appBar: buildAppBar(context),
+                    body: Body(size: size, model: model, shoes: shoes),
+                    bottomNavigationBar: BottomNav(
+                        cartViewModel: cartViewModel,
+                        shoes: shoes,
+                        shoesViewModel: model),
+                  ));
   }
 }

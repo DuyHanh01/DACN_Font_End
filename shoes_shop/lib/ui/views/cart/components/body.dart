@@ -10,6 +10,7 @@ class Body extends StatelessWidget {
 
   final CartViewModel cartViewModel;
 
+
   @override
   Widget build(BuildContext context) {
 

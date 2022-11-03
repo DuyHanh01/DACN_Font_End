@@ -28,7 +28,7 @@ class CartCard extends StatelessWidget {
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Image.network(cart.image1),
+                child: Image.network(cart.image),
               ),
             ),
           ),
@@ -42,9 +42,9 @@ class CartCard extends StatelessWidget {
                 maxLines: 2,
               ),
               const SizedBox(height: 10),
-              const Text(
-                'size: 43',
-                style: TextStyle(
+              Text(
+                'size: ${cart.size}',
+                style: const TextStyle(
                     fontWeight: FontWeight.w600, color: AppColors.black),
                 maxLines: 2,
               ),

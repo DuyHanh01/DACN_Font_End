@@ -4,7 +4,7 @@ import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 class CartCounter extends StatelessWidget {
-  CartCounter({Key? key, required this.cart, required this.cartViewModel})
+  const CartCounter({Key? key, required this.cart, required this.cartViewModel})
       : super(key: key);
 
   final Cart cart;

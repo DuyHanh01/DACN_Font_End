@@ -2,23 +2,23 @@ class Cart {
   String shoeid;
   String shoename;
   double price;
-  String image1;
-  // final String size;
+  String image;
+  int size;
   int purchased;
 
   Cart.initial()
       : shoeid = '',
         shoename = '',
         price = 0,
-        image1 = '',
-        // size = '',
+        image = '',
+        size = 0,
         purchased = 0;
 
   Cart(
       {required this.shoeid,
       required this.shoename,
       required this.price,
-      required this.image1,
-        //required this.size,
+      required this.image,
+      required this.size,
       required this.purchased});
 }

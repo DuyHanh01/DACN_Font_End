@@ -4,7 +4,7 @@ import 'package:shoes_shop/core/services/sizetable_service.dart';
 import 'package:shoes_shop/core/view_models/base_view_model.dart';
 import 'package:shoes_shop/locator.dart';
 
-class SizeTableViewModel extends BaseViewModel{
+class SizeTableViewModel extends BaseViewModel {
   final SizeTableService _sizeTableService = locator<SizeTableService>();
 
   String errorMessage = '';
@@ -13,7 +13,6 @@ class SizeTableViewModel extends BaseViewModel{
 
   Future<bool> getSizeTableByShoeId(int shoeid) async {
     setState(ViewState.Busy);
-
 
     var shoeId = shoeid;
     var success = await _sizeTableService.getSizeTableByShoeId(shoeId);
@@ -28,11 +27,6 @@ class SizeTableViewModel extends BaseViewModel{
       setState(ViewState.Idle);
       return success;
     }
-  }
-
-  void changeButton(int current, int index) {
-    current = index;
-    setState(ViewState.Idle);
   }
 
 }

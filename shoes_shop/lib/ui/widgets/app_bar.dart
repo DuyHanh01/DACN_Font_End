@@ -10,7 +10,7 @@ AppBar buildAppBar(BuildContext context) {
       padding: const EdgeInsets.all(8),
       child: IconButton(
         onPressed: () {
-          Navigator.of(context).pop();
+          Navigator.of(context).pop(true);
         },
         icon: SvgPicture.asset(AppUI.back, color: AppColors.black, height: 24, width: 24),
       ),

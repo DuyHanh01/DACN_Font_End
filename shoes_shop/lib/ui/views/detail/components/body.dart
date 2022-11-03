@@ -105,7 +105,7 @@ class Body extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        SelectSize(shoes: shoes),
+        SelectSize(shoes: shoes, shoesViewModel: model),
         const SizedBox(height: 15),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),

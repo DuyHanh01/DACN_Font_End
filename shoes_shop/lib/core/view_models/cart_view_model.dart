@@ -28,13 +28,13 @@ class CartViewModel extends BaseViewModel {
     String shoeid,
     double price,
     String shoename,
-    String image1,
+    String image,
     int purchased,
-    // String size,
+    int size,
   ) {
-    if (_carts.contains(getCart(shoeid))) {
+    Cart? cart = getCart(shoeid);
+    if (_carts.contains(cart) && cart?.size == size) {
       // change quantity...
-      Cart? cart = getCart(shoeid);
       cart!.purchased += purchased;
     } else {
       _carts.add(
@@ -42,14 +42,13 @@ class CartViewModel extends BaseViewModel {
           shoeid: shoeid,
           shoename: shoename,
           price: price,
-          // size: size,
-          image1: image1,
+          size: size,
+          image: image,
           purchased: purchased,
         ),
       );
-      //}
-      setState(ViewState.Idle);
     }
+    setState(ViewState.Idle);
   }
 
   void removeItem(String shoeid) {

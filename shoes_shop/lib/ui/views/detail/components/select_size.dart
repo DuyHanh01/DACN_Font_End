@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/core/view_models/sizetable_view_model.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
+import 'package:shoes_shop/ui/widgets/circle_delay.dart';
 
 class SizeModel {
   String title;
-  SizeModel({required this.title});
+  SizeModel(this.title);
 }
 
 List<SizeModel> sizesList = [
-  SizeModel(title: '38'),
-  SizeModel(title: '39'),
-  SizeModel(title: '40'),
-  SizeModel(title: '41'),
-  SizeModel(title: '42'),
-  SizeModel(title: '43'),
-  SizeModel(title: '44'),
-  SizeModel(title: '45'),
-  SizeModel(title: '46'),
-  SizeModel(title: '47'),
-  SizeModel(title: '48'),
+  SizeModel('38'),
+  SizeModel('39'),
+  SizeModel('40'),
+  SizeModel('41'),
+  SizeModel('42'),
+  SizeModel('43'),
+  SizeModel('44'),
+  SizeModel('45'),
+  SizeModel('46'),
+  SizeModel('47'),
+  SizeModel('48'),
 ];
 
 class SelectSize extends StatelessWidget {
+  final ShoesViewModel shoesViewModel;
   final Shoes shoes;
-  SelectSize({Key? key, required this.shoes}) : super(key: key);
-
-  int currentSelected = 0;
+  const SelectSize(
+      {Key? key, required this.shoes, required this.shoesViewModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,48 +39,51 @@ class SelectSize extends StatelessWidget {
         onModelReady: (model) => model.getSizeTableByShoeId(shoes.shoeid),
         builder: (BuildContext context, SizeTableViewModel model,
                 Widget? child) =>
-            SizedBox(
-              height: 50,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: sizesList.length,
-                itemBuilder: (ctx, i) {
-                  return GestureDetector(
-                    onTap: () {model.changeButton(currentSelected, i);
-                      print(model.sizetables?[0]?.shoeid);},
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border:
-                            Border.all(color: AppColors.grey.withOpacity(0.3)),
-                        color: currentSelected == i
-                            ? AppColors.primaryColor
-                            : AppColors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.white.withOpacity(.7),
-                            blurRadius: 5,
+            model.state == ViewState.Busy
+                ? const CircleDelay()
+                : SizedBox(
+                    height: 45,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: sizesList.length,
+                      itemBuilder: (ctx, i) {
+                        return GestureDetector(
+                          onTap: () {
+                            shoesViewModel.checkSize(
+                                model.sizetables![0]!, sizesList[i].title, i);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
+                            height: 45,
+                            width: 45,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                  color: AppColors.grey.withOpacity(0.3)),
+                              color: shoesViewModel.setColor(
+                                  model.sizetables![0]!, sizesList[i].title, i),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.white.withOpacity(.7),
+                                  blurRadius: 5,
+                                ),
+                              ],
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              sizesList[i].title,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w900,
+                                color: shoesViewModel.currentSelected == i
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        sizesList[i].title,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w900,
-                          color: currentSelected == i
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                      ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ));
+                  ));
   }
 }
