@@ -19,19 +19,17 @@ const wellComeStyle = TextStyle(
 const shoesTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
 
 const shoesPriceOld = TextStyle(
-  fontSize: 12,
-  fontWeight: FontWeight.w500,
-  color: AppColors.grey,
-  decoration: TextDecoration.lineThrough,
-  decorationThickness: 2.85,
-  decorationColor: AppColors.black
-);
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: AppColors.grey,
+    decoration: TextDecoration.lineThrough,
+    decorationThickness: 2.85,
+    decorationColor: AppColors.black);
 
 const shoesSalePrice =
     TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.red);
 
-const appBarStyle = TextStyle(
-    fontSize: 18, color: AppColors.primaryColor, fontWeight: FontWeight.w900);
+const appBarStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w800);
 
 const signInSignUpStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 

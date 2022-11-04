@@ -25,6 +25,7 @@ class Search extends StatelessWidget {
           children: [
             Expanded(
               child: TextFormField(
+                autofocus: false,
                 decoration: InputDecoration(
                   hintText: 'Search',
                   hintStyle: TextStyle(
@@ -34,12 +35,7 @@ class Search extends StatelessWidget {
                   focusedBorder: InputBorder.none,
                   suffixIcon: IconButton(
                     onPressed: () {},
-                    icon: SvgPicture.asset(
-                      'assets/svg/search.svg',
-                      height: 20,
-                      width: 20,
-                      color: AppColors.primaryColor,
-                    ),
+                    icon: const Icon(Icons.search_rounded, size: 30, color:  AppColors.primaryColor,)
                   ),
                 ),
                 maxLines: 1,

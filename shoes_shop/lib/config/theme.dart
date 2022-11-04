@@ -52,7 +52,11 @@ class AppUI {
   static const String imgTopLogin = '${imagePath}top_login.png';
   static const String newTag = '${imagePath}new_tag.png';
   static const String saleTag = '${imagePath}sale_tag.png';
+  static const String mobilePhone = '${imagePath}mobilephone.png';
+  static const String mail = '${imagePath}mail.png';
   static const String img = '${imagePath}img.jpg';
+  static const String momo = '${imagePath}momo.png';
+  static const String maps = '${imagePath}ggmaps.png';
   static const String search = '${svgPath}search.svg';
   static const String favorite = '${svgPath}favorite.svg';
   static const String home = '${svgPath}home.svg';

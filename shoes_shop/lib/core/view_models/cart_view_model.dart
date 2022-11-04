@@ -20,8 +20,9 @@ class CartViewModel extends BaseViewModel {
     return total;
   }
 
-  Cart? getCart(String shoeid) {
-    return _carts.firstWhereOrNull((element) => element.shoeid == shoeid);
+  Cart? getCart(String shoeid, int size) {
+    return _carts.firstWhereOrNull(
+        (element) => element.shoeid == shoeid && element.size == size);
   }
 
   void addItem(
@@ -32,9 +33,8 @@ class CartViewModel extends BaseViewModel {
     int purchased,
     int size,
   ) {
-    Cart? cart = getCart(shoeid);
-    if (_carts.contains(cart) && cart?.size == size) {
-      // change quantity...
+    Cart? cart = getCart(shoeid, size);
+    if (_carts.contains(cart)) {
       cart!.purchased += purchased;
     } else {
       _carts.add(
@@ -51,8 +51,8 @@ class CartViewModel extends BaseViewModel {
     setState(ViewState.Idle);
   }
 
-  void removeItem(String shoeid) {
-    _carts.remove(carts.firstWhere((prod) => prod.shoeid == shoeid));
+  void removeItem(String shoeid, int size) {
+    _carts.remove(getCart(shoeid, size));
     setState(ViewState.Idle);
   }
 
@@ -67,28 +67,6 @@ class CartViewModel extends BaseViewModel {
     }
     setState(ViewState.Idle);
   }
-
-  // void removeSingleItem(String shoeid) {
-  //   if (!_carts.containsKey(shoeid)) {
-  //     return;
-  //   }
-  //   if (_carts[shoeid]!.purchased > 1) {
-  //     _carts(
-  //       shoeid,
-  //       (existingCartItem) => Cart(
-  //         shoeid: existingCartItem.shoeid,
-  //         shoename: existingCartItem.shoename,
-  //         price: existingCartItem.price,
-  //         // size: existingCartItem.size,
-  //         // image1: existingCartItem.image1,
-  //         purchased: existingCartItem.purchased - 1,
-  //       ),
-  //     );
-  //   } else {
-  //     _carts.remove(shoeid);
-  //   }
-  //   setState(ViewState.Idle);
-  // }
 
   void clear() {
     _carts = [];

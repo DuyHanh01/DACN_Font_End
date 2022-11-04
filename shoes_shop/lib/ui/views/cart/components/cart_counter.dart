@@ -44,7 +44,7 @@ class CartCounter extends StatelessWidget {
                               ),
                               onPressed: () {
                                 Navigator.of(ctx).pop(true);
-                                cartViewModel.removeItem(cart.shoeid);
+                                cartViewModel.removeItem(cart.shoeid, cart.size);
                               },
                             ),
                           ],

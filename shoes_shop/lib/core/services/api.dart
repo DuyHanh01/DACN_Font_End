@@ -18,7 +18,6 @@ class Api {
 
   String Username = '';
   String Password = '';
-  //String Repassword = '';
   DateTime ExpiredDateTime = DateTime.now();
   var client = http.Client();
 

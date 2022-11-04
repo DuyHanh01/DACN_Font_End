@@ -36,12 +36,18 @@ class MainDrawer extends StatelessWidget {
                     color: AppColors.primaryColor,
                     child: Image.asset(AppUI.img, height: 295),
                   ),
-                  buildListTile('Home', () {
-                    Navigator.of(context).pushReplacementNamed('/');
-                  }),
-                  buildListTile('Help', () {
-                    Navigator.of(context).pushReplacementNamed('/');
-                  }),
+                  buildListTile(
+                    'Home',
+                    () => Navigator.of(context).pushNamed(
+                      RoutePaths.home,
+                    ),
+                  ),
+                  buildListTile(
+                    'Contact',
+                    () => Navigator.of(context).pushNamed(
+                      RoutePaths.contact,
+                    ),
+                  ),
                   buildListTile('Settings', () {
                     Navigator.of(context).pushReplacementNamed('/');
                   }),

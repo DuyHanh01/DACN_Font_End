@@ -24,6 +24,6 @@ class SaleDetailsView extends StatelessWidget {
             model.state == ViewState.Busy
                 ? const Scaffold(body: CircleDelay())
                 : Scaffold(
-                    appBar: buildAppBar(context), body: Body(model: model)));
+                    appBar: buildAppBar(context, "SaleDetails"), body: Body(model: model)));
   }
 }

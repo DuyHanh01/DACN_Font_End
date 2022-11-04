@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
           key: UniqueKey(),
           direction: DismissDirection.endToStart,
           onDismissed: (direction) {
-            cartViewModel.removeItem(cartViewModel.carts[index].shoeid);
+            cartViewModel.removeItem(cartViewModel.carts[index].shoeid, cartViewModel.carts[index].size);
           },
           background: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),

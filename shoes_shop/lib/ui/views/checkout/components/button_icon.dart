@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
-
-class DefaultButton extends StatelessWidget {
-  const DefaultButton({
+class ButtonIcon extends StatelessWidget {
+  const ButtonIcon({
     Key? key,
-    this.text,
-    this.press,
+    required this.text,
+    required this.icon,
+    required this.press,
   }) : super(key: key);
   final String? text;
+  final String? icon;
   final Function? press;
 
   @override
@@ -15,15 +16,16 @@ class DefaultButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: 50,
-      child: TextButton(
+      child: TextButton.icon(
+        icon: Image.asset(icon!),
         style: TextButton.styleFrom(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           primary: Colors.white,
           backgroundColor: AppColors.primaryColor,
         ),
         onPressed: press as void Function()?,
-        child: Text(
+        label: Text(
           text!,
           style: const TextStyle(
             fontSize: 18,

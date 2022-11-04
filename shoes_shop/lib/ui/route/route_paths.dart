@@ -7,4 +7,7 @@ class RoutePaths {
   static const wellCome = '/wellCome';
   static const saleDetails = '/saleDetails';
   static const brandShoes = '/brandShoes';
+  static const checkout = '/checkout';
+  static const contact = '/contact';
+  static const googleMap = '/googleMap';
 }

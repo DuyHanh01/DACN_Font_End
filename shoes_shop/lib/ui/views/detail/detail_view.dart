@@ -23,7 +23,7 @@ class DetailView extends StatelessWidget {
             model.state == ViewState.Busy
                 ? const CircularProgressIndicator()
                 : Scaffold(
-                    appBar: buildAppBar(context),
+                    appBar: buildAppBar(context, shoes.shoename),
                     body: Body(size: size, model: model, shoes: shoes),
                     bottomNavigationBar: BottomNav(
                         cartViewModel: cartViewModel,
