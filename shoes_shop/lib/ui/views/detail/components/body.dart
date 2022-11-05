@@ -8,7 +8,8 @@ import 'package:shoes_shop/ui/views/detail/components/select_size.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key, required this.size, required this.model, required this.shoes})
+  const Body(
+      {Key? key, required this.size, required this.model, required this.shoes})
       : super(key: key);
   final Size size;
   final ShoesViewModel model;
@@ -45,14 +46,24 @@ class Body extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    shoes.shoename,
-                    style: shoesTextStyle.copyWith(
-                      fontSize: 25,
-                      height: 2,
-                      letterSpacing: 0.25,
-                    ),
-                  ),
+                  model.checkShoeName(shoes)
+                      ? Container(
+                          margin: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Text(
+                              '${shoes.shoename.substring(0, 21)}\n${shoes.shoename.substring(21)}',
+                              style: shoesTextStyle.copyWith(
+                                fontSize: 25,
+                                letterSpacing: 0.25,
+                              )),
+                        )
+                      : Text(
+                          shoes.shoename,
+                          style: shoesTextStyle.copyWith(
+                            fontSize: 25,
+                            height: 2,
+                            letterSpacing: 0.25,
+                          ),
+                        ),
                   model.checkTimeSale(shoes)
                       ? Text.rich(
                           TextSpan(

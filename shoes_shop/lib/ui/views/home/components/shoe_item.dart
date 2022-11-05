@@ -8,7 +8,8 @@ import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 class ShoeItem extends StatelessWidget {
   ShoesViewModel model;
   int index;
-  ShoeItem({Key? key, required this.model, required this.index}) : super(key: key);
+  ShoeItem({Key? key, required this.model, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,7 @@ class ShoeItem extends StatelessWidget {
                       topRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(
-                          model.shoes![index]!.image1),
+                      image: NetworkImage(model.shoes![index]!.image1),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         AppColors.black.withOpacity(.05),
@@ -39,36 +39,35 @@ class ShoeItem extends StatelessWidget {
                 ),
                 model.checkShoeNew(model.shoes![index]!)
                     ? Positioned(
-                  top: -10,
-                  left: 0,
-                  child: SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: Image.asset(AppUI.newTag),
-                  ),
-                )
+                        top: -10,
+                        left: 0,
+                        child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: Image.asset(AppUI.newTag),
+                        ),
+                      )
                     : const Text(''),
                 model.checkTimeSale(model.shoes![index]!)
                     ? Positioned(
-                    top: -10,
-                    right: 0,
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: 55,
-                          width: 55,
-                          child:
-                          Image.asset(AppUI.saleTag),
-                        ),
-                        Positioned(
-                            top: 20,
-                            right: 15,
-                            child: Text(
-                              '${model.shoes![index]!.percent?.round()}%',
-                              style: shoesTextStyle,
-                            ))
-                      ],
-                    ))
+                        top: -10,
+                        right: 0,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: 55,
+                              width: 55,
+                              child: Image.asset(AppUI.saleTag),
+                            ),
+                            Positioned(
+                                top: 20,
+                                right: 15,
+                                child: Text(
+                                  '${model.shoes![index]!.percent?.round()}%',
+                                  style: shoesTextStyle,
+                                ))
+                          ],
+                        ))
                     : const Text('')
               ],
             ),
@@ -78,65 +77,57 @@ class ShoeItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.shoes![index]!.shoename.length > 22
+                model.checkShoeName(model.shoes![index]!)
                     ? Text(
-                    '${model.shoes![index]!.shoename.substring(0, 20)}...',
-                    style: shoesTextStyle)
+                        '${model.shoes![index]!.shoename.substring(0, 20)}...',
+                        style: shoesTextStyle)
                     : Text(model.shoes![index]!.shoename,
-                    style: shoesTextStyle),
+                        style: shoesTextStyle),
                 UIHelper.verticalSpaceVerySmall(),
                 model.checkTimeSale(model.shoes![index]!)
                     ? Text.rich(
-                  TextSpan(
-                    text: '',
-                    children: <TextSpan>[
-                      TextSpan(
-                        text:
-                        '\$${model.shoes![index]!.saleprice}  ',
-                        style: shoesSalePrice,
-                      ),
-                      TextSpan(
-                          text:
-                          '\$${model.shoes![index]!.price}',
-                          style: shoesPriceOld),
-                    ],
-                  ),
-                )
+                        TextSpan(
+                          text: '',
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: '\$${model.shoes![index]!.saleprice}  ',
+                              style: shoesSalePrice,
+                            ),
+                            TextSpan(
+                                text: '\$${model.shoes![index]!.price}',
+                                style: shoesPriceOld),
+                          ],
+                        ),
+                      )
                     : Text(
-                  '\$${model.shoes![index]!.price}',
-                  style: shoesTextStyle,
-                ),
+                        '\$${model.shoes![index]!.price}',
+                        style: shoesTextStyle,
+                      ),
                 UIHelper.verticalSpaceVerySmall(),
                 const RatingHome(size: 12),
                 UIHelper.verticalSpaceVerySmall(),
                 model.checkPurchased(model.shoes![index]!)
                     ? Text.rich(
-                  TextSpan(
-                    text:
-                    'Purchased: ', // default text style
-                    children: <TextSpan>[
-                      TextSpan(
-                          text:
-                          '${model.shoes![index]!.purchased}',
-                          style: const TextStyle(
-                              fontWeight:
-                              FontWeight.w600)),
-                    ],
-                  ),
-                )
+                        TextSpan(
+                          text: 'Purchased: ', // default text style
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '${model.shoes![index]!.purchased}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      )
                     : const Text.rich(
-                  TextSpan(
-                    text:
-                    'Purchased: ', // default text style
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: '0',
-                          style: TextStyle(
-                              fontWeight:
-                              FontWeight.w600)),
-                    ],
-                  ),
-                ),
+                        TextSpan(
+                          text: 'Purchased: ', // default text style
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '0',
+                                style: TextStyle(fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      ),
               ],
             ),
           ),

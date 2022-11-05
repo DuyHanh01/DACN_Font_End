@@ -7,9 +7,7 @@ import 'package:shoes_shop/locator.dart';
 class ShoesService {
   final Api _api = locator<Api>();
 
-  String messageShoes = "";
-  String messageSale = "";
-  String messageBrand = "";
+  String message = "";
 
   List<Shoes?>? _shoes = <Shoes>[];
   List<Shoes?>? get shoes => _shoes;
@@ -24,7 +22,7 @@ class ShoesService {
     var fetchedShoes = await _api.getAllShoes(accountid);
     var isSuccessShoes = fetchedShoes.isSuccess;
 
-    messageShoes = fetchedShoes.Message!;
+    message = fetchedShoes.Message!;
     if (isSuccessShoes != null && isSuccessShoes) {
       if (fetchedShoes.data != null) {
         _shoes = fetchedShoes.data;
@@ -37,7 +35,7 @@ class ShoesService {
     var fetchedShoes = await _api.getAllShoesBySaleId(accountid, saleid);
     var isSuccessShoes = fetchedShoes.isSuccess;
 
-    messageSale = fetchedShoes.Message!;
+    message = fetchedShoes.Message!;
     if (isSuccessShoes != null && isSuccessShoes) {
       if (fetchedShoes.data != null) {
         _saleshoes = fetchedShoes.data;
@@ -50,10 +48,10 @@ class ShoesService {
     var fetchedShoes = await _api.getAllShoesByBrandId(accountid, brandid);
     var isSuccessShoes = fetchedShoes.isSuccess;
 
-    messageBrand = fetchedShoes.Message!;
+    message = fetchedShoes.Message!;
     if (isSuccessShoes != null && isSuccessShoes) {
       if (fetchedShoes.data != null) {
-        _saleshoes = fetchedShoes.data;
+        _brandshoes = fetchedShoes.data;
       }
     }
     return isSuccessShoes ?? false;

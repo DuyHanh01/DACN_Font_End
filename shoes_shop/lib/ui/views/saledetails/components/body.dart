@@ -4,8 +4,9 @@ import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/views/saledetails/components/sale_shoes_item.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key, required this.model}) : super(key: key);
+  const Body({Key? key, required this.model, required this.x}) : super(key: key);
   final ShoesViewModel model;
+  final int x;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class Body extends StatelessWidget {
                     RoutePaths.detailView,
                     arguments: model.saleshoes?[i],
                   ),
-                  child: SaleShoesItem(model: model, index: i),
+                  child: SaleShoesItem(model: model, index: i, x: x),
                 );
               },
               childCount: model.saleshoes?.length,

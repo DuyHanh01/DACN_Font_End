@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/view_models/base_view_model.dart';
@@ -35,18 +34,20 @@ class CartViewModel extends BaseViewModel {
   ) {
     Cart? cart = getCart(shoeid, size);
     if (_carts.contains(cart)) {
-      cart!.purchased += purchased;
+       cart!.purchased += purchased;
     } else {
-      _carts.add(
-        Cart(
-          shoeid: shoeid,
-          shoename: shoename,
-          price: price,
-          size: size,
-          image: image,
-          purchased: purchased,
-        ),
-      );
+      if (size != 0) {
+        _carts.add(
+          Cart(
+            shoeid: shoeid,
+            shoename: shoename,
+            price: price,
+            size: size,
+            image: image,
+            purchased: purchased,
+          ),
+        );
+      }
     }
     setState(ViewState.Idle);
   }

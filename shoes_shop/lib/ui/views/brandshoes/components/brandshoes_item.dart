@@ -5,18 +5,16 @@ import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
-
-// ignore: must_be_immutable
-class SaleShoesItem extends StatelessWidget {
-  ShoesViewModel model;
-  int index;
-  int x;
-  SaleShoesItem({Key? key, required this.model, required this.index, required this.x}) : super(key: key);
+class BrandShoesItem extends StatelessWidget {
+  final ShoesViewModel model;
+  final int index;
+  final int x;
+  const BrandShoesItem({Key? key, required this.model, required this.index, required this.x}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Shoes?>? list = model.saleshoes;
-    model.sortSales(list, x);
+    List<Shoes?>? list = model.brandshoes;
+    model.sortBrand(list, x);
     return Card(
       elevation: .7,
       child: Column(
@@ -42,7 +40,7 @@ class SaleShoesItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                model.checkShoeNew(list![index]!)
+                model.checkShoeNew(list[index]!)
                     ? Positioned(
                   top: -10,
                   left: 0,
@@ -53,7 +51,7 @@ class SaleShoesItem extends StatelessWidget {
                   ),
                 )
                     : const Text(''),
-                model.checkTimeSale(list![index]!)
+                model.checkTimeSale(list[index]!)
                     ? Positioned(
                     top: -10,
                     right: 0,
@@ -69,7 +67,7 @@ class SaleShoesItem extends StatelessWidget {
                             top: 20,
                             right: 15,
                             child: Text(
-                              '${list![index]!.percent?.round()}%',
+                              '${list[index]!.percent?.round()}%',
                               style: shoesTextStyle,
                             ))
                       ],

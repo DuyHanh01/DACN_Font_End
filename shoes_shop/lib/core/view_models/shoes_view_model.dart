@@ -33,10 +33,9 @@ class ShoesViewModel extends BaseViewModel {
   Future<bool> getAllShoes(int accountid) async {
     setState(ViewState.Busy);
 
-
     var accountId = accountid;
     var success = await _shoesService.getAllShoes(accountId);
-    String message = _shoesService.messageShoes;
+    String message = _shoesService.message;
 
     if (!success) {
       errorMessage = message;
@@ -52,11 +51,10 @@ class ShoesViewModel extends BaseViewModel {
   Future<bool> getAllShoesBySaleId(int accountid, int saleid) async {
     setState(ViewState.Busy);
 
-
     var accountId = accountid;
     var saleId = saleid;
     var success = await _shoesService.getAllShoesBySaleId(accountId, saleId);
-    String message = _shoesService.messageSale;
+    String message = _shoesService.message;
 
     if (!success) {
       errorMessage = message;
@@ -72,11 +70,10 @@ class ShoesViewModel extends BaseViewModel {
   Future<bool> getAllShoesByBrandId(int accountid, int brandid) async {
     setState(ViewState.Busy);
 
-
     var accountId = accountid;
     var brandId = brandid;
     var success = await _shoesService.getAllShoesByBrandId(accountId, brandId);
-    String message = _shoesService.messageBrand;
+    String message = _shoesService.message;
 
     if (!success) {
       errorMessage = message;
@@ -86,6 +83,81 @@ class ShoesViewModel extends BaseViewModel {
       errorMessage = message;
       setState(ViewState.Idle);
       return success;
+    }
+  }
+
+  Shoes? swap(Shoes a, Shoes b) {
+    Shoes temp;
+    temp = a;
+    a = b;
+    b = temp;
+  }
+
+  void sortSales(List<Shoes?>? list, int x) {
+    if (x == 0) {
+      list!.sort((a, b) => b!.purchased!.compareTo(a!.purchased!));
+    } else if (x == 1) {
+      list!.sort((a, b) {
+        if (a!.saleprice != null && b!.saleprice != null) {
+          return b.saleprice!.compareTo(a.saleprice!);
+        }
+        if (a.saleprice == null && b!.saleprice != null) {
+          return b.saleprice!.compareTo(a.price);
+        }
+        if (a.saleprice != null && b!.saleprice == null) {
+          return b.price.compareTo(a.saleprice!);
+        }
+        return b!.price.compareTo(a.price);
+      });
+    } else if (x == 2) {
+      list!.sort((a, b) {
+        if (a!.saleprice != null && b!.saleprice != null) {
+          return a.saleprice!.compareTo(b.saleprice!);
+        }
+        if (a.saleprice == null && b!.saleprice != null) {
+          return a.price.compareTo(b.saleprice!);
+        }
+        if (a.saleprice != null && b!.saleprice == null) {
+          return a.saleprice!.compareTo(b.price);
+        }
+        return a.price.compareTo(b!.price);
+      });
+    } else {
+      list = saleshoes;
+    }
+  }
+
+  void sortBrand(List<Shoes?>? list, int x) {
+    if (x == 0) {
+      list!.sort((a, b) => b!.purchased!.compareTo(a!.purchased!));
+    } else if (x == 1) {
+      list!.sort((a, b) {
+        if (a!.saleprice != null && b!.saleprice != null) {
+          return b.saleprice!.compareTo(a.saleprice!);
+        }
+        if (a.saleprice == null && b!.saleprice != null) {
+          return b.saleprice!.compareTo(a.price);
+        }
+        if (a.saleprice != null && b!.saleprice == null) {
+          return b.price.compareTo(a.saleprice!);
+        }
+        return b!.price.compareTo(a.price);
+      });
+    } else if (x == 2) {
+      list!.sort((a, b) {
+        if (a!.saleprice != null && b!.saleprice != null) {
+          return a.saleprice!.compareTo(b.saleprice!);
+        }
+        if (a.saleprice == null && b!.saleprice != null) {
+          return a.price.compareTo(b.saleprice!);
+        }
+        if (a.saleprice != null && b!.saleprice == null) {
+          return a.saleprice!.compareTo(b.price);
+        }
+        return a.price.compareTo(b!.price);
+      });
+    } else {
+      list = brandshoes;
     }
   }
 
@@ -110,6 +182,13 @@ class ShoesViewModel extends BaseViewModel {
 
   bool checkPurchased(Shoes? shoes) {
     if (shoes!.purchased != null) {
+      return true;
+    }
+    return false;
+  }
+
+  bool checkShoeName(Shoes? shoes) {
+    if (shoes!.shoename.length > 22) {
       return true;
     }
     return false;
@@ -222,10 +301,10 @@ class ShoesViewModel extends BaseViewModel {
           s.s47! <= 0 && title == "47" ||
           s.s48! <= 0 && title == "48") {
         return _color = AppColors.lightGray;
-      }else{
+      } else {
         return _color = AppColors.white;
       }
-    }else{
+    } else {
       return _color = AppColors.primaryColor;
     }
   }

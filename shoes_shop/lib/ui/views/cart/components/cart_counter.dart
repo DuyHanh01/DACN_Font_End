@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 class CartCounter extends StatelessWidget {
@@ -44,7 +46,8 @@ class CartCounter extends StatelessWidget {
                               ),
                               onPressed: () {
                                 Navigator.of(ctx).pop(true);
-                                cartViewModel.removeItem(cart.shoeid, cart.size);
+                                cartViewModel.removeItem(
+                                    cart.shoeid, cart.size);
                               },
                             ),
                           ],
@@ -63,7 +66,22 @@ class CartCounter extends StatelessWidget {
         buildOutlineButton(
             icon: Icons.add,
             press: () {
-              cartViewModel.addPurchased(cart);
+              if (cart.purchased == 5) {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: const Text('Liên hệ shop để order!'),
+                  duration: const Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: "Contacts",
+                    textColor: AppColors.primaryColor,
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(RoutePaths.contact);
+                    },
+                  ),
+                ));
+              } else {
+                cartViewModel.addPurchased(cart);
+              }
             }),
       ],
     );
