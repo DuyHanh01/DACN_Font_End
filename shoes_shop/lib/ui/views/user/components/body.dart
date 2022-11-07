@@ -77,7 +77,7 @@ class _BodyViewState extends State<Body> {
                                 fontSize: 14.0
                             );
                             if (suerSuccess) {
-                              Navigator.pushNamed(context, RoutePaths.login);
+                              Navigator.pushNamed(context, RoutePaths.success);
                             }
                           },
                         ),

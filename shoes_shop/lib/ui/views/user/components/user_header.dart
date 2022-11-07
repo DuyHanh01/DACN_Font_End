@@ -22,7 +22,7 @@ class UserHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      const Text('Insert User', style: wellComeStyle),
+      const Text('Complete Profile', style: wellComeStyle),
       UIHelper.verticalSpaceMedium(),
       RegisterTextField(controllerFirstName, TextInputType.name, 'Enter your firstname'),
       RegisterTextField(controllerLastName, TextInputType.name,

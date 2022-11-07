@@ -18,6 +18,9 @@ const wellComeStyle = TextStyle(
 
 const shoesTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
 
+const orderTextStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
+const orderTextSpanStyle = TextStyle(fontSize: 13, fontWeight: FontWeight.w500);
+
 const shoesPriceOld = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,

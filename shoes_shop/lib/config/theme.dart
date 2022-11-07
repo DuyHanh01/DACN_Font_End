@@ -56,15 +56,13 @@ class AppUI {
   static const String mail = '${imagePath}mail.png';
   static const String up = '${imagePath}up.png';
   static const String down = '${imagePath}down.png';
+  static const String success = '${imagePath}success.png';
   static const String img = '${imagePath}img.jpg';
   static const String momo = '${imagePath}momo.png';
   static const String maps = '${imagePath}ggmaps.png';
-  static const String search = '${svgPath}search.svg';
-  static const String favorite = '${svgPath}favorite.svg';
-  static const String home = '${svgPath}home.svg';
-  static const String notification = '${svgPath}notification.svg';
-  static const String profile = '${svgPath}profile.svg';
+  static const String profilePic = '${imagePath}profile_pic.png';
   static const String back = '${svgPath}back.svg';
+  static const String favorite = '${svgPath}favorite.svg';
   static const String cart = '${svgPath}cart_icon.svg';
 }
 

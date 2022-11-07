@@ -9,9 +9,13 @@ import 'package:shoes_shop/ui/views/checkout/checkout_view.dart';
 import 'package:shoes_shop/ui/views/contacts/components/google_maps.dart';
 import 'package:shoes_shop/ui/views/contacts/contacts_view.dart';
 import 'package:shoes_shop/ui/views/detail/detail_view.dart';
+import 'package:shoes_shop/ui/views/favorites/favorite_view.dart';
 import 'package:shoes_shop/ui/views/home/home_view.dart';
 import 'package:shoes_shop/ui/views/login/login_view.dart';
+import 'package:shoes_shop/ui/views/login_success/login_success_view.dart';
+import 'package:shoes_shop/ui/views/order/order_view.dart';
 import 'package:shoes_shop/ui/views/orderdetais/orderdetails_view.dart';
+import 'package:shoes_shop/ui/views/profile/profile_view.dart';
 import 'package:shoes_shop/ui/views/register/register_view.dart';
 import 'package:shoes_shop/ui/views/saledetails/saledetails_view.dart';
 import 'package:shoes_shop/ui/views/user/user_view.dart';
@@ -36,6 +40,14 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => const GoogleMaps());
       case RoutePaths.insertUser:
         return MaterialPageRoute(builder: (_) => const UserView());
+      case RoutePaths.success:
+        return MaterialPageRoute(builder: (_) => const LoginSuccessView());
+      case RoutePaths.profile:
+        return MaterialPageRoute(builder: (_) => const ProfileView());
+      case RoutePaths.order:
+        return MaterialPageRoute(builder: (_) => const OrderView());
+      case RoutePaths.favorite:
+        return MaterialPageRoute(builder: (_) => const FavoriteView());
       // case RoutePaths.ui:
       //   return MaterialPageRoute(builder: (_) => const UI());
       case RoutePaths.detailView:

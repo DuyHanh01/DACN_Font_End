@@ -12,5 +12,9 @@ class RoutePaths {
   static const googleMap = '/googleMap';
   static const insertUser = '/insertUser';
   static const orderDetail = '/orderDetail';
+  static const success = '/success';
+  static const profile = '/profile';
+  static const order = '/order';
+  static const favorite = '/favorite';
   static const ui = '/ui';
 }
