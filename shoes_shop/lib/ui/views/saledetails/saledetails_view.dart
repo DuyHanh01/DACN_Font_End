@@ -37,7 +37,7 @@ class _SaleDetailsViewState extends State<SaleDetailsView>
             model.state == ViewState.Busy
                 ? const Scaffold(body: CircleDelay())
                 : Scaffold(
-                    appBar: buildAppBar(context, "SaleDetails", _tabController),
+                    appBar: buildAppBar(context, widget.sales.salename, _tabController),
                     body: TabBarView(
                       controller: _tabController,
                       children: <Widget>[

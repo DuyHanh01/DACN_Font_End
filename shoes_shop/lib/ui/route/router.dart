@@ -11,8 +11,10 @@ import 'package:shoes_shop/ui/views/contacts/contacts_view.dart';
 import 'package:shoes_shop/ui/views/detail/detail_view.dart';
 import 'package:shoes_shop/ui/views/home/home_view.dart';
 import 'package:shoes_shop/ui/views/login/login_view.dart';
+import 'package:shoes_shop/ui/views/orderdetais/orderdetails_view.dart';
 import 'package:shoes_shop/ui/views/register/register_view.dart';
 import 'package:shoes_shop/ui/views/saledetails/saledetails_view.dart';
+import 'package:shoes_shop/ui/views/user/user_view.dart';
 import 'package:shoes_shop/ui/views/wellcome/wellcome_view.dart';
 
 class MainRouter {
@@ -32,6 +34,10 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => const ContactsView());
       case RoutePaths.googleMap:
         return MaterialPageRoute(builder: (_) => const GoogleMaps());
+      case RoutePaths.insertUser:
+        return MaterialPageRoute(builder: (_) => const UserView());
+      // case RoutePaths.ui:
+      //   return MaterialPageRoute(builder: (_) => const UI());
       case RoutePaths.detailView:
         final event = settings.arguments as Shoes;
         return MaterialPageRoute(builder: (_) => DetailView(shoes: event));
@@ -41,6 +47,10 @@ class MainRouter {
       case RoutePaths.brandShoes:
         final event = settings.arguments as Brand;
         return MaterialPageRoute(builder: (_) => BrandShoesView(brand: event));
+      case RoutePaths.orderDetail:
+        final event = settings.arguments as int;
+        return MaterialPageRoute(
+            builder: (_) => OrderDetailsView(orderid: event));
       case RoutePaths.checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       default:

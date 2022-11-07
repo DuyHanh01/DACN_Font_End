@@ -1,29 +1,46 @@
 class User {
-  int id;
+  int? userid;
+  int accountid;
+  String firstName;
+  String lastName;
+  String phone;
   String email;
-  String password;
-  String role;
+  String address;
+  String? avatar;
 
-  User(this.id, this.email, this.password, this.role);
+  User(this. userid, this.accountid, this.firstName, this.lastName, this.phone, this.email,
+      this.address, this.avatar);
 
   User.initial()
-      : id = 0,
+      : userid = 0,
+        accountid = 0,
+        firstName = '',
+        lastName = '',
+        phone = '',
         email = '',
-        password = ' ',
-        role = ' ';
+        address = ' ',
+        avatar = ' ';
 
   User.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
+      : userid = json['userid'],
+        accountid = json['accountid'],
+        firstName = json['firstName'],
+        lastName = json['lastName'],
+        phone = json['phone'],
         email = json['email'],
-        password = json['password'],
-        role = json['role'];
+        address = json['address'],
+        avatar = json['avatar'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
+    data['userid'] = userid;
+    data['accountid'] = accountid;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['phone'] = phone;
     data['email'] = email;
-    data['password'] = password;
-    data['role'] = role;
+    data['address'] = address;
+    data['avatar'] = avatar;
     return data;
   }
 }

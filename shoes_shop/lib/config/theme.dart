@@ -54,6 +54,8 @@ class AppUI {
   static const String saleTag = '${imagePath}sale_tag.png';
   static const String mobilePhone = '${imagePath}mobilephone.png';
   static const String mail = '${imagePath}mail.png';
+  static const String up = '${imagePath}up.png';
+  static const String down = '${imagePath}down.png';
   static const String img = '${imagePath}img.jpg';
   static const String momo = '${imagePath}momo.png';
   static const String maps = '${imagePath}ggmaps.png';

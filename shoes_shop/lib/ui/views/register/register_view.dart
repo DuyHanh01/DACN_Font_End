@@ -64,7 +64,8 @@ class _RegisterViewState extends State<RegisterView> {
                                     _controllerPass.text,
                                     _controllerRePass.text);
                                 if (registerSuccess) {
-                                  Navigator.pushNamed(context, RoutePaths.login);
+                                  Navigator.pushNamed(
+                                      context, RoutePaths.insertUser);
                                 }
                               },
                             ),

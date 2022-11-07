@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
+import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/locator.dart';
@@ -22,6 +23,10 @@ class MyApp extends StatelessWidget {
             initialData: Account.initial(),
             create: (BuildContext context) =>
                 locator<AuthenticationService>().accountController.stream),
+        StreamProvider<Register>(
+            initialData: Register.initial(),
+            create: (BuildContext context) =>
+            locator<AuthenticationService>().registerController.stream),
         ChangeNotifierProvider.value(
           value: CartViewModel(),
         ),

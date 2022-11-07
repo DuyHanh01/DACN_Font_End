@@ -10,4 +10,7 @@ class RoutePaths {
   static const checkout = '/checkout';
   static const contact = '/contact';
   static const googleMap = '/googleMap';
+  static const insertUser = '/insertUser';
+  static const orderDetail = '/orderDetail';
+  static const ui = '/ui';
 }

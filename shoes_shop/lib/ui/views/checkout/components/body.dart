@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoes_shop/ui/shared/text_styles.dart';
-import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/checkout/components/checkout_header.dart';
-import 'package:shoes_shop/ui/widgets/default_button.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);

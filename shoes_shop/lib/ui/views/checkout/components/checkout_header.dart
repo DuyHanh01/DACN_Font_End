@@ -29,21 +29,25 @@ class CheckoutHeader extends StatelessWidget {
               hinText: "Enter your firstname",
               textInputType: TextInputType.name,
               icon: Icons.person_rounded),
+          UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerLastName,
               hinText: "Enter your lastname",
               textInputType: TextInputType.name,
               icon: Icons.person_rounded),
+          UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerPhone,
               hinText: "Enter your phone",
               textInputType: TextInputType.phone,
               icon: Icons.phone_rounded),
+          UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerMail,
               hinText: "Enter your email",
               textInputType: TextInputType.emailAddress,
               icon: Icons.email_rounded),
+          UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerAddress,
               hinText: "Enter your address",
