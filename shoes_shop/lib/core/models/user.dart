@@ -1,11 +1,11 @@
 class User {
   int? userid;
-  int accountid;
-  String firstName;
-  String lastName;
-  String phone;
-  String email;
-  String address;
+  int? accountid;
+  String? firstName;
+  String? lastName;
+  String? phone;
+  String? email;
+  String? address;
   String? avatar;
 
   User(this. userid, this.accountid, this.firstName, this.lastName, this.phone, this.email,

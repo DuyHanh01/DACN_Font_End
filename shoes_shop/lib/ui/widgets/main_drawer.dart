@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
-import 'package:shoes_shop/core/view_models/home_view_model.dart';
+import 'package:shoes_shop/core/models/account.dart';
+import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
@@ -23,8 +25,10 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<HomeViewModel>(
-        builder: (BuildContext context, HomeViewModel model, Widget? child) =>
+    Account account = Provider.of<Account>(context);
+    return BaseView<UserViewModel>(
+        onModelReady: (model) => model.getUser(account.accountId),
+        builder: (BuildContext context, UserViewModel model, Widget? child) =>
             Drawer(
               backgroundColor: AppColors.backgroundLight,
               child: ListView(

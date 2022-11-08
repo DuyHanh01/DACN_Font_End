@@ -3,6 +3,7 @@ import 'package:shoes_shop/core/models/brand.dart';
 import 'package:shoes_shop/core/models/sales.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
+import 'package:shoes_shop/ui/views/account/account_view.dart';
 import 'package:shoes_shop/ui/views/brandshoes/brandshoes_view.dart';
 import 'package:shoes_shop/ui/views/cart/cart_view.dart';
 import 'package:shoes_shop/ui/views/checkout/checkout_view.dart';
@@ -48,6 +49,8 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => const OrderView());
       case RoutePaths.favorite:
         return MaterialPageRoute(builder: (_) => const FavoriteView());
+      case RoutePaths.account:
+        return MaterialPageRoute(builder: (_) => const AccountView());
       // case RoutePaths.ui:
       //   return MaterialPageRoute(builder: (_) => const UI());
       case RoutePaths.detailView:

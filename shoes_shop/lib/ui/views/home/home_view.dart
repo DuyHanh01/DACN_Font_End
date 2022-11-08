@@ -24,56 +24,6 @@ class HomeView extends StatelessWidget {
             body: const Body(),
             bottomNavigationBar:
                 const CustomBottomNavBar(selectedMenu: MenuState.home),
-            // BottomNavigationBar(
-            //   showUnselectedLabels: false,
-            //   onTap: onItemTapped,
-            //   type: BottomNavigationBarType.fixed,
-            //   elevation: 8,
-            //   selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-            //   selectedItemColor: AppColors.primaryColor,
-            //   currentIndex: selectedIndex,
-            //   backgroundColor: AppColors.white,
-            //   items: [
-            //     homeBottomMenuIcon(
-            //       currentIndex: selectedIndex,
-            //       itemIndex: 0,
-            //       img: Icons.home_rounded,
-            //       title: 'Home',
-            //     ),
-            //     homeBottomMenuIcon(
-            //       itemIndex: 1,
-            //       currentIndex: selectedIndex,
-            //       img: Icons.favorite_border_rounded,
-            //       title: 'Favorite',
-            //     ),
-            //     homeBottomMenuIcon(
-            //       currentIndex: selectedIndex,
-            //       itemIndex: 2,
-            //       img: Icons.shop_rounded,
-            //       title: 'Order',
-            //     ),
-            //     homeBottomMenuIcon(
-            //       currentIndex: selectedIndex,
-            //       itemIndex: 3,
-            //       img: Icons.person_outline_rounded,
-            //       title: 'Profile',
-            //     ),
-            //   ],
-            // ),
-            // int selectedIndex = 0;
-            //
-            // void onItemTapped(int index) {
-            //   setState(() {
-            //     selectedIndex = index;
-            //   });
-            // }
-            //
-            // static const List<Widget> _widgetOptions = <Widget>[
-            //   Body(),
-            //   Text('b'),
-            //   OrderView(),
-            //   ProfileView(),
-            // ];
             drawer: const MainDrawer(),
           ),
         ));

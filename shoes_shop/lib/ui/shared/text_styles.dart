@@ -18,6 +18,25 @@ const wellComeStyle = TextStyle(
 
 const shoesTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
 
+const appBarTextStyle = TextStyle(
+  fontSize: 16.0,
+  fontWeight: FontWeight.w600,
+  color: AppColors.blackGray,
+    shadows: <Shadow>[
+      Shadow(
+        offset: Offset(0, 5.0),
+        blurRadius: 80.0,
+        color: AppColors.primaryColor,
+      )
+    ]
+);
+
+const hinTextStyle = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+  color: Colors.black,
+);
+
 const orderTextStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
 const orderTextSpanStyle = TextStyle(fontSize: 13, fontWeight: FontWeight.w500);
 
@@ -31,8 +50,6 @@ const shoesPriceOld = TextStyle(
 
 const shoesSalePrice =
     TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.red);
-
-const appBarStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.w800);
 
 const signInSignUpStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 

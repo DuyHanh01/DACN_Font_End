@@ -10,7 +10,7 @@ AppBar buildAppBar(BuildContext context, String? title) {
     centerTitle: true,
     title: Text(
       title!,
-      style: appBarStyle,
+      style: appBarTextStyle,
     ),
     leading: Padding(
       padding: const EdgeInsets.all(8),

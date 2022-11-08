@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoes_shop/config/theme.dart';
+import 'package:provider/provider.dart';
+import 'package:shoes_shop/core/view_models/user_view_model.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
@@ -8,37 +9,12 @@ class ProfilePic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userViewModel = Provider.of<UserViewModel>(context);
     return SizedBox(
       height: 115,
       width: 115,
-      child: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
-        children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage(AppUI.profilePic),
-          ),
-          Positioned(
-            right: -16,
-            bottom: 0,
-            child: SizedBox(
-              height: 46,
-              width: 46,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: const BorderSide(color: Colors.white),
-                  ),
-                  primary: Colors.white,
-                  backgroundColor: const Color(0xFFF5F6F9),
-                ),
-                onPressed: () {},
-                child: const Icon(Icons.camera_alt, color: AppColors.primaryColor),
-              ),
-            ),
-          )
-        ],
+      child: CircleAvatar(
+        backgroundImage: NetworkImage(userViewModel.users!.avatar!, scale: 1.0),
       ),
     );
   }

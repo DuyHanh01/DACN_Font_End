@@ -55,11 +55,16 @@ class BottomNav extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 150,
-                  child: DefaultButton(text: "COD",press: () {}),
+                  child: DefaultButton(
+                      text: "COD",
+                      press: () {},
+                      textColor: AppColors.white,
+                      backColor: AppColors.primaryColor),
                 ),
                 SizedBox(
                   width: 150,
-                  child: ButtonIcon(text: "MOMO", icon: AppUI.momo ,press: () {}),
+                  child:
+                      ButtonIcon(text: "MOMO", icon: AppUI.momo, press: () {}),
                 ),
               ],
             ),

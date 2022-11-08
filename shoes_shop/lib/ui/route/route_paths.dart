@@ -16,5 +16,6 @@ class RoutePaths {
   static const profile = '/profile';
   static const order = '/order';
   static const favorite = '/favorite';
+  static const account = '/account';
   static const ui = '/ui';
 }

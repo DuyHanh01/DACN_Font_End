@@ -19,13 +19,14 @@ class Body extends StatelessWidget {
         const Spacer(),
         SizedBox(
           child: DefaultButton(
-            text: "Confirm",
-            press: () {
-              Navigator.of(context).pushNamed(
-                RoutePaths.login,
-              );
-            },
-          ),
+              text: "Confirm",
+              press: () {
+                Navigator.of(context).pushNamed(
+                  RoutePaths.login,
+                );
+              },
+              textColor: AppColors.white,
+              backColor: AppColors.primaryColor),
         ),
         const Spacer(),
       ],

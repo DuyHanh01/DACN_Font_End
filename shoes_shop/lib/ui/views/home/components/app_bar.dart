@@ -13,7 +13,7 @@ AppBar appBar(BuildContext context) {
     centerTitle: true,
     title: const Text(
       'VHIT Sneaker',
-      style: appBarStyle,
+      style: appBarTextStyle,
     ),
     actions: [
       Padding(

@@ -3,7 +3,7 @@ import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 
-class LoginHeader extends StatelessWidget {
+class LoginHeader extends StatefulWidget {
   final TextEditingController controllerUser;
   final TextEditingController controllerPass;
   //final String validationMessage;
@@ -13,17 +13,23 @@ class LoginHeader extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<LoginHeader> createState() => LoginHeaderState();
+}
+
+class LoginHeaderState extends State<LoginHeader> {
+  bool showPassword = true;
+
+  @override
+  @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       const Text('Welcome Back', style: wellComeStyle),
       UIHelper.verticalSpaceMedium(),
       SizedBox(width: 360, child: Image.asset('assets/images/main.png')),
-      LoginTextField(false, controllerUser, TextInputType.emailAddress,
-          'Enter your email'),
-      LoginTextField(true, controllerPass, TextInputType.visiblePassword,
-          'Enter your password'),
-      // Text(validationMessage,
-      //     style: const TextStyle(color: AppColors.red)),
+      loginTextField(false, 'Enter your email', TextInputType.emailAddress,
+          widget.controllerUser),
+      loginTextField(true, 'Enter your password', TextInputType.visiblePassword,
+          widget.controllerPass),
       TextButton(
         onPressed: () {},
         child: const Text(
@@ -36,31 +42,29 @@ class LoginHeader extends StatelessWidget {
       ),
     ]);
   }
-}
 
-class LoginTextField extends StatelessWidget {
-  final bool state;
-  final String hinText;
-  final TextInputType textInputType;
-  final TextEditingController controller;
-
-  const LoginTextField(
-      this.state, this.controller, this.textInputType, this.hinText,
-      {Key? key})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget loginTextField(bool state, String hinText, TextInputType textInputType,
+      TextEditingController controller) {
     return Container(
       height: 55,
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       child: TextField(
         cursorColor: AppColors.primaryColor,
-        obscureText: state,
+        obscureText: state ? showPassword : false,
         controller: controller,
         keyboardType: textInputType,
         decoration: InputDecoration(
+            suffixIcon: state
+                ? IconButton(
+                    icon: const Icon(Icons.remove_red_eye_rounded,
+                        color: AppColors.lightGray),
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    })
+                : null,
             floatingLabelStyle:
                 const TextStyle(color: AppColors.primaryColor, fontSize: 13),
             filled: true,

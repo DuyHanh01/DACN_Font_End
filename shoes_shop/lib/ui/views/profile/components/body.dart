@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
+import 'package:shoes_shop/ui/shared/text_styles.dart';
+import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/profile/components/profile_menu.dart';
 import 'package:shoes_shop/ui/views/profile/components/profile_pic.dart';
 
@@ -8,15 +11,18 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          ProfilePic(),
-          SizedBox(height: 20),
+          UIHelper.verticalSpaceMedium(),
+          const Text('Profile', style: wellComeStyle),
+          UIHelper.verticalSpaceMedium(),
+          const ProfilePic(),
+          UIHelper.verticalSpaceMedium(),
           ProfileMenu(
             text: "My Account",
             icon: Icons.person_outline_rounded,
-            press: () => {},
+            press: () => {Navigator.pushNamed(context, RoutePaths.account)},
           ),
           ProfileMenu(
             text: "Notifications",

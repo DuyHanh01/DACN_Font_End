@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
@@ -61,7 +62,9 @@ class CheckoutCard extends StatelessWidget {
                         if (cartViewModel.itemCount != 0) {
                           Navigator.of(context).pushNamed(RoutePaths.checkout);
                         }
-                      }),
+                      },
+                      textColor: AppColors.white,
+                      backColor: AppColors.primaryColor),
                 ),
               ],
             ),

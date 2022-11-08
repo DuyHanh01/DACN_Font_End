@@ -34,7 +34,7 @@ class AppColors {
   static const success = Color(0xFF2AA952);
   static const green = Color(0xFF2AA952);
   static const blueAvatar = Color(0xFF01579B);
-  static const secondaryColor = Color(0xffFFDCBA);
+  static const secondaryColor = Color(0xFFF5F6F9);
   static const primaryColor = Color(0xff4281C8);
 }
 

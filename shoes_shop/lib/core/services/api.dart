@@ -431,4 +431,62 @@ class Api {
       return BaseResult(s.isSuccess, s.status, s.Message, []);
     }
   }
+
+  //get user by accountid
+  Future<BaseResult<User>> getUser(int accountid) async {
+    var users = <User>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getUserByAccountId/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var user in data) {
+        users.add(User.fromJson(user));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, users);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //update user
+  Future<BaseResult<User>> updateUser(User user) async {
+    int userid = user.userid!;
+    var users = <User>[];
+    var body = json.encode(user);
+    final response = await client.put(
+      Uri.parse('$endpoint/updateUserByUserId/$userid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+      body: body,
+    );
+    var s;
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var user in data) {
+        users.add(User.fromJson(user));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, users);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
+  }
+
 }

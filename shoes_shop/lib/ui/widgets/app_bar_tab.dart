@@ -10,7 +10,7 @@ AppBar buildAppBar(BuildContext context, String? title, TabController _tabContro
     centerTitle: true,
     title: Text(
       title!,
-      style: appBarStyle,
+      style: appBarTextStyle,
     ),
     bottom: TabBar(
       controller: _tabController,
