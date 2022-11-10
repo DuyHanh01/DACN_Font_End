@@ -37,7 +37,7 @@ class OrderDetailsView extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Image.network(
-                                        model.orderDetails![index]!.image1,
+                                        model.orderDetails![index]!.image1!,
                                         height: 100,
                                         width: 100,
                                       ),
@@ -47,7 +47,7 @@ class OrderDetailsView extends StatelessWidget {
                                         children: <Widget>[
                                           Text(
                                               model.orderDetails![index]!
-                                                  .shoename,
+                                                  .shoename!,
                                               style: orderTextStyle.copyWith(
                                                   color: AppColors.primaryColor,
                                                   fontSize: 15)),

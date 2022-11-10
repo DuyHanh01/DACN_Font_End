@@ -9,8 +9,6 @@ import 'package:shoes_shop/ui/views/order/compomemts/app_bar.dart';
 import 'package:shoes_shop/ui/views/order/compomemts/body.dart';
 import 'package:shoes_shop/ui/widgets/circle_delay.dart';
 import 'package:shoes_shop/ui/widgets/custom_button_nav_bar.dart';
-import 'package:shoes_shop/ui/widgets/main_drawer.dart';
-
 class OrderView extends StatelessWidget {
   const OrderView({Key? key}) : super(key: key);
 

@@ -14,18 +14,18 @@ class CartViewModel extends BaseViewModel {
   double get totalAmount {
     var total = 0.0;
     for (var element in _carts) {
-      total += element.price * element.purchased;
+      total += element.price * element.quantity;
     }
     return total;
   }
 
-  Cart? getCart(String shoeid, int size) {
+  Cart? getCart(int shoeid, int size) {
     return _carts.firstWhereOrNull(
         (element) => element.shoeid == shoeid && element.size == size);
   }
 
   void addItem(
-    String shoeid,
+    int shoeid,
     double price,
     String shoename,
     String image,
@@ -34,7 +34,7 @@ class CartViewModel extends BaseViewModel {
   ) {
     Cart? cart = getCart(shoeid, size);
     if (_carts.contains(cart)) {
-       cart!.purchased += purchased;
+       cart!.quantity += purchased;
     } else {
       if (size != 0) {
         _carts.add(
@@ -44,7 +44,7 @@ class CartViewModel extends BaseViewModel {
             price: price,
             size: size,
             image: image,
-            purchased: purchased,
+            quantity: purchased,
           ),
         );
       }
@@ -52,19 +52,19 @@ class CartViewModel extends BaseViewModel {
     setState(ViewState.Idle);
   }
 
-  void removeItem(String shoeid, int size) {
+  void removeItem(int shoeid, int size) {
     _carts.remove(getCart(shoeid, size));
     setState(ViewState.Idle);
   }
 
   void addPurchased(Cart cart) {
-    cart.purchased += 1;
+    cart.quantity += 1;
     setState(ViewState.Idle);
   }
 
   void subPurchased(Cart cart) {
-    if (cart.purchased >= 1) {
-      cart.purchased -= 1;
+    if (cart.quantity >= 1) {
+      cart.quantity -= 1;
     }
     setState(ViewState.Idle);
   }

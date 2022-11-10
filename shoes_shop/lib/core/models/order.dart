@@ -1,23 +1,25 @@
 class Order {
-  int orderid;
+  int? orderid;
   int accountid;
   int statusid;
-  String createdate;
-  String deliverydate;
+  String? statusname;
+  String? createdate;
+  String? deliverydate;
   String firstName;
   String lastName;
   String phone;
   String email;
   String address;
-  String note;
+  String? note;
   double total;
   bool payment;
-  String momo;
+  String? momo;
 
   Order(
       this.orderid,
       this.accountid,
       this.statusid,
+      this.statusname,
       this.createdate,
       this.deliverydate,
       this.firstName,
@@ -34,6 +36,7 @@ class Order {
       : orderid = json['orderid'],
         accountid = json['accountid'],
         statusid = json['statusid'],
+        statusname = json['statusname'],
         createdate = json['createdate'],
         deliverydate = json['deliverydate'],
         firstName = json['firstName'],
@@ -51,6 +54,7 @@ class Order {
     data['orderid'] = orderid;
     data['accountid'] = accountid;
     data['statusid'] = statusid;
+    data['statusname'] = statusname;
     data['createdate'] = createdate;
     data['deliverydate'] = deliverydate;
     data['firstName'] = firstName;

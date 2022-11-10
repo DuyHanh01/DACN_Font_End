@@ -81,15 +81,15 @@ class BottomNav extends StatelessWidget {
           fontSize: 14.0);
     } else {
       Cart? cart =
-          cartViewModel.getCart(shoes.shoeid.toString(), shoesViewModel.size);
+          cartViewModel.getCart(shoes.shoeid, shoesViewModel.size);
       if (cart != null) {
-        if (cart.purchased < 5) {
+        if (cart.quantity < 5) {
           int total = shoesViewModel.x;
           int size = shoesViewModel.size;
           shoesViewModel.checkTimeSale(shoes)
-              ? cartViewModel.addItem(shoes.shoeid.toString(), shoes.saleprice!,
+              ? cartViewModel.addItem(shoes.shoeid, shoes.saleprice!,
                   shoes.shoename, shoes.image1, total, size)
-              : cartViewModel.addItem(shoes.shoeid.toString(), shoes.price,
+              : cartViewModel.addItem(shoes.shoeid, shoes.price,
                   shoes.shoename, shoes.image1, total, size);
         } else {
           ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -109,9 +109,9 @@ class BottomNav extends StatelessWidget {
         int total = shoesViewModel.x;
         int size = shoesViewModel.size;
         shoesViewModel.checkTimeSale(shoes)
-            ? cartViewModel.addItem(shoes.shoeid.toString(), shoes.saleprice!,
+            ? cartViewModel.addItem(shoes.shoeid, shoes.saleprice!,
                 shoes.shoename, shoes.image1, total, size)
-            : cartViewModel.addItem(shoes.shoeid.toString(), shoes.price,
+            : cartViewModel.addItem(shoes.shoeid, shoes.price,
                 shoes.shoename, shoes.image1, total, size);
       }
     }

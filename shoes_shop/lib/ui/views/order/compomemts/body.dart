@@ -48,14 +48,14 @@ class Body extends StatelessWidget {
                           model.orders![index]!.address),
                       const SizedBox(height: 2),
                       buildTextSpan('CreateDate: ',
-                          model.orders![index]!.createdate),
+                          model.orders![index]!.createdate!),
                       const SizedBox(height: 2),
                       buildTextSpan('Total: ',
                           '\$${model.orders![index]!.total}'),
                       const SizedBox(height: 2),
                       buildTextSpan(
                           'Status: ',
-                          model.orders![index]!.statusid
+                          model.orders![index]!.statusname
                               .toString()),
                     ],
                   ),

@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/ui/views/checkout/components/checkout_header.dart';
 
-class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+class Body extends StatelessWidget {
+  const Body(
+      {Key? key,
+      required this.controllerFirstName,
+      required this.controllerLastName,
+      required this.controllerPhone,
+      required this.controllerEmail,
+      required this.controllerAddress,
+      required this.controllerNote})
+      : super(key: key);
+  final TextEditingController controllerFirstName;
+  final TextEditingController controllerLastName;
+  final TextEditingController controllerPhone;
+  final TextEditingController controllerEmail;
+  final TextEditingController controllerAddress;
+  final TextEditingController controllerNote;
 
-  @override
-  State<Body> createState() => _BodyState();
-}
-
-class _BodyState extends State<Body> {
-  final TextEditingController _controllerFirstName = TextEditingController();
-  final TextEditingController _controllerLastName = TextEditingController();
-  final TextEditingController _controllerPhone = TextEditingController();
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerAddress = TextEditingController();
-  final TextEditingController _controllerNote = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,12 +33,12 @@ class _BodyState extends State<Body> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 CheckoutHeader(
-                  controllerFirstName: _controllerFirstName,
-                  controllerLastName: _controllerLastName,
-                  controllerAddress: _controllerAddress,
-                  controllerMail: _controllerEmail,
-                  controllerPhone: _controllerPhone,
-                  controllerNote: _controllerNote,
+                  controllerFirstName: controllerFirstName,
+                  controllerLastName: controllerLastName,
+                  controllerAddress: controllerAddress,
+                  controllerMail: controllerEmail,
+                  controllerPhone: controllerPhone,
+                  controllerNote: controllerNote,
                 ),
               ],
             ),

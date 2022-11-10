@@ -19,7 +19,7 @@ class CartCounter extends StatelessWidget {
         buildOutlineButton(
           icon: Icons.remove,
           press: () {
-            cart.purchased == 1
+            cart.quantity == 1
                 ? showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
@@ -59,14 +59,14 @@ class CartCounter extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Text(
             // if our item is less  then 10 then  it shows 01 02 like that
-            cart.purchased.toString().padLeft(2, "0"),
+            cart.quantity.toString().padLeft(2, "0"),
             style: shoesTextStyle.copyWith(fontSize: 14),
           ),
         ),
         buildOutlineButton(
             icon: Icons.add,
             press: () {
-              if (cart.purchased == 5) {
+              if (cart.quantity == 5) {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: const Text('Liên hệ shop để order!'),

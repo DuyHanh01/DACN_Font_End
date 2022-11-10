@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
 import 'package:shoes_shop/core/models/brand.dart';
+import 'package:shoes_shop/core/models/checkout.dart';
 import 'package:shoes_shop/core/models/order.dart';
 import 'package:shoes_shop/core/models/orderdetails.dart';
 import 'package:shoes_shop/core/models/register.dart';
@@ -489,4 +490,20 @@ class Api {
     }
   }
 
+  //insert order
+  Future<BaseResult<Checkout>> insertOrder(Checkout checkout) async {
+    var checkouts = <Checkout>[];
+    var body = json.encode(checkout);
+    final response = await client.post(
+      Uri.parse('$endpoint/AddOrder'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+      body: body,
+    );
+    var s;
+    s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+    return BaseResult(s.isSuccess, s.status, s.Message, null);
+  }
 }

@@ -1,13 +1,13 @@
 class OrderDetails {
-  int orderid;
+  int? orderid;
   int shoeid;
   int quantity;
   int size;
   double price;
-  double total;
-  int statusid;
-  String shoename;
-  String image1;
+  double? total;
+  int? statusid;
+  String? shoename;
+  String? image1;
 
   OrderDetails(this.orderid, this.shoeid, this.quantity, this.size, this.price,
       this.total, this.statusid, this.shoename, this.image1);

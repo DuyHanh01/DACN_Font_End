@@ -56,6 +56,7 @@ class CheckoutCard extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 200,
+                  height: 50,
                   child: DefaultButton(
                       text: "Check Out",
                       press: () {

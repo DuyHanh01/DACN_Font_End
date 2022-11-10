@@ -1,3 +1,4 @@
+import 'package:shoes_shop/core/models/checkout.dart';
 import 'package:shoes_shop/core/models/order.dart';
 import 'package:shoes_shop/core/services/api.dart';
 import 'package:shoes_shop/locator.dart';
@@ -16,6 +17,13 @@ class OrderService {
     _orders = fetchedOrder.data;
     message = fetchedOrder.Message!;
 
+    return isSuccessOrder ?? false;
+  }
+
+  Future<bool> insertOrder(Checkout checkout) async {
+    var fetchedOrder = await _api.insertOrder(checkout);
+    var isSuccessOrder = fetchedOrder.isSuccess;
+    message = fetchedOrder.Message!;
     return isSuccessOrder ?? false;
   }
 }

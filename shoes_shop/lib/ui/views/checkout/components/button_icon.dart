@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+
 class ButtonIcon extends StatelessWidget {
   const ButtonIcon({
     Key? key,
@@ -13,24 +14,23 @@ class ButtonIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: TextButton.icon(
-        icon: Image.asset(icon!),
-        style: TextButton.styleFrom(
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          primary: Colors.white,
-          backgroundColor: AppColors.primaryColor,
-        ),
-        onPressed: press as void Function()?,
-        label: Text(
-          text!,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-          ),
+    return TextButton.icon(
+      icon: ClipRRect(
+        borderRadius: BorderRadius.circular(10.0),
+        child: Image.asset(icon!),
+      ),
+      style: TextButton.styleFrom(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        primary: Colors.white,
+        backgroundColor: AppColors.primaryColor,
+      ),
+      onPressed: press as void Function()?,
+      label: Text(
+        text!,
+        style: const TextStyle(
+          fontSize: 18,
+          color: Colors.white,
         ),
       ),
     );
