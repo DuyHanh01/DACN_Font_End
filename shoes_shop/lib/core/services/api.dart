@@ -491,8 +491,8 @@ class Api {
   }
 
   //insert order
-  Future<BaseResult<Checkout>> insertOrder(Checkout checkout) async {
-    var checkouts = <Checkout>[];
+  Future<BaseResult<Order>> insertOrder(Checkout checkout) async {
+    var orders = <Order>[];
     var body = json.encode(checkout);
     final response = await client.post(
       Uri.parse('$endpoint/AddOrder'),
@@ -503,7 +503,33 @@ class Api {
       body: body,
     );
     var s;
-    s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-    return BaseResult(s.isSuccess, s.status, s.Message, null);
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var order in data) {
+        orders.add(Order.fromJson(order));
+      }
+      return BaseResult(s.isSuccess, s.status, s.Message, orders);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
   }
+
+  //update order
+  Future<BaseResult<Order>> updateOrder(Order order) async {
+    int orderid = order.orderid!;
+    var body = json.encode(order);
+    final response = await client.put(
+      Uri.parse('$endpoint/UpdateMomoAndPaymentOfOrder/$orderid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+      body: body,
+    );
+    var s;
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
 }

@@ -49,7 +49,8 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   url_launcher: ^6.1.6
   image_picker: ^0.8.6
-  #tflite: ^1.1.2
+  momo_vn: ^2.0.2
+  tflite: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -77,8 +78,8 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
-    - assets/labels.txt
-    - assets/model_unquant.tflite
+    - assets/tflite/labels.txt
+    - assets/tflite/model_unquant.tflite
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

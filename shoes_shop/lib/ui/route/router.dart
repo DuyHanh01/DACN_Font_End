@@ -21,6 +21,7 @@ import 'package:shoes_shop/ui/views/register/register_view.dart';
 import 'package:shoes_shop/ui/views/saledetails/saledetails_view.dart';
 import 'package:shoes_shop/ui/views/user/user_view.dart';
 import 'package:shoes_shop/ui/views/wellcome/wellcome_view.dart';
+import 'package:shoes_shop/ui/widgets/ui.dart';
 
 class MainRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -51,8 +52,8 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => const FavoriteView());
       case RoutePaths.account:
         return MaterialPageRoute(builder: (_) => const AccountView());
-      // case RoutePaths.ui:
-      //   return MaterialPageRoute(builder: (_) => const UI());
+      case RoutePaths.ui:
+        return MaterialPageRoute(builder: (_) => const UI());
       case RoutePaths.detailView:
         final event = settings.arguments as Shoes;
         return MaterialPageRoute(builder: (_) => DetailView(shoes: event));

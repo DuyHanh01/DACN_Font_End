@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
@@ -8,6 +7,7 @@ import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/account/components/account_header.dart';
 import 'package:shoes_shop/ui/views/account/components/account_pic.dart';
 import 'package:shoes_shop/ui/widgets/default_button.dart';
+import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class Body extends StatelessWidget {
   Body({Key? key}) : super(key: key);
@@ -93,17 +93,9 @@ class Body extends StatelessWidget {
                                 email,
                                 address,
                                 userViewModel.users!.avatar!);
-                            Fluttertoast.showToast(
-                                msg: userViewModel.errorMessage,
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: AppColors.red.withOpacity(0.7),
-                                textColor: AppColors.white,
-                                fontSize: 14.0);
+                            buildToast(userViewModel.errorMessage);
                             if (loginSuccess) {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.profile);
+                              Navigator.pushNamed(context, RoutePaths.profile);
                             }
                           },
                           textColor: AppColors.white,

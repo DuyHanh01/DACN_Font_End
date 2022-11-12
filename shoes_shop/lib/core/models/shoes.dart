@@ -2,6 +2,7 @@ class Shoes {
   int shoeid;
   String shoename;
   double price;
+  double? rate;
   String description;
   int? stock;
   int? purchased;
@@ -27,6 +28,7 @@ class Shoes {
       this.shoeid,
       this.shoename,
       this.price,
+      this.rate,
       this.description,
       this.stock,
       this.purchased,
@@ -52,6 +54,7 @@ class Shoes {
       : shoeid = 0,
         shoename = '',
         price = 0,
+        rate = 0,
         description = '',
         stock = 0,
         purchased = 0,
@@ -77,6 +80,7 @@ class Shoes {
       : shoeid = json['shoeid'],
         shoename = json['shoename'],
         price = json['price'],
+        rate = json['rate'],
         description = json['description'],
         stock = json['stock'],
         purchased = json['purchased'],
@@ -102,6 +106,7 @@ class Shoes {
     data['shoeid'] = shoeid;
     data['shoename'] = shoename;
     data['price'] = price;
+    data['rate'] = rate;
     data['description'] = description;
     data['stock'] = stock;
     data['purchased'] = purchased;

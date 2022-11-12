@@ -8,6 +8,7 @@ import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/user/components/user_header.dart';
+import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key, required this.userViewModel}) : super(key: key);
@@ -67,15 +68,7 @@ class _BodyViewState extends State<Body> {
                               _controllerEmail.text,
                               _controllerAddress.text,
                             );
-                            Fluttertoast.showToast(
-                                msg: widget.userViewModel.errorMessage,
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: AppColors.red.withOpacity(0.7),
-                                textColor: AppColors.white,
-                                fontSize: 14.0
-                            );
+                            buildToast(widget.userViewModel.errorMessage);
                             if (suerSuccess) {
                               Navigator.pushNamed(context, RoutePaths.success);
                             }

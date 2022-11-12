@@ -48,6 +48,15 @@ class ShoesViewModel extends BaseViewModel {
     }
   }
 
+  Shoes? getShoesAi(String shoeName) {
+    for (var element in shoes!) {
+      if (shoeName.contains(element!.shoename)) {
+        return element;
+      }
+    }
+    return null;
+  }
+
   Future<bool> getAllShoesBySaleId(int accountid, int saleid) async {
     setState(ViewState.Busy);
 

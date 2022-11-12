@@ -23,6 +23,14 @@ class OrderService {
   Future<bool> insertOrder(Checkout checkout) async {
     var fetchedOrder = await _api.insertOrder(checkout);
     var isSuccessOrder = fetchedOrder.isSuccess;
+    _orders = fetchedOrder.data;
+    message = fetchedOrder.Message!;
+    return isSuccessOrder ?? false;
+  }
+
+  Future<bool> updateOrder(Order order) async {
+    var fetchedOrder = await _api.updateOrder(order);
+    var isSuccessOrder = fetchedOrder.isSuccess;
     message = fetchedOrder.Message!;
     return isSuccessOrder ?? false;
   }

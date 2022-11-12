@@ -1,34 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
+import 'package:shoes_shop/ui/shared/text_styles.dart';
+import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/widgets/default_button.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
-        Image.asset(AppUI.success),
-        const Text(
-          "Login Success",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
+        UIHelper.verticalSpaceLarge(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Image.asset(AppUI.success, width: 200)],
         ),
-        const Spacer(),
-        SizedBox(
-          child: DefaultButton(
-              text: "Confirm",
-              press: () {
-                Navigator.of(context).pushNamed(
-                  RoutePaths.login,
-                );
-              },
-              textColor: AppColors.white,
-              backColor: AppColors.primaryColor),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Text(
+            "Login Success",
+            style: shoesTextStyle.copyWith(fontSize: 20)
+          ),],
         ),
-        const Spacer(),
+        UIHelper.verticalSpaceLarge(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[SizedBox(
+            height: 60,
+            width: 200,
+            child: DefaultButton(
+                text: "Confirm",
+                press: () {
+                  Navigator.of(context).pushNamed(
+                    RoutePaths.login,
+                  );
+                },
+                textColor: AppColors.white,
+                backColor: AppColors.primaryColor),
+          ),],
+        ),
+
       ],
     );
   }

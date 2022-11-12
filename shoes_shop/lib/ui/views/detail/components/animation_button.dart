@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/buttonstate.dart';
+import 'package:shoes_shop/core/models/shoes.dart';
+import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 bool isAnimating = true;
 
 class ButtonStates extends StatefulWidget {
-  ButtonStates({Key? key}) : super(key: key);
+  const ButtonStates(
+      {Key? key,
+      required this.cartViewModel,
+      required this.shoes,
+      required this.shoesViewModel})
+      : super(key: key);
+  final CartViewModel cartViewModel;
+  final Shoes shoes;
+  final ShoesViewModel shoesViewModel;
 
   @override
   State<ButtonStates> createState() => _ButtonStatesState();
@@ -22,6 +33,7 @@ class _ButtonStatesState extends State<ButtonStates> {
     // update the UI depending on below variable values
     final isInit = isAnimating || state == ButtonState.init;
     final isDone = state == ButtonState.completed;
+    final isCancel = state == ButtonState.cancel;
 
     return Container(
       alignment: Alignment.center,
@@ -33,7 +45,7 @@ class _ButtonStatesState extends State<ButtonStates> {
         width: state == ButtonState.init ? buttonWidth : 70,
         height: 53,
         // If Button State is Submiting or Completed  show 'buttonCircular' widget as below
-        child: isInit ? buildButton() : circularContainer(isDone),
+        child: isInit ? buildButton() : (isCancel ? circularCancelContainer(isCancel) : circularContainer(isDone)),
       ),
     );
   }
@@ -59,14 +71,23 @@ class _ButtonStatesState extends State<ButtonStates> {
             state = ButtonState.submitting;
           });
           //await 2 sec // you need to implement your server response here.
-          await Future.delayed(const Duration(seconds: 2));
-          setState(() {
-            state = ButtonState.completed;
-          });
+          if(widget.cartViewModel.addCart(context, widget.shoesViewModel, widget.cartViewModel, widget.shoes)==true){
+            await Future.delayed(const Duration(seconds: 2));
+            setState(() {
+              state = ButtonState.completed;
+            });
+          }else{
+            await Future.delayed(const Duration(seconds: 2));
+            setState(() {
+              state = ButtonState.cancel;
+            });
+          }
+
           await Future.delayed(const Duration(seconds: 2));
           setState(() {
             state = ButtonState.init;
           });
+
         },
       );
 
@@ -81,6 +102,18 @@ class _ButtonStatesState extends State<ButtonStates> {
       child: Center(
         child: done
             ? const Icon(Icons.done, size: 50, color: Colors.white)
+            : const CircularProgressIndicator(color: Colors.white),
+      ),
+    );
+  }
+
+  Widget circularCancelContainer(bool cancel) {
+    final color = cancel ? Colors.red : AppColors.primaryColor;
+    return Container(
+      decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+      child: Center(
+        child: cancel
+            ? const Icon(Icons.cancel, size: 50, color: Colors.white)
             : const CircularProgressIndicator(color: Colors.white),
       ),
     );

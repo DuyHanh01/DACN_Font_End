@@ -4,6 +4,7 @@ import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/detail/components/counter.dart';
+import 'package:shoes_shop/ui/views/detail/components/rating_detail.dart';
 import 'package:shoes_shop/ui/views/detail/components/select_size.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
@@ -101,9 +102,9 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.all(5.0),
-          child: RatingHome(size: 40),
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: RatingDetail(shoes: shoes),
         ),
         const SizedBox(height: 10),
         Counter(model: model),

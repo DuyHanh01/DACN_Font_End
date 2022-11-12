@@ -53,7 +53,7 @@ class MainDrawer extends StatelessWidget {
                     ),
                   ),
                   buildListTile('Settings', () {
-                    Navigator.of(context).pushReplacementNamed('/');
+                    Navigator.of(context).pushNamed(RoutePaths.ui);
                   }),
                   const Divider(color: AppColors.blackGray),
                   TextButton(

@@ -1,7 +1,15 @@
+import 'dart:ffi';
+
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/cart.dart';
+import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/base_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 
 class CartViewModel extends BaseViewModel {
   List<Cart> _carts = <Cart>[];
@@ -72,5 +80,57 @@ class CartViewModel extends BaseViewModel {
   void clear() {
     _carts = [];
     setState(ViewState.Idle);
+  }
+
+  bool addCart(BuildContext context, ShoesViewModel shoesViewModel, CartViewModel cartViewModel, Shoes shoes) {
+    if (shoesViewModel.size == 0) {
+      Fluttertoast.showToast(
+          msg: "Vui lòng chọn size",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.SNACKBAR,
+          timeInSecForIosWeb: 1,
+          backgroundColor: AppColors.red.withOpacity(0.85),
+          textColor: AppColors.white,
+          fontSize: 14.0);
+      return false;
+    } else {
+      Cart? cart =
+      cartViewModel.getCart(shoes.shoeid, shoesViewModel.size);
+      if (cart != null) {
+        if (cart.quantity < 5) {
+          int total = shoesViewModel.x;
+          int size = shoesViewModel.size;
+          shoesViewModel.checkTimeSale(shoes)
+              ? cartViewModel.addItem(shoes.shoeid, shoes.saleprice!,
+              shoes.shoename, shoes.image1, total, size)
+              : cartViewModel.addItem(shoes.shoeid, shoes.price,
+              shoes.shoename, shoes.image1, total, size);
+          return true;
+        } else {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: const Text('Liên hệ shop để order!'),
+            duration: const Duration(seconds: 2),
+            action: SnackBarAction(
+              label: "Contacts",
+              textColor: AppColors.primaryColor,
+              onPressed: () {
+                Navigator.of(context).pushNamed(RoutePaths.contact);
+              },
+            ),
+          ));
+          return false;
+        }
+      } else {
+        int total = shoesViewModel.x;
+        int size = shoesViewModel.size;
+        shoesViewModel.checkTimeSale(shoes)
+            ? cartViewModel.addItem(shoes.shoeid, shoes.saleprice!,
+            shoes.shoename, shoes.image1, total, size)
+            : cartViewModel.addItem(shoes.shoeid, shoes.price,
+            shoes.shoename, shoes.image1, total, size);
+        return true;
+      }
+    }
   }
 }

@@ -15,8 +15,6 @@ class SalesService {
     var isSuccessSales = fetchedSales.isSuccess;
     message = fetchedSales.Message!;
     _sales = fetchedSales.data;
-
-
     return isSuccessSales ?? false;
   }
 }

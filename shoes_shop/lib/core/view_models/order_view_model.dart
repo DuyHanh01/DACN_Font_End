@@ -45,4 +45,21 @@ class OrderViewModel extends BaseViewModel {
       return success;
     }
   }
+
+  Future<bool> updateOrder(Order order) async {
+    setState(ViewState.Busy);
+
+    var success = await _orderService.updateOrder(order);
+    String message = _orderService.message;
+
+    if (!success) {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return false;
+    } else {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return success;
+    }
+  }
 }

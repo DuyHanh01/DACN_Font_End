@@ -8,6 +8,8 @@ class LoginSuccessView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: SizedBox(),
+        elevation: 0,
+        centerTitle: true,
         title: Text("Login Success"),
       ),
       body: Body(),

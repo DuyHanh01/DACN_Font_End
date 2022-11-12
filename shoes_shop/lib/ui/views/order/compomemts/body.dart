@@ -57,6 +57,10 @@ class Body extends StatelessWidget {
                           'Status: ',
                           model.orders![index]!.statusname
                               .toString()),
+                      const SizedBox(height: 2),
+                      buildTextSpan(
+                          'Payment: ',
+                          model.orders![index]!.payment ? 'paid' : 'unpaid'),
                     ],
                   ),
                 ),

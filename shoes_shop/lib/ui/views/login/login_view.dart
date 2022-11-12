@@ -8,6 +8,7 @@ import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
 import 'package:shoes_shop/ui/views/login/components/login_header.dart';
 import 'package:shoes_shop/ui/widgets/press_back_button_again_to_exit_app.dart';
+import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 import '../../shared/ui_helpers.dart';
 import '../../widgets/already_have_an_account_acheck.dart';
 import 'package:flutter/material.dart';
@@ -68,15 +69,7 @@ class _LoginViewState extends State<LoginView> {
                                   var loginSuccess = await model.login(
                                       _controllerUser.text,
                                       _controllerPass.text);
-                                  Fluttertoast.showToast(
-                                      msg: model.errorMessage,
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: AppColors.red.withOpacity(0.7),
-                                      textColor: AppColors.white,
-                                      fontSize: 14.0
-                                  );
+                                  buildToast(model.errorMessage);
                                   if (loginSuccess) {
                                     Navigator.pushNamed(
                                         context, RoutePaths.home);
