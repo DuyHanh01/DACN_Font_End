@@ -20,7 +20,7 @@ class AccountPic extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(userViewModel.users!.avatar!, scale: 1.0),
+            backgroundImage: userViewModel.users !=null ? NetworkImage(userViewModel.users!.avatar!, scale: 1.0) : const NetworkImage('https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'),
           ),
           Positioned(
             right: -16,

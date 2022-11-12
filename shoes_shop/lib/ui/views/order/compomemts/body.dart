@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/order_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
+import 'package:shoes_shop/ui/shared/button_style.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/order/compomemts/textspan_widget.dart';
+import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 class Body extends StatelessWidget {
   final OrderViewModel model;
   const Body({Key? key, required this.model}) : super(key: key);
@@ -17,7 +19,7 @@ class Body extends StatelessWidget {
           return GestureDetector(
               onTap: () => Navigator.of(context).pushNamed(
                   RoutePaths.orderDetail,
-                  arguments: model.orders![index]!.orderid),
+                  arguments: model.orders![index]),
               child: Card(
                 color: AppColors.white,
                 margin: const EdgeInsets.symmetric(
@@ -61,6 +63,16 @@ class Body extends StatelessWidget {
                       buildTextSpan(
                           'Payment: ',
                           model.orders![index]!.payment ? 'paid' : 'unpaid'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          (model.orders![index]!.statusid==4 || model.orders![index]!.statusid==5) ? const Text(""):
+                          AppButton.normalButton(title: 'Cancel', onPress: () async {
+                            await model.cancelOrder(model.orders![index]!.orderid!);
+                            buildToast(model.errorMessage);
+                          }, height: 30, width: 100)
+                        ],
+                      )
                     ],
                   ),
                 ),

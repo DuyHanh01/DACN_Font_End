@@ -7,6 +7,7 @@ import 'package:shoes_shop/core/models/brand.dart';
 import 'package:shoes_shop/core/models/checkout.dart';
 import 'package:shoes_shop/core/models/order.dart';
 import 'package:shoes_shop/core/models/orderdetails.dart';
+import 'package:shoes_shop/core/models/rating.dart';
 import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/models/saledetails.dart';
 import 'package:shoes_shop/core/models/sales.dart';
@@ -528,8 +529,49 @@ class Api {
       },
       body: body,
     );
-    var s;
-      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+    var s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, null);
     }
+
+
+  //insert order
+  Future<BaseResult<Rating>> insertRating(Rating rating) async {
+    var body = json.encode(rating);
+    final response = await client.post(
+      Uri.parse('$endpoint/AddRating'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+      body: body,
+    );
+    var s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+    return BaseResult(s.isSuccess, s.status, s.Message, null);
+  }
+
+  //cancel order
+  Future<BaseResult<Order>> cancelOrder(int orderid) async {
+    final response = await client.put(
+      Uri.parse('$endpoint/CancelOrder/$orderid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+    var s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+    return BaseResult(s.isSuccess, s.status, s.Message, null);
+  }
+
+  //delete order
+  Future<BaseResult<Order>> deleteOrder(int orderid) async {
+    final response = await client.delete(
+      Uri.parse('$endpoint/DeleteOrder/$orderid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+    var s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+    return BaseResult(s.isSuccess, s.status, s.Message, null);
+  }
 }

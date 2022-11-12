@@ -46,6 +46,8 @@ class AppUI {
   static const String imagePath = 'assets/images/';
   static const String svgPath = 'assets/svg/';
 
+  static const String background = '${imagePath}background.png';
+  static const String backgroundVector = '${imagePath}background_vector.jpg';
   static const String imgGetStarted1 = '${imagePath}shoes_background.jpg';
   static const String imgGetStarted2 = '${imagePath}shoes_background_1.jpg';
   static const String imgGetStarted3 = '${imagePath}shoes_background_2.png';

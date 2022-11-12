@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
-import 'package:shoes_shop/ui/widgets/background.dart';
+import 'package:shoes_shop/ui/views/wellcome/components/clipper.dart';
 import 'package:shoes_shop/ui/widgets/press_back_button_again_to_exit_app.dart';
 
 class WellComeView extends StatefulWidget {
@@ -44,6 +44,7 @@ class _WellComeViewState extends State<WellComeView> {
     Image.asset(
       AppUI.imgGetStarted3,
       key: UniqueKey(),
+      fit: BoxFit.cover,
     ),
   ];
 
@@ -51,22 +52,20 @@ class _WellComeViewState extends State<WellComeView> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {return onWillPop();},
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Background(
-            child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: ListView(
+      child: SafeArea(
+        child: Scaffold(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 120),
-              SizedBox(
-                  height: 250,
-                  width: double.infinity,
+              Expanded(
+                flex: 5,
+                child: ClipPath(
+                  clipper: MyClipper(),
                   child: Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
                       Positioned(
-                        top: 25,
+                        top: 0,
                         bottom: 0,
                         child: AnimatedSwitcher(
                           duration: const Duration(milliseconds: 300),
@@ -80,9 +79,11 @@ class _WellComeViewState extends State<WellComeView> {
                         ),
                       ),
                     ],
-                  )),
-              SizedBox(
-                height: 200,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
                 child: PageView.builder(
                   onPageChanged: (i) {
                     setState(() => currentPage = i);
@@ -91,15 +92,13 @@ class _WellComeViewState extends State<WellComeView> {
                   itemBuilder: (ctx, i) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         const Text(
                           'Give your best shoes and\n look great',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
-                            color: AppColors.blackGray,
-                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -116,7 +115,7 @@ class _WellComeViewState extends State<WellComeView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   3,
-                  (index) => Padding(
+                      (index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AnimatedContainer(
                       height: 10,
@@ -133,7 +132,7 @@ class _WellComeViewState extends State<WellComeView> {
                             spreadRadius: 2,
                             blurRadius: 10,
                             offset:
-                                const Offset(0, 10), // changes position of shadow
+                            const Offset(0, 10), // changes position of shadow
                           ),
                         ],
                       ),
@@ -141,7 +140,7 @@ class _WellComeViewState extends State<WellComeView> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
               Container(
                   height: 55,
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -161,9 +160,10 @@ class _WellComeViewState extends State<WellComeView> {
                       Navigator.pushNamed(context, RoutePaths.login);
                     },
                   )),
+              const SizedBox(height: 10),
             ],
           ),
-        )),
+        ),
       ),
     );
   }

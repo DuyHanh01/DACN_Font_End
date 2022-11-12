@@ -5,7 +5,7 @@ class AppButton {
   static normalButton({
     required String title,
     VoidCallback? onPress,
-    Color? backgroundColor = AppColors.blueAvatar,
+    Color? backgroundColor = AppColors.primaryColor,
     Color? titleColor = AppColors.white,
     bool shadow = true,
     double height = 55,

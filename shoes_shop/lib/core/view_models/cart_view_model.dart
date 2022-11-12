@@ -96,8 +96,9 @@ class CartViewModel extends BaseViewModel {
     } else {
       Cart? cart =
       cartViewModel.getCart(shoes.shoeid, shoesViewModel.size);
+
       if (cart != null) {
-        if (cart.quantity < 5) {
+        if (cart.quantity < 5 && (cart.quantity+shoesViewModel.x) <=5) {
           int total = shoesViewModel.x;
           int size = shoesViewModel.size;
           shoesViewModel.checkTimeSale(shoes)

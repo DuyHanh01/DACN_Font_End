@@ -34,4 +34,18 @@ class OrderService {
     message = fetchedOrder.Message!;
     return isSuccessOrder ?? false;
   }
+
+  Future<bool> cancelOrder(int orderid) async {
+    var fetchedOrder = await _api.cancelOrder(orderid);
+    var isSuccessOrder = fetchedOrder.isSuccess;
+    message = fetchedOrder.Message!;
+    return isSuccessOrder ?? false;
+  }
+
+  Future<bool> deleteOrder(int orderid) async {
+    var fetchedOrder = await _api.deleteOrder(orderid);
+    var isSuccessOrder = fetchedOrder.isSuccess;
+    message = fetchedOrder.Message!;
+    return isSuccessOrder ?? false;
+  }
 }

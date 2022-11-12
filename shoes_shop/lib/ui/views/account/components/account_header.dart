@@ -28,32 +28,32 @@ class AccountHeader extends StatelessWidget {
     return Column(children: <Widget>[
       ProfileTextField(
         controller: controllerFirstName,
-        hinText: userViewModel.users!.firstName!,
+        hinText: userViewModel.users != null ? userViewModel.users!.firstName! : "First Name",
         textInputType: TextInputType.name,
         labelText: 'First Name',
       ),
       UIHelper.verticalSpaceVerySmall(),
       ProfileTextField(
           controller: controllerLastName,
-          hinText: userViewModel.users!.lastName!,
+          hinText: userViewModel.users != null ? userViewModel.users!.lastName! : "Last Name",
           textInputType: TextInputType.name,
           labelText: 'Last Name'),
       UIHelper.verticalSpaceVerySmall(),
       ProfileTextField(
           controller: controllerPhone,
-          hinText:  userViewModel.users!.phone!,
+          hinText:  userViewModel.users != null ? userViewModel.users!.phone! : "Phone",
           textInputType: TextInputType.phone,
           labelText: 'Phone'),
       UIHelper.verticalSpaceVerySmall(),
       ProfileTextField(
           controller: controllerMail,
-          hinText:  userViewModel.users!.email!,
+          hinText:  userViewModel.users != null ? userViewModel.users!.email! : "Email",
           textInputType: TextInputType.emailAddress,
           labelText: 'Email'),
       UIHelper.verticalSpaceVerySmall(),
       ProfileTextField(
           controller: controllerAddress,
-          hinText:  userViewModel.users!.address!,
+          hinText:  userViewModel.users != null ? userViewModel.users!.address! : "Address",
           textInputType: TextInputType.streetAddress,
           labelText: 'Address'),
       UIHelper.verticalSpaceMedium(),

@@ -93,7 +93,7 @@ class _BottomNavState extends State<BottomNav> {
       } catch (e) {
         debugPrint(e.toString());
       }
-    }
+    }//Text(_paymentStatus.isEmpty ? "CHƯA THANH TOÁN" : _paymentStatus)
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -240,7 +240,6 @@ class _BottomNavState extends State<BottomNav> {
                 ),
               ],
             ),
-            Text(_paymentStatus.isEmpty ? "CHƯA THANH TOÁN" : _paymentStatus)
           ],
         ),
       ),
@@ -263,12 +262,18 @@ class _BottomNavState extends State<BottomNav> {
       order.momo = _momoPaymentResult.token.toString();
       order.payment = true;
       widget.orderViewModel.updateOrder(order);
+      Navigator.of(context).pushNamed(
+        RoutePaths.checkoutSuccess,
+        arguments: _paymentStatus
+      );
       //_paymentStatus += "\nExtra: " + _momoPaymentResult.extra!;
       // _paymentStatus += "\nToken: " + _momoPaymentResult.token.toString();
     } else {
       _paymentStatus += "\nTình trạng: Thất bại.";
       _paymentStatus += "\nExtra: ${_momoPaymentResult.extra}";
       _paymentStatus += "\nMã lỗi: ${_momoPaymentResult.status}";
+      widget.orderViewModel
+          .deleteOrder(widget.orderViewModel.orders![0]!.orderid!);
     }
   }
 

@@ -62,4 +62,38 @@ class OrderViewModel extends BaseViewModel {
       return success;
     }
   }
+
+  Future<bool> cancelOrder(int orderid) async {
+    setState(ViewState.Busy);
+
+    var success = await _orderService.cancelOrder(orderid);
+    String message = _orderService.message;
+
+    if (!success) {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return false;
+    } else {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return success;
+    }
+  }
+
+  Future<bool> deleteOrder(int orderid) async {
+    setState(ViewState.Busy);
+
+    var success = await _orderService.deleteOrder(orderid);
+    String message = _orderService.message;
+
+    if (!success) {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return false;
+    } else {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return success;
+    }
+  }
 }
