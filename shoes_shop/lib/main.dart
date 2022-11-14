@@ -3,10 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/register.dart';
-import 'package:shoes_shop/core/models/user.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
-import 'package:shoes_shop/core/services/user_service.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/locator.dart';
 import 'package:shoes_shop/ui/route/router.dart';
@@ -32,6 +31,9 @@ class MyApp extends StatelessWidget {
             locator<AuthenticationService>().registerController.stream),
         ChangeNotifierProvider.value(
           value: CartViewModel(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ShoesViewModel(),
         ),
         ChangeNotifierProvider.value(
           value: UserViewModel(),

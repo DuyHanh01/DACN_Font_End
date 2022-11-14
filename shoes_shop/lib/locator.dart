@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
 import 'package:shoes_shop/core/services/brand_service.dart';
+import 'package:shoes_shop/core/services/comment_service.dart';
 import 'package:shoes_shop/core/services/order_service.dart';
 import 'package:shoes_shop/core/services/orderdetails_service.dart';
 import 'package:shoes_shop/core/services/saledetails_service.dart';
@@ -10,6 +11,7 @@ import 'package:shoes_shop/core/services/sizetable_service.dart';
 import 'package:shoes_shop/core/services/user_service.dart';
 import 'package:shoes_shop/core/view_models/brand_view_model.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/core/view_models/comment_view_model.dart';
 import 'package:shoes_shop/core/view_models/home_view_model.dart';
 import 'package:shoes_shop/core/view_models/login_view_model.dart';
 import 'package:shoes_shop/core/view_models/order_view_model.dart';
@@ -35,6 +37,7 @@ void setupLocator() {
   locator.registerLazySingleton(() => UserSerVice());
   locator.registerLazySingleton(() => OrderService());
   locator.registerLazySingleton(() => OrderDetailsService());
+  locator.registerLazySingleton(() => CommentService());
 
   locator.registerFactory(() => RegisterViewModel());
   locator.registerFactory(() => UserViewModel());
@@ -48,5 +51,6 @@ void setupLocator() {
   locator.registerFactory(() => SaleDetailsViewModel());
   locator.registerFactory(() => OrderViewModel());
   locator.registerFactory(() => OrderDetailsViewModel());
+  locator.registerFactory(() => CommentViewModel());
 
 }

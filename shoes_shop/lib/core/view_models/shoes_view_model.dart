@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
+import 'package:shoes_shop/core/models/favorite.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/models/sizetable.dart';
 import 'package:shoes_shop/core/services/shoes_service.dart';
@@ -17,6 +18,9 @@ class ShoesViewModel extends BaseViewModel {
   Color _color = AppColors.white;
   Color get color => _color;
 
+  Color? _colorFav;
+  Color? get colorFav => _colorFav;
+
   int _size = 0;
   int get size => _size;
 
@@ -26,6 +30,10 @@ class ShoesViewModel extends BaseViewModel {
   int? _currentSelected;
   int? get currentSelected => _currentSelected;
 
+  List<Shoes?>? _listFav;
+  List<Shoes?>? get listFav => _listFav;
+
+  Shoes? get shoe => _shoesService.shoe;
   List<Shoes?>? get shoes => _shoesService.shoes;
   List<Shoes?>? get saleshoes => _shoesService.saleshoes;
   List<Shoes?>? get brandshoes => _shoesService.brandshoes;
@@ -48,6 +56,28 @@ class ShoesViewModel extends BaseViewModel {
     }
   }
 
+  // Shoes? getShoesAi(String shoeName) {
+  //   var toRemove = [];
+  //   for (var element in shoes!) {
+  //     List<String> splitted = element!.shoename.split(' ');
+  //     for (var a in splitted) {
+  //       if (shoeName.contains(a)) {
+  //         continue;
+  //       } else {
+  //         toRemove.add(element);
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   List<Shoes?>? list = shoes;
+  //   list?.removeWhere((e) => toRemove.contains(e));
+  //   if (list!.isNotEmpty) {
+  //     return list[0];
+  //   } else {
+  //     return null;
+  //   }
+  // }
+
   Shoes? getShoesAi(String shoeName) {
     for (var element in shoes!) {
       if (shoeName.contains(element!.shoename)) {
@@ -55,6 +85,25 @@ class ShoesViewModel extends BaseViewModel {
       }
     }
     return null;
+  }
+
+  Future<bool> getShoeById(int accountid, int shoeid) async {
+    setState(ViewState.Busy);
+
+    var accountId = accountid;
+    var shoeId = shoeid;
+    var success = await _shoesService.getShoeById(accountId, shoeId);
+    String message = _shoesService.message;
+
+    if (!success) {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return false;
+    } else {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return success;
+    }
   }
 
   Future<bool> getAllShoesBySaleId(int accountid, int saleid) async {
@@ -95,11 +144,30 @@ class ShoesViewModel extends BaseViewModel {
     }
   }
 
-  Shoes? swap(Shoes a, Shoes b) {
-    Shoes temp;
-    temp = a;
-    a = b;
-    b = temp;
+  Future<bool> addOrDeleteFav(Favorite favorite) async {
+    setState(ViewState.Busy);
+
+    var success = await _shoesService.addOrDeleteFav(favorite);
+    String message = _shoesService.message;
+
+    if (!success) {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return false;
+    } else {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return success;
+    }
+  }
+
+  List<Shoes?>? listFavorite() {
+    for (int i = 0; i < shoes!.length; i++) {
+      if (shoes![i]!.isfavorite!) {
+        _listFav?.add(shoes![i]!);
+      }
+    }
+    return _listFav;
   }
 
   void sortSales(List<Shoes?>? list, int x) {

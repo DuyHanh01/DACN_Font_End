@@ -18,7 +18,6 @@ class DetailView extends StatelessWidget {
     final cartViewModel = Provider.of<CartViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return BaseView<ShoesViewModel>(
-        onModelReady: (model) => model.x,
         builder: (BuildContext context, ShoesViewModel model, Widget? chill) =>
             model.state == ViewState.Busy
                 ? const CircularProgressIndicator()

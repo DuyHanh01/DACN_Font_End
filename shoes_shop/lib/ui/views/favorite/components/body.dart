@@ -8,8 +8,8 @@ import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/shoe_item.dart';
 import 'package:shoes_shop/ui/widgets/circle_delay.dart';
 
-class HomePopularList extends StatelessWidget {
-  const HomePopularList({Key? key}) : super(key: key);
+class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +36,12 @@ class HomePopularList extends StatelessWidget {
                           return GestureDetector(
                             onTap: () => Navigator.of(context).pushNamed(
                               RoutePaths.detailView,
-                              arguments: model.shoes![i],
+                              arguments: model.listFav![i],
                             ),
                             child: ShoeItem(model: model, index: i),
                           );
                         },
-                        childCount: model.shoes?.length,
+                        childCount: model.listFav!.length,
                       ),
                     ),
                   ));

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/core/models/account.dart';
+import 'package:shoes_shop/core/models/favorite.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
+import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class ShoeItem extends StatelessWidget {
   ShoesViewModel model;
@@ -11,8 +15,11 @@ class ShoeItem extends StatelessWidget {
   ShoeItem({Key? key, required this.model, required this.index})
       : super(key: key);
 
+  bool? x;
+
   @override
   Widget build(BuildContext context) {
+    Account account = Provider.of<Account>(context);
     return Card(
       elevation: .7,
       child: Column(
@@ -134,11 +141,25 @@ class ShoeItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite_border,
-                  size: 24,
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: GestureDetector(
+                  onTap: () async {
+                    Favorite favorite =
+                    Favorite(account.accountId, model.shoes![index]!.shoeid);
+                    await model.addOrDeleteFav(favorite);
+                    buildToast(model.errorMessage);
+                  },
+                  child:model.shoes![index]!.isfavorite!
+                      ? const Icon(
+                          Icons.favorite,
+                          color: AppColors.red,
+                          size: 24,
+                        )
+                      : const Icon(
+                          Icons.favorite_border,
+                          size: 24,
+                        ),
                 ),
               ),
             ],

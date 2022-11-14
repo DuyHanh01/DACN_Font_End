@@ -5,6 +5,8 @@ import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
 import 'package:shoes_shop/core/models/brand.dart';
 import 'package:shoes_shop/core/models/checkout.dart';
+import 'package:shoes_shop/core/models/comment.dart';
+import 'package:shoes_shop/core/models/favorite.dart';
 import 'package:shoes_shop/core/models/order.dart';
 import 'package:shoes_shop/core/models/orderdetails.dart';
 import 'package:shoes_shop/core/models/rating.dart';
@@ -252,6 +254,35 @@ class Api {
       }
 
       return BaseResult(s.isSuccess, s.status, s.Message, sizes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //get shoe by shoeid
+  Future<BaseResult<Shoes>> getShoeById(int accountid, int shoeid) async {
+    var shoes = <Shoes>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getShoeById/$shoeid/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var shoe in data) {
+        shoes.add(Shoes.fromJson(shoe));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, []);
@@ -551,6 +582,7 @@ class Api {
 
   //cancel order
   Future<BaseResult<Order>> cancelOrder(int orderid) async {
+    var oders = <Order>[];
     final response = await client.put(
       Uri.parse('$endpoint/CancelOrder/$orderid'),
       headers: <String, String>{
@@ -558,8 +590,19 @@ class Api {
         'Authorization': 'bearer $token',
       },
     );
-    var s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
-    return BaseResult(s.isSuccess, s.status, s.Message, null);
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var or in data) {
+        oders.add(Order.fromJson(or));
+      }
+      return BaseResult(s.isSuccess, s.status, s.Message, oders);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
   }
 
   //delete order
@@ -574,4 +617,88 @@ class Api {
     var s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
     return BaseResult(s.isSuccess, s.status, s.Message, null);
   }
+
+  //add or delete favorite
+  Future<BaseResult<Shoes>> addOrDeleteFav(Favorite favorite) async {
+    var shoes = <Shoes>[];
+    var body = json.encode(favorite);
+    final response = await client.post(
+      Uri.parse('$endpoint/AddOrDeleteFavourite'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token'
+      },
+        body: body,
+    );
+    var s;
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var fav in data) {
+        shoes.add(Shoes.fromJson(fav));
+      }
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
+  }
+
+  //insert comment
+  Future<BaseResult<Comment>> insertComment(Comment comment) async {
+    var comments = <Comment>[];
+    var body = json.encode(comment);
+    final response = await client.post(
+      Uri.parse('$endpoint/AddComment'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token'
+      },
+      body: body,
+    );
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var cmt in data) {
+        comments.add(Comment.fromJson(cmt));
+      }
+      return BaseResult(s.isSuccess, s.status, s.Message, comments);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
+  }
+
+  //get all comment by shoeid
+  Future<BaseResult<Comment>> getCommentByShoesId(int shoeid) async {
+    var comments = <Comment>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/getCommentByShoesId/$shoeid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var cmt in data) {
+        comments.add(Comment.fromJson(cmt));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, comments);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+
 }

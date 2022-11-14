@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
-import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
@@ -93,9 +91,7 @@ class _UIState extends State<ImageSearch> {
 
   @override
   Widget build(BuildContext context) {
-    Account account = Provider.of<Account>(context, listen: false);
     return BaseView<ShoesViewModel>(
-        onModelReady: (model) => model.getAllShoes(account.accountId),
         builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
             Scaffold(
               appBar: buildAppBar(context, 'Sneaker Search'),
@@ -109,26 +105,31 @@ class _UIState extends State<ImageSearch> {
                           ? const UploadAnImage()
                           : Column(
                               children: [
-                                ImagePath(_outputs,_image),
+                                ImagePath(_outputs, _image),
                                 const SizedBox(height: 20),
-                                model.getShoesAi(_outputs?[0]["label"]??"") != null
-                                    ? Column(
-                                        children: <Widget>[
-                                           Text(
-                                              "Sản phẩm đang có sẵn trong shop",
-                                              style: shoesTextStyle.copyWith(fontSize: 16)),
-                                          ShoeItem(model, _outputs),
-                                        ],
-                                      )
-                                    : Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text("Mặt hàng này chưa có sẵn ở shop",
-                                          style: shoesTextStyle.copyWith(fontSize: 16)),
-                                    ),
+                                model.getShoesAi(_outputs?[0]["label"] ?? "") != null
+                                        ? Column(
+                                            children: <Widget>[
+                                              Text(
+                                                  "Sản phẩm đang có sẵn trong shop",
+                                                  style: shoesTextStyle
+                                                      .copyWith(fontSize: 16)),
+                                              ShoeItem(model, model.getShoesAi(_outputs?[0]["label"])!),
+                                            ],
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                "Mặt hàng này chưa có sẵn ở shop",
+                                                style: shoesTextStyle.copyWith(
+                                                    fontSize: 16)),
+                                          ),
                               ],
                             ),
                     ),
-                    CameraImageButton(getImageCamera: getImageCamera,getImageGallery: getImageGallery)
+                    CameraImageButton(
+                        getImageCamera: getImageCamera,
+                        getImageGallery: getImageGallery)
                   ],
                 ),
               ),

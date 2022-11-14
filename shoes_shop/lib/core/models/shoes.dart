@@ -23,6 +23,7 @@ class Shoes {
   String? salename;
   String? startday;
   String? endday;
+  bool? isfavorite;
 
   Shoes(
       this.shoeid,
@@ -48,7 +49,8 @@ class Shoes {
       this.percent,
       this.salename,
       this.startday,
-      this.endday);
+      this.endday,
+      this.isfavorite);
 
   Shoes.initial()
       : shoeid = 0,
@@ -74,7 +76,8 @@ class Shoes {
         percent = 0.0,
         salename = '',
         startday = DateTime.now().toString(),
-        endday = DateTime.now().toString();
+        endday = DateTime.now().toString(),
+        isfavorite = false;
 
   Shoes.fromJson(Map<String, dynamic> json)
       : shoeid = json['shoeid'],
@@ -100,7 +103,8 @@ class Shoes {
         percent = json['percent'],
         salename = json['salename'],
         startday = json['startday'],
-        endday = json['endday'];
+        endday = json['endday'],
+        isfavorite = json['isfavorite'];
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['shoeid'] = shoeid;
@@ -127,6 +131,7 @@ class Shoes {
     data['salename'] = salename;
     data['startday'] = startday;
     data['endday'] = endday;
+    data['isfavorite'] = isfavorite;
     return data;
   }
 }

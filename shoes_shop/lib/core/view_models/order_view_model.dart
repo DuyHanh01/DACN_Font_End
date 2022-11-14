@@ -96,4 +96,8 @@ class OrderViewModel extends BaseViewModel {
       return success;
     }
   }
+
+  void sortOrder(List<Order?>? list){
+    list!.sort((a, b) => a!.statusid.compareTo(b!.statusid));
+  }
 }

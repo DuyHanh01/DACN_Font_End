@@ -14,8 +14,15 @@ class OrderService {
   Future<bool> getOrderByAccountId(int accountid) async {
     var fetchedOrder = await _api.getOrderByAccountId(accountid);
     var isSuccessOrder = fetchedOrder.isSuccess;
-    _orders = fetchedOrder.data;
+
     message = fetchedOrder.Message!;
+    if (isSuccessOrder != null && isSuccessOrder) {
+      if (fetchedOrder.data != null) {
+        _orders = fetchedOrder.data;
+      }
+    }else{
+      _orders = [];
+    }
 
     return isSuccessOrder ?? false;
   }
@@ -39,6 +46,13 @@ class OrderService {
     var fetchedOrder = await _api.cancelOrder(orderid);
     var isSuccessOrder = fetchedOrder.isSuccess;
     message = fetchedOrder.Message!;
+    if (isSuccessOrder != null && isSuccessOrder) {
+      if (fetchedOrder.data != null) {
+        _orders = fetchedOrder.data;
+      }
+    }else{
+      _orders = [];
+    }
     return isSuccessOrder ?? false;
   }
 

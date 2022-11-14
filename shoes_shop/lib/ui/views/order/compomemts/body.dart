@@ -12,6 +12,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    model.sortOrder(model.orders);
     return ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: model.orders!.length,

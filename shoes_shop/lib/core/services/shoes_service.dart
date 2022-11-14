@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:shoes_shop/core/models/favorite.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/services/api.dart';
 import 'package:shoes_shop/locator.dart';
@@ -8,6 +9,9 @@ class ShoesService {
   final Api _api = locator<Api>();
 
   String message = "";
+
+
+  late Shoes shoe;
 
   List<Shoes?>? _shoes = <Shoes>[];
   List<Shoes?>? get shoes => _shoes;
@@ -27,6 +31,21 @@ class ShoesService {
       if (fetchedShoes.data != null) {
         _shoes = fetchedShoes.data;
       }
+    }else{
+      _shoes = [];
+    }
+    return isSuccessShoes ?? false;
+  }
+
+  Future<bool> getShoeById(int accountid, int shoeid) async {
+    var fetchedShoes = await _api.getShoeById(accountid, shoeid);
+    var isSuccessShoes = fetchedShoes.isSuccess;
+
+    message = fetchedShoes.Message!;
+    if (isSuccessShoes != null && isSuccessShoes) {
+      if (fetchedShoes.data != null) {
+        shoe = fetchedShoes.data![0]!;
+      }
     }
     return isSuccessShoes ?? false;
   }
@@ -40,7 +59,10 @@ class ShoesService {
       if (fetchedShoes.data != null) {
         _saleshoes = fetchedShoes.data;
       }
+    }else{
+      _saleshoes = [];
     }
+
     return isSuccessShoes ?? false;
   }
 
@@ -53,7 +75,23 @@ class ShoesService {
       if (fetchedShoes.data != null) {
         _brandshoes = fetchedShoes.data;
       }
+    }else{
+      _brandshoes = [];
+    }
+
+    return isSuccessShoes ?? false;
+  }
+
+  Future<bool> addOrDeleteFav(Favorite favorite) async {
+    var fetchedShoes = await _api.addOrDeleteFav(favorite);
+    var isSuccessShoes = fetchedShoes.isSuccess;
+    message = fetchedShoes.Message!;
+    if (isSuccessShoes != null && isSuccessShoes) {
+      if (fetchedShoes.data != null) {
+        _shoes = fetchedShoes.data;
+      }
     }
     return isSuccessShoes ?? false;
   }
+
 }

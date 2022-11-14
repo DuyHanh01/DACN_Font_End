@@ -12,7 +12,7 @@ import 'package:shoes_shop/ui/views/checkout_success/checkout_success_view.dart'
 import 'package:shoes_shop/ui/views/contacts/components/google_maps.dart';
 import 'package:shoes_shop/ui/views/contacts/contacts_view.dart';
 import 'package:shoes_shop/ui/views/detail/detail_view.dart';
-import 'package:shoes_shop/ui/views/favorites/favorite_view.dart';
+import 'package:shoes_shop/ui/views/favorite/favorite_view.dart';
 import 'package:shoes_shop/ui/views/home/home_view.dart';
 import 'package:shoes_shop/ui/views/login/login_view.dart';
 import 'package:shoes_shop/ui/views/login_success/login_success_view.dart';
