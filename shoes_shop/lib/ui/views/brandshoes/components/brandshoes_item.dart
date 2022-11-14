@@ -110,7 +110,7 @@ class BrandShoesItem extends StatelessWidget {
                   style: shoesTextStyle,
                 ),
                 UIHelper.verticalSpaceVerySmall(),
-                RatingHome(model: model, index: index),
+                RatingHome(shoes: list[index]!),
                 UIHelper.verticalSpaceVerySmall(),
                 model.checkPurchased(list[index]!)
                     ? Text.rich(

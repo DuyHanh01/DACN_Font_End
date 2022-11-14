@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/favorite.dart';
+import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
@@ -10,16 +11,16 @@ import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class ShoeItem extends StatelessWidget {
-  ShoesViewModel model;
-  int index;
-  ShoeItem({Key? key, required this.model, required this.index})
+  final ShoesViewModel model;
+  final List<Shoes?>? listFav;
+  final int index;
+  const ShoeItem(
+      {Key? key, required this.model, this.listFav, required this.index})
       : super(key: key);
-
-  bool? x;
 
   @override
   Widget build(BuildContext context) {
-    Account account = Provider.of<Account>(context);
+    Account account = Provider.of<Account>(context, listen: false);
     return Card(
       elevation: .7,
       child: Column(
@@ -35,7 +36,7 @@ class ShoeItem extends StatelessWidget {
                       topRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(model.shoes![index]!.image1),
+                      image: NetworkImage(listFav![index]!.image1),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         AppColors.black.withOpacity(.05),
@@ -44,7 +45,7 @@ class ShoeItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                model.checkShoeNew(model.shoes![index]!)
+                model.checkShoeNew(listFav![index]!)
                     ? Positioned(
                         top: -10,
                         left: 0,
@@ -55,7 +56,7 @@ class ShoeItem extends StatelessWidget {
                         ),
                       )
                     : const Text(''),
-                model.checkTimeSale(model.shoes![index]!)
+                model.checkTimeSale(listFav![index]!)
                     ? Positioned(
                         top: -10,
                         right: 0,
@@ -70,7 +71,7 @@ class ShoeItem extends StatelessWidget {
                                 top: 20,
                                 right: 15,
                                 child: Text(
-                                  '${model.shoes![index]!.percent?.round()}%',
+                                  '${listFav![index]!.percent?.round()}%',
                                   style: shoesTextStyle,
                                 ))
                           ],
@@ -84,42 +85,40 @@ class ShoeItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.checkShoeName(model.shoes![index]!)
-                    ? Text(
-                        '${model.shoes![index]!.shoename.substring(0, 20)}...',
+                model.checkShoeName(listFav![index]!)
+                    ? Text('${listFav![index]!.shoename.substring(0, 20)}...',
                         style: shoesTextStyle)
-                    : Text(model.shoes![index]!.shoename,
-                        style: shoesTextStyle),
+                    : Text(listFav![index]!.shoename, style: shoesTextStyle),
                 UIHelper.verticalSpaceVerySmall(),
-                model.checkTimeSale(model.shoes![index]!)
+                model.checkTimeSale(listFav![index]!)
                     ? Text.rich(
                         TextSpan(
                           text: '',
                           children: <TextSpan>[
                             TextSpan(
-                              text: '\$${model.shoes![index]!.saleprice}  ',
+                              text: '\$${listFav![index]!.saleprice}  ',
                               style: shoesSalePrice,
                             ),
                             TextSpan(
-                                text: '\$${model.shoes![index]!.price}',
+                                text: '\$${listFav![index]!.price}',
                                 style: shoesPriceOld),
                           ],
                         ),
                       )
                     : Text(
-                        '\$${model.shoes![index]!.price}',
+                        '\$${listFav![index]!.price}',
                         style: shoesTextStyle,
                       ),
                 UIHelper.verticalSpaceVerySmall(),
-                RatingHome(shoes:model.shoes![index]!),
+                RatingHome(shoes: listFav![index]!),
                 UIHelper.verticalSpaceVerySmall(),
-                model.checkPurchased(model.shoes![index]!)
+                model.checkPurchased(listFav![index]!)
                     ? Text.rich(
                         TextSpan(
                           text: 'Purchased: ', // default text style
                           children: <TextSpan>[
                             TextSpan(
-                                text: '${model.shoes![index]!.purchased}',
+                                text: '${listFav![index]!.purchased}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600)),
                           ],
@@ -146,11 +145,11 @@ class ShoeItem extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () async {
                     Favorite favorite =
-                    Favorite(account.accountId, model.shoes![index]!.shoeid);
+                        Favorite(account.accountId, listFav![index]!.shoeid);
                     await model.addOrDeleteFav(favorite);
                     buildToast(model.errorMessage);
                   },
-                  child:model.shoes![index]!.isfavorite!
+                  child: listFav![index]!.isfavorite!
                       ? const Icon(
                           Icons.favorite,
                           color: AppColors.red,

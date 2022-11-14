@@ -42,7 +42,7 @@ class SaleShoesItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                model.checkShoeNew(list![index]!)
+                model.checkShoeNew(list[index]!)
                     ? Positioned(
                   top: -10,
                   left: 0,
@@ -53,7 +53,7 @@ class SaleShoesItem extends StatelessWidget {
                   ),
                 )
                     : const Text(''),
-                model.checkTimeSale(list![index]!)
+                model.checkTimeSale(list[index]!)
                     ? Positioned(
                     top: -10,
                     right: 0,
@@ -69,7 +69,7 @@ class SaleShoesItem extends StatelessWidget {
                             top: 20,
                             right: 15,
                             child: Text(
-                              '${list![index]!.percent?.round()}%',
+                              '${list[index]!.percent?.round()}%',
                               style: shoesTextStyle,
                             ))
                       ],
@@ -112,7 +112,7 @@ class SaleShoesItem extends StatelessWidget {
                   style: shoesTextStyle,
                 ),
                 UIHelper.verticalSpaceVerySmall(),
-                RatingHome(model: model, index: index),
+                RatingHome(shoes: list[index]!),
                 UIHelper.verticalSpaceVerySmall(),
                 model.checkPurchased(list[index]!)
                     ? Text.rich(

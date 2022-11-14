@@ -18,9 +18,6 @@ class ShoesViewModel extends BaseViewModel {
   Color _color = AppColors.white;
   Color get color => _color;
 
-  Color? _colorFav;
-  Color? get colorFav => _colorFav;
-
   int _size = 0;
   int get size => _size;
 
@@ -29,9 +26,6 @@ class ShoesViewModel extends BaseViewModel {
 
   int? _currentSelected;
   int? get currentSelected => _currentSelected;
-
-  List<Shoes?>? _listFav;
-  List<Shoes?>? get listFav => _listFav;
 
   Shoes? get shoe => _shoesService.shoe;
   List<Shoes?>? get shoes => _shoesService.shoes;
@@ -53,6 +47,14 @@ class ShoesViewModel extends BaseViewModel {
       errorMessage = message;
       setState(ViewState.Idle);
       return success;
+    }
+  }
+
+  void listFav(List<Shoes> list, ShoesViewModel model){
+    for(var e in model.shoes!){
+      if(e!.isfavorite!){
+        list.add(e);
+      }
     }
   }
 
@@ -159,15 +161,6 @@ class ShoesViewModel extends BaseViewModel {
       setState(ViewState.Idle);
       return success;
     }
-  }
-
-  List<Shoes?>? listFavorite() {
-    for (int i = 0; i < shoes!.length; i++) {
-      if (shoes![i]!.isfavorite!) {
-        _listFav?.add(shoes![i]!);
-      }
-    }
-    return _listFav;
   }
 
   void sortSales(List<Shoes?>? list, int x) {
