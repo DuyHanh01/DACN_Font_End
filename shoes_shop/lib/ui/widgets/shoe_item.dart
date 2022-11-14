@@ -146,7 +146,7 @@ class ShoeItem extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () async {
                     Favorite favorite =
-                    Favorite(account.accountId, model.shoes![index]!.shoeid);
+                    Favorite(account.accountid, model.shoes![index]!.shoeid);
                     await model.addOrDeleteFav(favorite);
                     buildToast(model.errorMessage);
                   },

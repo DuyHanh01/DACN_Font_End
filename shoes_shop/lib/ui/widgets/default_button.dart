@@ -25,8 +25,8 @@ class DefaultButton extends StatelessWidget {
       child: Text(
         text!,
         style: TextStyle(
-          fontSize: 18,
-          color: textColor,
+          fontSize: 16,
+          color: textColor, fontWeight: FontWeight.bold
         ),
       ),
     );

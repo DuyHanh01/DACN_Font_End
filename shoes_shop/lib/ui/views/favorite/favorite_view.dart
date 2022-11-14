@@ -15,7 +15,7 @@ class FavoriteView extends StatelessWidget {
   Widget build(BuildContext context) {
     Account account = Provider.of<Account>(context, listen: false);
     return BaseView<ShoesViewModel>(
-        onModelReady: (model) => model.getAllShoes(account.accountId),
+        onModelReady: (model) => model.getAllShoes(account.accountid),
         builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
             Scaffold(
               appBar: appBar(context),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
-import 'package:shoes_shop/ui/views/profile/components/profile_menu.dart';
+import 'package:shoes_shop/ui/widgets/profile_menu.dart';
 import 'package:shoes_shop/ui/views/profile/components/profile_pic.dart';
 
 class Body extends StatelessWidget {
@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "Settings",
             icon: Icons.settings,
-            press: () {},
+            press: () => {Navigator.pushNamed(context, RoutePaths.setting)},
           ),
           ProfileMenu(
             text: "Help Center",

@@ -51,7 +51,9 @@ class _WellComeViewState extends State<WellComeView> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {return onWillPop();},
+      onWillPop: () async {
+        return onWillPop();
+      },
       child: SafeArea(
         child: Scaffold(
           body: Column(
@@ -115,7 +117,7 @@ class _WellComeViewState extends State<WellComeView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   3,
-                      (index) => Padding(
+                  (index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: AnimatedContainer(
                       height: 10,
@@ -131,8 +133,8 @@ class _WellComeViewState extends State<WellComeView> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 2,
                             blurRadius: 10,
-                            offset:
-                            const Offset(0, 10), // changes position of shadow
+                            offset: const Offset(
+                                0, 10), // changes position of shadow
                           ),
                         ],
                       ),

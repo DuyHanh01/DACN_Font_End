@@ -1,32 +1,42 @@
 class Account {
-  int accountId;
+
+  int accountid;
   String? username;
+  String? Oldpassword;
   String? password;
-  int? roleId;
+  String? Repassword;
+  int? roleid;
   bool? active;
-  DateTime? createdate;
-  Account(this.accountId, this.username, this.password, this.roleId);
+  String? createdate;
+  Account(this.accountid, this.username, this.Oldpassword, this.password, this.Repassword ,this.roleid);
 
   Account.initial()
-      : accountId = 0,
+      : accountid = 0,
         username = '',
         password = '',
-        roleId = 0,
+        roleid = 0,
         active = false,
-        createdate = DateTime.now();
+        createdate = DateTime.now().toString();
 
   Account.fromJson(Map<String, dynamic> json)
-      : accountId = json['accountid'],
+      : accountid = json['accountid'],
+        roleid = json['roleid'],
         username = json['username'],
+        Oldpassword = json['Oldpassword'],
         password = json['password'],
-        roleId = json['roleid'],
+        Repassword = json['Repassword'],
+        createdate = json['createdate'],
         active = json['active'];
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['accountid'] = accountId;
+    data['accountid'] = accountid;
+    data['roleid'] = roleid;
     data['username'] = username;
+    data['Oldpassword'] = Oldpassword;
     data['password'] = password;
-    data['roleid'] = roleId;
+    data['Repassword'] = Repassword;
+    data['createdate'] = createdate;
+    data['active'] = active;
     return data;
   }
 }

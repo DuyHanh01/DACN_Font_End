@@ -18,5 +18,7 @@ class RoutePaths {
   static const favorite = '/favorite';
   static const account = '/account';
   static const checkoutSuccess = '/checkoutSuccess';
+  static const setting = '/setting';
+  static const changePass = '/changePass';
   static const ui = '/ui';
 }

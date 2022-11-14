@@ -6,7 +6,6 @@ import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 class LoginHeader extends StatefulWidget {
   final TextEditingController controllerUser;
   final TextEditingController controllerPass;
-  //final String validationMessage;
 
   const LoginHeader(
       {Key? key, required this.controllerUser, required this.controllerPass})
@@ -19,7 +18,6 @@ class LoginHeader extends StatefulWidget {
 class LoginHeaderState extends State<LoginHeader> {
   bool showPassword = true;
 
-  @override
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[

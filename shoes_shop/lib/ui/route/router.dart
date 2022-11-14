@@ -7,6 +7,7 @@ import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/views/account/account_view.dart';
 import 'package:shoes_shop/ui/views/brandshoes/brandshoes_view.dart';
 import 'package:shoes_shop/ui/views/cart/cart_view.dart';
+import 'package:shoes_shop/ui/views/change_password/changepass_view.dart';
 import 'package:shoes_shop/ui/views/checkout/checkout_view.dart';
 import 'package:shoes_shop/ui/views/checkout_success/checkout_success_view.dart';
 import 'package:shoes_shop/ui/views/contacts/components/google_maps.dart';
@@ -21,6 +22,7 @@ import 'package:shoes_shop/ui/views/orderdetais/orderdetails_view.dart';
 import 'package:shoes_shop/ui/views/profile/profile_view.dart';
 import 'package:shoes_shop/ui/views/register/register_view.dart';
 import 'package:shoes_shop/ui/views/saledetails/saledetails_view.dart';
+import 'package:shoes_shop/ui/views/setting/setting_view.dart';
 import 'package:shoes_shop/ui/views/user/user_view.dart';
 import 'package:shoes_shop/ui/views/wellcome/wellcome_view.dart';
 import 'package:shoes_shop/ui/views/image_search/image_search_view.dart';
@@ -56,6 +58,10 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => const AccountView());
       case RoutePaths.ui:
         return MaterialPageRoute(builder: (_) => const ImageSearch());
+      case RoutePaths.setting:
+        return MaterialPageRoute(builder: (_) => const SettingView());
+      case RoutePaths.changePass:
+        return MaterialPageRoute(builder: (_) => const ChangePassView());
       case RoutePaths.checkoutSuccess:
         final event = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => CheckoutSuccessView(paymentStatus: event));

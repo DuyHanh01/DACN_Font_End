@@ -37,4 +37,16 @@ class AuthenticationService {
     return isSuccessRegister ?? false;
   }
 
+  Future<bool> changePass(Account account) async {
+    var fetchedChangePass = await _api.changePassword(account);
+    var isSuccessChangePass= fetchedChangePass.isSuccess;
+    _message = fetchedChangePass.Message!;
+    if (isSuccessChangePass != null && isSuccessChangePass) {
+      if (fetchedChangePass.data != null) {
+        accountController.add(fetchedChangePass.data![0]!);
+      }
+    }
+    return isSuccessChangePass ?? false;
+  }
+
 }

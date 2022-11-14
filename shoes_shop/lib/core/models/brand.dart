@@ -4,11 +4,6 @@ class Brand {
   final String? logo;
   final String? information;
 
-  Brand.initial()
-      : brandid = 0,
-        brandname = '',
-        logo = '',
-        information = '';
 
   Brand.fromJson(Map<String, dynamic> json)
       : brandid = json['brandid'],

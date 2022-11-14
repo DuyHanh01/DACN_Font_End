@@ -83,7 +83,7 @@ class OrderDetailsView extends StatelessWidget {
                                           ),
                                           TextButton(
                                             onPressed: () async {
-                                              var rating = Rating(account.accountId, model.orderDetails![index]!.shoeid, rate);
+                                              var rating = Rating(account.accountid, model.orderDetails![index]!.shoeid, rate);
                                               if (order.statusid == 4)
                                               {
                                                 await model.insertRating(rating);buildToast(model.errorMessageRating);

@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
@@ -58,6 +58,7 @@ class Api {
   Future<Token> getToken(String userName, String passWord) async {
     String username = userName;
     String password = passWord;
+
     String credentials = '$username:$password';
     Codec<String, String> stringToBase64 = utf8.fuse(base64);
     String encoded = stringToBase64.encode(credentials);
@@ -93,7 +94,8 @@ class Api {
   //login user
   Future<BaseResult<Account>> login(Account account) async {
     var accounts = <Account>[];
-    var body = json.encode(account);
+    var a = Account(0, account.username, null, md5.convert(utf8.encode(account.password!)).toString(), null, 0);
+    var body = json.encode(a);
     final response = await client.post(
       Uri.parse('$endpoint/Login'),
       headers: <String, String>{
@@ -697,6 +699,36 @@ class Api {
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
+  //change password
+  Future<BaseResult<Account>> changePassword(Account account) async {
+    var accounts = <Account>[];
+    int accountid = account.accountid;
+    var a = Account(account.accountid, account.username, md5.convert(utf8.encode(account.Oldpassword!)).toString(),md5.convert(utf8.encode(account.password!)).toString(), md5.convert(utf8.encode(account.Repassword!)).toString(),0);
+    var body = json.encode(a);
+    final response = await client.put(
+      Uri.parse('$endpoint/ChangePassword/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+      body: body,
+    );
+    var s;
+    if (response.statusCode == 200) {
+
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var account in data) {
+        accounts.add(Account.fromJson(account));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, accounts);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
     }
   }
 

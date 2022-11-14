@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/order_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/button_style.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/order/compomemts/textspan_widget.dart';
+import 'package:shoes_shop/ui/widgets/circle_delay.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 class Body extends StatelessWidget {
   final OrderViewModel model;
@@ -13,7 +15,9 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     model.sortOrder(model.orders);
-    return ListView.builder(
+    return model.state == ViewState.Busy
+        ? const CircleDelay()
+        : ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: model.orders!.length,
         itemBuilder: (BuildContext context, int index) {

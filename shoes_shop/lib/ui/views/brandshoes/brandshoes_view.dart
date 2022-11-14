@@ -33,7 +33,7 @@ class _BrandShoesViewState extends State<BrandShoesView>
     final account = Provider.of<Account>(context);
     return BaseView<ShoesViewModel>(
         onModelReady: (model) => model.getAllShoesByBrandId(
-            account.accountId, widget.brand.brandid!),
+            account.accountid, widget.brand.brandid!),
         builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
             model.state == ViewState.Busy
                 ? const Scaffold(body: CircleDelay())

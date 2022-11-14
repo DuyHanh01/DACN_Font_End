@@ -144,7 +144,7 @@ class _BottomNavState extends State<BottomNav> {
                       press: () async {
                         order = Order(
                             null,
-                            account.accountId,
+                            account.accountid,
                             1,
                             null,
                             null,
@@ -196,7 +196,7 @@ class _BottomNavState extends State<BottomNav> {
                     press: () async {
                       order = Order(
                           null,
-                          account.accountId,
+                          account.accountid,
                           1,
                           null,
                           null,

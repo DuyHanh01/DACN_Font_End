@@ -16,11 +16,12 @@ class CartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Card(
       child: Row(
         children: [
           SizedBox(
-            width: 88,
+            width: size.width*0.2,
             child: AspectRatio(
               aspectRatio: 0.88,
               child: Container(
@@ -32,38 +33,39 @@ class CartCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                cart.shoename,
-                style: shoesTextStyle,
-                maxLines: 2,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'size: ${cart.size}',
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600, color: AppColors.black),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 10),
-              Text.rich(
-                TextSpan(
-                  text: "\$${cart.price}",
+          Container(
+            margin: const EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  cart.shoename,
+                  style: shoesTextStyle,
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  'size: ${cart.size}',
                   style: const TextStyle(
                       fontWeight: FontWeight.w600, color: AppColors.black),
-                  children: [
-                    TextSpan(
-                        text: " x${cart.quantity}",
-                        style: Theme.of(context).textTheme.bodyText2),
-                  ],
                 ),
-              ),
-              const SizedBox(height: 10),
-              CartCounter(cart: cart, cartViewModel: cartViewModel),
-            ],
+                const SizedBox(height: 5),
+                Text.rich(
+                  TextSpan(
+                    text: "\$${cart.price}",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, color: AppColors.black),
+                    children: [
+                      TextSpan(
+                          text: " x${cart.quantity}",
+                          style: Theme.of(context).textTheme.bodyText2),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 5),
+                CartCounter(cart: cart, cartViewModel: cartViewModel),
+              ],
+            ),
           ),
         ],
       ),

@@ -45,7 +45,7 @@ class CommentBox extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               if (controllerCMT.text != "") {
-                var comment = Comment(null, account.accountId, shoes.shoeid,
+                var comment = Comment(null, account.accountid, shoes.shoeid,
                     controllerCMT.text, null, null, null);
                 await model.insertComment(comment);
               }

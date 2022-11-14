@@ -27,7 +27,7 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     Account account = Provider.of<Account>(context);
     return BaseView<UserViewModel>(
-        onModelReady: (model) => model.getUser(account.accountId),
+        onModelReady: (model) => model.getUser(account.accountid),
         builder: (BuildContext context, UserViewModel model, Widget? child) =>
             Drawer(
               backgroundColor: AppColors.backgroundLight,

@@ -17,7 +17,7 @@ class Body extends StatelessWidget {
 
     return model.state == ViewState.Busy
         ? const SliverToBoxAdapter(
-            child: CircleDelay(),
+            child: CircleDelay()
           )
         : SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
                       RoutePaths.detailView,
                       arguments: list[i],
                     ),
-                    child: ShoeItem(model: model,listFav: list, index: i),
+                    child: ShoeItem(model: model, listFav: list, index: i),
                   );
                 },
                 childCount: list.length,

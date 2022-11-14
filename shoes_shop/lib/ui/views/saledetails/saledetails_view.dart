@@ -32,7 +32,7 @@ class _SaleDetailsViewState extends State<SaleDetailsView>
     final account = Provider.of<Account>(context);
     return BaseView<ShoesViewModel>(
         onModelReady: (model) =>
-            model.getAllShoesBySaleId(account.accountId, widget.sales.saleid),
+            model.getAllShoesBySaleId(account.accountid, widget.sales.saleid),
         builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
             model.state == ViewState.Busy
                 ? const Scaffold(body: CircleDelay())
