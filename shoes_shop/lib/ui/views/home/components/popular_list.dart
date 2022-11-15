@@ -9,41 +9,37 @@ import 'package:shoes_shop/ui/widgets/shoe_item.dart';
 import 'package:shoes_shop/ui/widgets/circle_delay.dart';
 
 class HomePopularList extends StatelessWidget {
-  const HomePopularList({Key? key}) : super(key: key);
+  final ShoesViewModel model;
+  const HomePopularList({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Account account = Provider.of<Account>(context, listen: false);
-    return BaseView<ShoesViewModel>(
-        onModelReady: (model) => model.getAllShoes(account.accountid),
-        builder: (BuildContext context, ShoesViewModel model, Widget? child) =>
-            model.state == ViewState.Busy
-                ? const SliverToBoxAdapter(
-                    child: CircleDelay(),
-                  )
-                : SliverPadding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    sliver: SliverGrid(
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200.0,
-                        mainAxisSpacing: 5,
-                        crossAxisSpacing: 3,
-                        childAspectRatio: .7,
-                      ),
-                      delegate: SliverChildBuilderDelegate(
-                        (ctx, i) {
-                          return GestureDetector(
-                            onTap: () => Navigator.of(context).pushNamed(
-                              RoutePaths.detailView,
-                              arguments: model.shoes![i],
-                            ),
-                            child: ShoeItem(model: model, index: i),
-                          );
-                        },
-                        childCount: model.shoes?.length,
-                      ),
+    return model.state == ViewState.Busy
+        ? const SliverToBoxAdapter(
+            child: CircleDelay(),
+          )
+        : SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200.0,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 3,
+                childAspectRatio: .7,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (ctx, i) {
+                  return GestureDetector(
+                    onTap: () => Navigator.of(context).pushNamed(
+                      RoutePaths.detailView,
+                      arguments: model.shoes![i],
                     ),
-                  ));
+                    child: ShoeItem(model: model, index: i),
+                  );
+                },
+                childCount: model.shoes?.length,
+              ),
+            ),
+          );
   }
 }

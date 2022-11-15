@@ -20,5 +20,6 @@ class RoutePaths {
   static const checkoutSuccess = '/checkoutSuccess';
   static const setting = '/setting';
   static const changePass = '/changePass';
+  static const searchHistory = '/searchHistory';
   static const ui = '/ui';
 }

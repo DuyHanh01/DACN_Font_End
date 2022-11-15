@@ -13,15 +13,17 @@ class LoginViewModel extends BaseViewModel {
 
   String errorMessage = '';
 
-  // String generateMd5(String input) {
-  //   return md5.convert(utf8.encode(input)).toString();
-  // }
+  String generateMd5(String input) {
+    return md5.convert(utf8.encode(input)).toString();
+  }
 
 
   Future<bool> login(String username, String password) async {
     setState(ViewState.Busy);
 
-    var account = Account(0, username, null, password,null, 0);
+    var passWord = generateMd5(password);
+
+    var account = Account(0, username, null, passWord,null, 0);
     var success = await _authenticationService.login(account);
     String message = _authenticationService.message;
 

@@ -22,6 +22,7 @@ import 'package:shoes_shop/ui/views/orderdetais/orderdetails_view.dart';
 import 'package:shoes_shop/ui/views/profile/profile_view.dart';
 import 'package:shoes_shop/ui/views/register/register_view.dart';
 import 'package:shoes_shop/ui/views/saledetails/saledetails_view.dart';
+import 'package:shoes_shop/ui/views/search_history/search_history_view.dart';
 import 'package:shoes_shop/ui/views/setting/setting_view.dart';
 import 'package:shoes_shop/ui/views/user/user_view.dart';
 import 'package:shoes_shop/ui/views/wellcome/wellcome_view.dart';
@@ -62,6 +63,8 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => const SettingView());
       case RoutePaths.changePass:
         return MaterialPageRoute(builder: (_) => const ChangePassView());
+      case RoutePaths.searchHistory:
+        return MaterialPageRoute(builder: (_) => const SearchHistoryView());
       case RoutePaths.checkoutSuccess:
         final event = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => CheckoutSuccessView(paymentStatus: event));

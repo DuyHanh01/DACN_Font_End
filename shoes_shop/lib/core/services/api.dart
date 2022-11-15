@@ -13,6 +13,7 @@ import 'package:shoes_shop/core/models/rating.dart';
 import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/models/saledetails.dart';
 import 'package:shoes_shop/core/models/sales.dart';
+import 'package:shoes_shop/core/models/search_history.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/models/sizetable.dart';
 import 'package:shoes_shop/core/models/token.dart';
@@ -94,8 +95,7 @@ class Api {
   //login user
   Future<BaseResult<Account>> login(Account account) async {
     var accounts = <Account>[];
-    var a = Account(0, account.username, null, md5.convert(utf8.encode(account.password!)).toString(), null, 0);
-    var body = json.encode(a);
+    var body = json.encode(account);
     final response = await client.post(
       Uri.parse('$endpoint/Login'),
       headers: <String, String>{
@@ -567,7 +567,7 @@ class Api {
     }
 
 
-  //insert order
+  //insert rating
   Future<BaseResult<Rating>> insertRating(Rating rating) async {
     var body = json.encode(rating);
     final response = await client.post(
@@ -706,8 +706,7 @@ class Api {
   Future<BaseResult<Account>> changePassword(Account account) async {
     var accounts = <Account>[];
     int accountid = account.accountid;
-    var a = Account(account.accountid, account.username, md5.convert(utf8.encode(account.Oldpassword!)).toString(),md5.convert(utf8.encode(account.password!)).toString(), md5.convert(utf8.encode(account.Repassword!)).toString(),0);
-    var body = json.encode(a);
+    var body = json.encode(account);
     final response = await client.put(
       Uri.parse('$endpoint/ChangePassword/$accountid'),
       headers: <String, String>{
@@ -718,14 +717,70 @@ class Api {
     );
     var s;
     if (response.statusCode == 200) {
+      Username = account.username!;
+      Password = account.password!;
 
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       List<dynamic> data = s.data;
-      for (var account in data) {
-        accounts.add(Account.fromJson(account));
+      for (var acc in data) {
+        accounts.add(Account.fromJson(acc));
       }
 
+      getToken(Username, Password);
+
       return BaseResult(s.isSuccess, s.status, s.Message, accounts);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
+  }
+
+  //insert search history
+  Future<BaseResult<Shoes>> insertSearchHistory(SearchHistory searchHistory) async {
+    var shoes = <Shoes>[];
+    var body = json.encode(searchHistory);
+    final response = await client.post(
+      Uri.parse('$endpoint/AddSearchHistory'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token'
+      },
+      body: body,
+    );
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var shoe in data) {
+        shoes.add(Shoes.fromJson(shoe));
+      }
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
+  }
+
+  //get shoes search history
+  Future<BaseResult<Shoes>> getShoesSearch(int accountid) async {
+    var shoes = <Shoes>[];
+    final response = await client.get(
+      Uri.parse('$endpoint/GetShoesByKeyOfSearchHistory/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token'
+      },
+    );
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+      for (var shoe in data) {
+        shoes.add(Shoes.fromJson(shoe));
+      }
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, null);
