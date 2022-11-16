@@ -17,33 +17,34 @@ class CustomBottomNavBar extends StatelessWidget {
         ? Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              IconButton(
-                icon: Icon(
+              GestureDetector(
+                onTap: onTap as void Function()?,
+                child: Icon(
                   icon,
                   color: AppColors.primaryColor,
-                  size: 30,
+                  size: 26,
                 ),
-                onPressed: onTap as void Function()?,
               ),
               Text(text,
                   style: const TextStyle(
                       color: AppColors.primaryColor,
-                      fontWeight: FontWeight.bold, fontSize: 15))
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14))
             ],
           )
-        : IconButton(
-            icon: Icon(
+        : GestureDetector(
+            onTap: onTap as void Function()?,
+            child: Icon(
               icon,
               color: AppColors.lightGray,
             ),
-            onPressed: onTap as void Function()?,
           );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      height: 60,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -54,8 +55,8 @@ class CustomBottomNavBar extends StatelessWidget {
           ),
         ],
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
       ),
       child: SafeArea(

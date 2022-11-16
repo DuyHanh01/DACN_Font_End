@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/base_result.dart';
@@ -22,6 +21,7 @@ import 'package:shoes_shop/core/models/user.dart';
 /// The service responsible for networking requests
 class Api {
   String token = '';
+  //static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
   static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
 
   String Username = '';
@@ -67,7 +67,6 @@ class Api {
     final response = await client.post(
       Uri.parse('$endpoint/token'),
       headers: <String, String>{
-        // 'Content-Type': 'application/json; charset=UTF-8',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'BASIC $encoded'
       },
@@ -501,6 +500,7 @@ class Api {
     int userid = user.userid!;
     var users = <User>[];
     var body = json.encode(user);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.put(
       Uri.parse('$endpoint/updateUserByUserId/$userid'),
       headers: <String, String>{
@@ -528,6 +528,7 @@ class Api {
   Future<BaseResult<Order>> insertOrder(Checkout checkout) async {
     var orders = <Order>[];
     var body = json.encode(checkout);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.post(
       Uri.parse('$endpoint/AddOrder'),
       headers: <String, String>{
@@ -554,6 +555,7 @@ class Api {
   Future<BaseResult<Order>> updateOrder(Order order) async {
     int orderid = order.orderid!;
     var body = json.encode(order);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.put(
       Uri.parse('$endpoint/UpdateMomoAndPaymentOfOrder/$orderid'),
       headers: <String, String>{
@@ -570,6 +572,7 @@ class Api {
   //insert rating
   Future<BaseResult<Rating>> insertRating(Rating rating) async {
     var body = json.encode(rating);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.post(
       Uri.parse('$endpoint/AddRating'),
       headers: <String, String>{
@@ -585,6 +588,7 @@ class Api {
   //cancel order
   Future<BaseResult<Order>> cancelOrder(int orderid) async {
     var oders = <Order>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.put(
       Uri.parse('$endpoint/CancelOrder/$orderid'),
       headers: <String, String>{
@@ -609,6 +613,7 @@ class Api {
 
   //delete order
   Future<BaseResult<Order>> deleteOrder(int orderid) async {
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.delete(
       Uri.parse('$endpoint/DeleteOrder/$orderid'),
       headers: <String, String>{
@@ -624,6 +629,7 @@ class Api {
   Future<BaseResult<Shoes>> addOrDeleteFav(Favorite favorite) async {
     var shoes = <Shoes>[];
     var body = json.encode(favorite);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.post(
       Uri.parse('$endpoint/AddOrDeleteFavourite'),
       headers: <String, String>{
@@ -650,6 +656,7 @@ class Api {
   Future<BaseResult<Comment>> insertComment(Comment comment) async {
     var comments = <Comment>[];
     var body = json.encode(comment);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.post(
       Uri.parse('$endpoint/AddComment'),
       headers: <String, String>{
@@ -707,6 +714,7 @@ class Api {
     var accounts = <Account>[];
     int accountid = account.accountid;
     var body = json.encode(account);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.put(
       Uri.parse('$endpoint/ChangePassword/$accountid'),
       headers: <String, String>{
@@ -739,6 +747,7 @@ class Api {
   Future<BaseResult<Shoes>> insertSearchHistory(SearchHistory searchHistory) async {
     var shoes = <Shoes>[];
     var body = json.encode(searchHistory);
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.post(
       Uri.parse('$endpoint/AddSearchHistory'),
       headers: <String, String>{
@@ -765,6 +774,7 @@ class Api {
   //get shoes search history
   Future<BaseResult<Shoes>> getShoesSearch(int accountid) async {
     var shoes = <Shoes>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.get(
       Uri.parse('$endpoint/GetShoesByKeyOfSearchHistory/$accountid'),
       headers: <String, String>{

@@ -5,6 +5,7 @@ import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/locator.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           value: CartViewModel(),
         ),
         ChangeNotifierProvider.value(
-          value: ShoesViewModel(),
+          value: SearchHistoryViewModel(),
         ),
         ChangeNotifierProvider.value(
           value: UserViewModel(),

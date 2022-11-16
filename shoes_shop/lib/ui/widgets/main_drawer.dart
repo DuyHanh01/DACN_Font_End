@@ -52,9 +52,9 @@ class MainDrawer extends StatelessWidget {
                       RoutePaths.contact,
                     ),
                   ),
-                  buildListTile('Settings', () {
-                    Navigator.of(context).pushNamed(RoutePaths.ui);
-                  }),
+                  buildListTile('Settings', () => Navigator.of(context).pushNamed(
+                    RoutePaths.setting,
+                  ),),
                   const Divider(color: AppColors.blackGray),
                   TextButton(
                     onPressed: () => showDialog<String>(

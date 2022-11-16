@@ -20,8 +20,6 @@ class SearchHistoryService {
       if (fetchedSearchHistory.data != null) {
         _shoes = fetchedSearchHistory.data;
       }
-    } else {
-      _shoes = [];
     }
     return isSuccessSearchHistory ?? false;
   }

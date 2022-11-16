@@ -8,8 +8,6 @@ import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
-import 'package:shoes_shop/ui/views/base_view.dart';
-import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
 // ignore: must_be_immutable
@@ -34,9 +32,10 @@ class Search extends StatelessWidget {
     }
 
     Account account = Provider.of<Account>(context);
+    SearchHistoryViewModel searchHistoryViewModel =
+        Provider.of<SearchHistoryViewModel>(context);
 
-    return BaseView<SearchHistoryViewModel>(
-    builder: (BuildContext context, SearchHistoryViewModel searchHistoryViewModel, Widget? child) => SliverToBoxAdapter(
+    return SliverToBoxAdapter(
       child: Autocomplete<Shoes>(
         displayStringForOption: _displayStringForOption,
         optionsBuilder: (textEditingValue) {
@@ -109,9 +108,10 @@ class Search extends StatelessWidget {
                       onTap: () async {
                         Navigator.of(context).pushNamed(RoutePaths.detailView,
                             arguments: option);
-                        var searchHistory = SearchHistory(null, account.accountid, option.shoename);
-                        await searchHistoryViewModel.insertSearchHistory(searchHistory);
-
+                        var searchHistory = SearchHistory(
+                            null, account.accountid, option.shoename);
+                        await searchHistoryViewModel
+                            .insertSearchHistory(searchHistory);
                       },
                     ),
                   );
@@ -154,11 +154,14 @@ class Search extends StatelessWidget {
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       suffixIcon: IconButton(
-                          onPressed: () async{
+                          onPressed: () async {
                             String search = textEditingValue.text;
-                            var searchHistory = SearchHistory(null, account.accountid, search);
-                            await searchHistoryViewModel.insertSearchHistory(searchHistory);
-                            Navigator.of(context).pushNamed(RoutePaths.searchHistory);
+                            var searchHistory =
+                                SearchHistory(null, account.accountid, search);
+                            await searchHistoryViewModel
+                                .insertSearchHistory(searchHistory);
+                            Navigator.of(context)
+                                .pushNamed(RoutePaths.searchHistory);
                           },
                           icon: const Icon(
                             Icons.search_rounded,
@@ -173,9 +176,8 @@ class Search extends StatelessWidget {
             ),
           );
         },
-        onSelected: (Shoes selection) {
-        },
+        onSelected: (Shoes selection) {},
       ),
-    ));
+    );
   }
 }
