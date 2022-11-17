@@ -21,8 +21,8 @@ import 'package:shoes_shop/core/models/user.dart';
 /// The service responsible for networking requests
 class Api {
   String token = '';
-  //static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
-  static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
+  static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
+  //static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
 
   String Username = '';
   String Password = '';
