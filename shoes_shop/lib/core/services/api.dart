@@ -21,8 +21,8 @@ import 'package:shoes_shop/core/models/user.dart';
 /// The service responsible for networking requests
 class Api {
   String token = '';
-  static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
-  //static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
+  //static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
+  static const endpoint = 'http://192.168.1.7/ShoesStore.com/api';
 
   String Username = '';
   String Password = '';
@@ -791,6 +791,35 @@ class Api {
         shoes.add(Shoes.fromJson(shoe));
       }
       return BaseResult(s.isSuccess, s.status, s.Message, shoes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, null);
+    }
+  }
+
+  //change password
+  Future<BaseResult<Account>> newPassword(Account account) async {
+    var accounts = <Account>[];
+    var username = account.username;
+    var body = json.encode(account);
+    final response = await client.put(
+      Uri.parse('$endpoint/newPassword/$username'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: body,
+    );
+    var s;
+    if (response.statusCode == 200) {
+
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var acc in data) {
+        accounts.add(Account.fromJson(acc));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, accounts);
     } else {
       s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
       return BaseResult(s.isSuccess, s.status, s.Message, null);

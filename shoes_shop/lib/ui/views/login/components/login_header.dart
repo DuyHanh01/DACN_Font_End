@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 
@@ -29,7 +30,9 @@ class LoginHeaderState extends State<LoginHeader> {
       loginTextField(true, 'Enter your password', TextInputType.visiblePassword,
           widget.controllerPass),
       TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, RoutePaths.forgotPass);
+        },
         child: const Text(
           'Forgot Password',
           style: TextStyle(
@@ -52,6 +55,7 @@ class LoginHeaderState extends State<LoginHeader> {
         obscureText: state ? showPassword : false,
         controller: controller,
         keyboardType: textInputType,
+        style: shoesTextStyle.copyWith(fontSize: 16),
         decoration: InputDecoration(
             suffixIcon: state
                 ? IconButton(

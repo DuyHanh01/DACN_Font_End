@@ -39,7 +39,7 @@ android {
         applicationId "ahvuit.com.shoes_shop"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 20
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -53,6 +53,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
     aaptOptions {
         noCompress 'tflite'
         noCompress 'lite'

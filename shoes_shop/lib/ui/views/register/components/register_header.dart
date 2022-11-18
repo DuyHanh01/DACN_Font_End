@@ -58,6 +58,7 @@ class RegisterTextField extends StatelessWidget {
         obscureText: state,
         controller: controller,
         keyboardType: textInputType,
+        style: shoesTextStyle.copyWith(fontSize: 16),
         decoration: InputDecoration(
             floatingLabelStyle:
                 const TextStyle(color: AppColors.primaryColor, fontSize: 13),

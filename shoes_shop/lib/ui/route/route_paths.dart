@@ -21,5 +21,7 @@ class RoutePaths {
   static const setting = '/setting';
   static const changePass = '/changePass';
   static const searchHistory = '/searchHistory';
+  static const forgotPass = '/forgotPass';
+  static const newPass = '/newPass';
   static const ui = '/ui';
 }

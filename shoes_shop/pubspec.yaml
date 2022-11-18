@@ -54,7 +54,7 @@ dependencies:
   crypto: ^3.0.2
   substring_highlight: ^1.0.33
   cloudinary_public: ^0.20.0
-
+  email_auth: ^1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -49,4 +49,16 @@ class AuthenticationService {
     return isSuccessChangePass ?? false;
   }
 
+  Future<bool> newPassword(Account account) async {
+    var fetchedNewPassword = await _api.newPassword(account);
+    var isSuccessNewPass= fetchedNewPassword.isSuccess;
+    _message = fetchedNewPassword.Message!;
+    if (isSuccessNewPass != null && isSuccessNewPass) {
+      if (fetchedNewPassword.data != null) {
+        accountController.add(fetchedNewPassword.data![0]!);
+      }
+    }
+    return isSuccessNewPass ?? false;
+  }
+
 }

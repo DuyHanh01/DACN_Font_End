@@ -4,25 +4,22 @@ import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 
 import '../../../shared/text_styles.dart';
 
-class ChangePassHeader extends StatefulWidget {
-  const ChangePassHeader({Key? key, required this.controllerCurrentPass, required this.controllerNewPass, required this.controllerReNewPass}) : super(key: key);
-  final TextEditingController controllerCurrentPass;
+class NewPassHeader extends StatefulWidget {
+  const NewPassHeader({Key? key, required this.controllerNewPass, required this.controllerReNewPass}) : super(key: key);
   final TextEditingController controllerNewPass;
   final TextEditingController controllerReNewPass;
 
   @override
-  State<ChangePassHeader> createState() => _ChangePassHeaderState();
+  State<NewPassHeader> createState() => _NewPassHeaderState();
 }
 
-class _ChangePassHeaderState extends State<ChangePassHeader> {
+class _NewPassHeaderState extends State<NewPassHeader> {
   bool showPassword = true;
 
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       UIHelper.verticalSpaceMedium(),
-      loginTextField(true, 'Enter current password', TextInputType.visiblePassword,
-          widget.controllerCurrentPass),
       loginTextField(true, 'Enter new password', TextInputType.visiblePassword,
           widget.controllerNewPass),
       loginTextField(true, 'Enter RePassword', TextInputType.visiblePassword,

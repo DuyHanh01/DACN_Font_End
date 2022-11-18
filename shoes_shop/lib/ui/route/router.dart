@@ -14,9 +14,11 @@ import 'package:shoes_shop/ui/views/contacts/components/google_maps.dart';
 import 'package:shoes_shop/ui/views/contacts/contacts_view.dart';
 import 'package:shoes_shop/ui/views/detail/detail_view.dart';
 import 'package:shoes_shop/ui/views/favorite/favorite_view.dart';
+import 'package:shoes_shop/ui/views/forgot_password/forgot_password_view.dart';
 import 'package:shoes_shop/ui/views/home/home_view.dart';
 import 'package:shoes_shop/ui/views/login/login_view.dart';
 import 'package:shoes_shop/ui/views/login_success/login_success_view.dart';
+import 'package:shoes_shop/ui/views/new_password/new_pass_view.dart';
 import 'package:shoes_shop/ui/views/order/order_view.dart';
 import 'package:shoes_shop/ui/views/orderdetais/orderdetails_view.dart';
 import 'package:shoes_shop/ui/views/profile/profile_view.dart';
@@ -36,7 +38,11 @@ class MainRouter {
       case RoutePaths.wellCome:
         return MaterialPageRoute(builder: (_) => const WellComeView());
       case RoutePaths.login:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => LoginView());
+      case RoutePaths.forgotPass:
+        return MaterialPageRoute(builder: (_) => ForgotPasswordView());
+      case RoutePaths.newPass:
+        return MaterialPageRoute(builder: (_) => const NewPassView());
       case RoutePaths.cart:
         return MaterialPageRoute(builder: (_) => const CartView());
       case RoutePaths.register:

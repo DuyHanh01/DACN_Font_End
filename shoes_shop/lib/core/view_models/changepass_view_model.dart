@@ -39,4 +39,26 @@ class ChangePassViewModel extends BaseViewModel {
       return success;
     }
   }
+
+  Future<bool> newPassword(Account account) async {
+    setState(ViewState.Busy);
+
+    var passWord = generateMd5(account.password!);
+    var rePass = generateMd5(account.Repassword!);
+
+    var acc = Account(0, account.username, null, passWord,rePass, 0);
+
+    var success = await _authenticationService.newPassword(acc);
+    String message = _authenticationService.message;
+
+    if (!success) {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return false;
+    } else {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return success;
+    }
+  }
 }

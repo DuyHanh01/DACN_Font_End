@@ -12,16 +12,13 @@ import '../../shared/ui_helpers.dart';
 import '../../widgets/already_have_an_account_acheck.dart';
 import 'package:flutter/material.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class LoginView extends StatelessWidget {
+  LoginView({Key? key}) : super(key: key);
 
-  @override
-  _LoginViewState createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
   final TextEditingController _controllerUser = TextEditingController();
+
   final TextEditingController _controllerPass = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

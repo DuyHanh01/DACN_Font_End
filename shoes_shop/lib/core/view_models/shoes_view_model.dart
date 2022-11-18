@@ -82,7 +82,7 @@ class ShoesViewModel extends BaseViewModel {
 
   Shoes? getShoesAi(String shoeName) {
     for (var element in shoes!) {
-      if (shoeName.contains(element!.shoename)) {
+      if (shoeName.toLowerCase().contains(element!.shoename.toLowerCase())) {
         return element;
       }
     }
