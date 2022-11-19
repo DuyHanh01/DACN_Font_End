@@ -6,7 +6,8 @@ import 'package:shoes_shop/ui/views/new_password/components/body.dart';
 import '../../widgets/app_bar.dart';
 
 class NewPassView extends StatefulWidget {
-  const NewPassView({Key? key}) : super(key: key);
+  const NewPassView({Key? key, required this.username}) : super(key: key);
+  final String username;
 
   @override
   _NewPassViewState createState() => _NewPassViewState();
@@ -20,7 +21,7 @@ class _NewPassViewState extends State<NewPassView> {
             (BuildContext context, ChangePassViewModel model, Widget? child) =>
             Scaffold(
               appBar: buildAppBar(context, "New Password"),
-              body: Body(model: model,),
+              body: Body(model: model, username: widget.username),
             ));
   }
 }

@@ -24,7 +24,7 @@ class ChangePassViewModel extends BaseViewModel {
     var passWord = generateMd5(account.password!);
     var rePass = generateMd5(account.Repassword!);
 
-    var acc = Account(0, account.username, oldPass, passWord,rePass, 0);
+    var acc = Account(account.accountid, account.username, oldPass, passWord,rePass, 0);
 
     var success = await _authenticationService.changePass(acc);
     String message = _authenticationService.message;

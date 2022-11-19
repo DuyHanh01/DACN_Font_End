@@ -136,7 +136,7 @@ class _SaleNewsState extends State<SaleNews> {
                                   decoration: BoxDecoration(
                                     color: index == currentIndex
                                         ? Colors.white
-                                        : AppColors.darkGray,
+                                        : AppColors.darkGrey,
                                     borderRadius: BorderRadius.circular(2),
                                   ),
                                 ),

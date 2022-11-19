@@ -126,7 +126,7 @@ class _WellComeViewState extends State<WellComeView> {
                       decoration: BoxDecoration(
                         color: currentPage == index
                             ? AppColors.secondaryColor
-                            : AppColors.lightGray,
+                            : AppColors.lightGrey,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: [
                           BoxShadow(

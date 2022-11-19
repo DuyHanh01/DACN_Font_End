@@ -36,7 +36,7 @@ class CustomBottomNavBar extends StatelessWidget {
             onTap: onTap as void Function()?,
             child: Icon(
               icon,
-              color: AppColors.lightGray,
+              color: AppColors.lightGrey,
             ),
           );
   }

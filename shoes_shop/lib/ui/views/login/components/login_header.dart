@@ -9,7 +9,9 @@ class LoginHeader extends StatefulWidget {
   final TextEditingController controllerPass;
 
   const LoginHeader(
-      {Key? key, required this.controllerUser, required this.controllerPass})
+      {Key? key,
+      required this.controllerUser,
+      required this.controllerPass})
       : super(key: key);
 
   @override
@@ -18,6 +20,8 @@ class LoginHeader extends StatefulWidget {
 
 class LoginHeaderState extends State<LoginHeader> {
   bool showPassword = true;
+  var userInvalid = false;
+  var passInvalid = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class LoginHeaderState extends State<LoginHeader> {
             suffixIcon: state
                 ? IconButton(
                     icon: const Icon(Icons.remove_red_eye_rounded,
-                        color: AppColors.lightGray),
+                        color: AppColors.lightGrey),
                     onPressed: () {
                       setState(() {
                         showPassword = !showPassword;

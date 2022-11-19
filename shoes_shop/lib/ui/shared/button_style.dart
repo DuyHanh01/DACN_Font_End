@@ -22,7 +22,7 @@ class AppButton {
           borderRadius: BorderRadius.circular(20),
           boxShadow: shadow
               ? [
-                  const BoxShadow(color: AppColors.lightGray, blurRadius: 5),
+                  const BoxShadow(color: AppColors.lightGrey, blurRadius: 5),
                 ]
               : null,
         ),

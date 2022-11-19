@@ -6,7 +6,6 @@ import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
-import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/locator.dart';
 import 'package:shoes_shop/ui/route/router.dart';
@@ -14,6 +13,8 @@ void main() {
   setupLocator();
   runApp(const MyApp());
 }
+
+ThemeManager _manager = ThemeManager();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -43,7 +44,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Provider Architecture',
-        theme: CustomAppTheme.of(context),
+        theme: CustomAppThemeLight.of(context),
+        darkTheme: CustomAppThemeDark.of(context),
+        themeMode: _manager.themMode,
         initialRoute: '/wellCome',
         onGenerateRoute: MainRouter.generateRoute,
       ),

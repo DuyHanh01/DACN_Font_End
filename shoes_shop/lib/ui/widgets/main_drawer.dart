@@ -16,7 +16,7 @@ class MainDrawer extends StatelessWidget {
         title,
         style: const TextStyle(
             fontSize: 15,
-            color: AppColors.darkGray,
+            color: AppColors.darkGrey,
             fontWeight: FontWeight.w500),
       ),
       onTap: tapHandler,
@@ -55,7 +55,7 @@ class MainDrawer extends StatelessWidget {
                   buildListTile('Settings', () => Navigator.of(context).pushNamed(
                     RoutePaths.setting,
                   ),),
-                  const Divider(color: AppColors.blackGray),
+                  const Divider(color: AppColors.blackGrey),
                   TextButton(
                     onPressed: () => showDialog<String>(
                       context: context,
@@ -87,7 +87,7 @@ class MainDrawer extends StatelessWidget {
                       'Logout',
                       style: TextStyle(
                           fontSize: 15,
-                          color: AppColors.darkGray,
+                          color: AppColors.darkGrey,
                           fontWeight: FontWeight.w500),
                     ),
                   ),

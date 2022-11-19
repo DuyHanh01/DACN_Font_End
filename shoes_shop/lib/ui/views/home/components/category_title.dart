@@ -33,7 +33,7 @@ class CategoryTitle extends StatelessWidget {
                 trailingTitle,
                 style: const TextStyle(
                   fontSize: 12,
-                  color: AppColors.lightGray,
+                  color: AppColors.lightGrey,
                 ),
               ),
             ),

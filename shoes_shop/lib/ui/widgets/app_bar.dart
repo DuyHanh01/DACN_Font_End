@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoes_shop/config/theme.dart';
-import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 AppBar buildAppBar(BuildContext context, String? title) {
   return AppBar(
@@ -10,7 +9,6 @@ AppBar buildAppBar(BuildContext context, String? title) {
     centerTitle: true,
     title: Text(
       title!,
-      style: appBarTextStyle,
     ),
     leading: Padding(
       padding: const EdgeInsets.all(8),

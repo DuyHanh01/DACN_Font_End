@@ -8,14 +8,12 @@ class RegisterHeader extends StatelessWidget {
       {Key? key,
       required this.controllerUser,
       required this.controllerPass,
-      required this.controllerRePass,
-      required this.validationMessage})
+      required this.controllerRePass})
       : super(key: key);
 
   final TextEditingController controllerUser;
   final TextEditingController controllerPass;
   final TextEditingController controllerRePass;
-  final String validationMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,6 @@ class RegisterHeader extends StatelessWidget {
           'Enter Password'),
       RegisterTextField(true, controllerRePass, TextInputType.visiblePassword,
           'Enter RePassword'),
-      Text(validationMessage, style: const TextStyle(color: AppColors.red)),
       UIHelper.verticalSpaceSmall(),
     ]);
   }

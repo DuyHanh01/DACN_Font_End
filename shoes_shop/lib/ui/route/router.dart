@@ -42,7 +42,8 @@ class MainRouter {
       case RoutePaths.forgotPass:
         return MaterialPageRoute(builder: (_) => ForgotPasswordView());
       case RoutePaths.newPass:
-        return MaterialPageRoute(builder: (_) => const NewPassView());
+        final event = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => NewPassView(username: event));
       case RoutePaths.cart:
         return MaterialPageRoute(builder: (_) => const CartView());
       case RoutePaths.register:
@@ -52,7 +53,8 @@ class MainRouter {
       case RoutePaths.googleMap:
         return MaterialPageRoute(builder: (_) => const GoogleMaps());
       case RoutePaths.insertUser:
-        return MaterialPageRoute(builder: (_) => const UserView());
+        final event = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => UserView(username: event));
       case RoutePaths.success:
         return MaterialPageRoute(builder: (_) => const LoginSuccessView());
       case RoutePaths.profile:

@@ -712,11 +712,10 @@ class Api {
   //change password
   Future<BaseResult<Account>> changePassword(Account account) async {
     var accounts = <Account>[];
-    int accountid = account.accountid;
     var body = json.encode(account);
     token = await checkToken(ExpiredDateTime, token, Username, Password);
     final response = await client.put(
-      Uri.parse('$endpoint/ChangePassword/$accountid'),
+      Uri.parse('$endpoint/ChangePassword'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'bearer $token',
@@ -797,13 +796,12 @@ class Api {
     }
   }
 
-  //change password
+  //new password
   Future<BaseResult<Account>> newPassword(Account account) async {
     var accounts = <Account>[];
-    var username = account.username;
     var body = json.encode(account);
     final response = await client.put(
-      Uri.parse('$endpoint/newPassword/$username'),
+      Uri.parse('$endpoint/FogotPassword'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

@@ -31,7 +31,7 @@ class BottomNav extends StatelessWidget {
           topRight: Radius.circular(10),
         ),
         boxShadow: [
-          BoxShadow(color: AppColors.lightGray, blurRadius: 20),
+          BoxShadow(color: AppColors.lightGrey, blurRadius: 20),
         ],
       ),
       child: Row(

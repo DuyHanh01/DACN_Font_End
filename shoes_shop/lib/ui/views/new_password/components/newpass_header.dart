@@ -43,7 +43,7 @@ class _NewPassHeaderState extends State<NewPassHeader> {
             suffixIcon: state
                 ? IconButton(
                 icon: const Icon(Icons.remove_red_eye_rounded,
-                    color: AppColors.lightGray),
+                    color: AppColors.lightGrey),
                 onPressed: () {
                   setState(() {
                     showPassword = !showPassword;

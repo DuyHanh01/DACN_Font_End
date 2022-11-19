@@ -29,7 +29,7 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
         recipientMail: widget.controllerUser.value.text,
         userOtp: widget.controllerOTP.value.text);
     if (res) {
-      Navigator.pushNamed(context, RoutePaths.newPass);
+      Navigator.pushNamed(context, RoutePaths.newPass, arguments: widget.controllerUser.text);
     }
   }
 
@@ -80,7 +80,7 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
       const Text('Forgot Password', style: wellComeStyle),
       UIHelper.verticalSpaceMedium(),
       SizedBox(width: 360, child: Image.asset('assets/images/main.png')),
-      loginTextField(false, 'Enter your email', TextInputType.emailAddress,
+      loginTextField('Enter your email', TextInputType.emailAddress,
           widget.controllerUser),
       TextButton(
           onPressed: () {
@@ -104,7 +104,7 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
                           fontWeight: FontWeight.w800,
                           color: AppColors.primaryColor),
                     ))),
-      loginTextField(true, 'Enter OTP', TextInputType.visiblePassword,
+      loginTextField('Enter OTP', TextInputType.number,
           widget.controllerOTP),
       UIHelper.verticalSpaceMedium(),
       (submitValid & countdowntime)
@@ -123,7 +123,7 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
     ]);
   }
 
-  Widget loginTextField(bool state, String hinText, TextInputType textInputType,
+  Widget loginTextField( String hinText, TextInputType textInputType,
       TextEditingController controller) {
     return Container(
       height: 55,
@@ -131,21 +131,10 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
       margin: const EdgeInsets.symmetric(horizontal: 15.0),
       child: TextField(
         cursorColor: AppColors.primaryColor,
-        obscureText: state ? showPassword : false,
         controller: controller,
         keyboardType: textInputType,
         style: shoesTextStyle.copyWith(fontSize: 16),
         decoration: InputDecoration(
-            suffixIcon: state
-                ? IconButton(
-                    icon: const Icon(Icons.remove_red_eye_rounded,
-                        color: AppColors.lightGray),
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    })
-                : null,
             floatingLabelStyle:
                 const TextStyle(color: AppColors.primaryColor, fontSize: 13),
             filled: true,

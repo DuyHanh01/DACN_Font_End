@@ -43,16 +43,6 @@ class _ChangePassHeaderState extends State<ChangePassHeader> {
         keyboardType: textInputType,
         style: shoesTextStyle.copyWith(fontSize: 16),
         decoration: InputDecoration(
-            suffixIcon: state
-                ? IconButton(
-                icon: const Icon(Icons.remove_red_eye_rounded,
-                    color: AppColors.lightGray),
-                onPressed: () {
-                  setState(() {
-                    showPassword = !showPassword;
-                  });
-                })
-                : null,
             floatingLabelStyle:
             const TextStyle(color: AppColors.primaryColor, fontSize: 13),
             filled: true,

@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../ui/shared/text_styles.dart';
+
+class ThemeManager with ChangeNotifier{
+  ThemeMode _themeMode = ThemeMode.light;
+
+  get themMode => _themeMode;
+
+  toggleThem(bool isDark){
+    _themeMode = isDark?ThemeMode.dark:ThemeMode.light;
+    notifyListeners();
+  }
+}
+
 class AppSizes {
   static const int splashScreenTitleFontSize = 48;
   static const int titleFontSize = 34;
@@ -22,9 +35,9 @@ class AppColors {
   static const red = Color(0xFFDB3022);
   static const black = Color(0xFF222222);
   static const grey = Color.fromRGBO(97, 97, 97, 1);
-  static const blackGray = Color(0xFF393939);
-  static const lightGray = Color(0xFF9B9B9B);
-  static const darkGray = Color(0xFF979797);
+  static const blackGrey = Color(0xFF393939);
+  static const lightGrey = Color(0xFF9B9B9B);
+  static const darkGrey = Color(0xFF979797);
   static const white = Color(0xFFFFFFFF);
   static const darkWhite = Color.fromRGBO(246, 246, 246, 1);
   static const orange = Color(0xFFFFBA49);
@@ -68,14 +81,15 @@ class AppUI {
   static const String cart = '${svgPath}cart_icon.svg';
 }
 
-class CustomAppTheme {
+class CustomAppThemeLight {
   static ThemeData of(context) {
     var theme = Theme.of(context);
     return theme.copyWith(
-      primaryColor: AppColors.black,
-      primaryColorLight: AppColors.lightGray,
+      brightness: Brightness.light,
+      primaryColor: AppColors.white,
+      primaryColorLight: AppColors.lightGrey,
       colorScheme: theme.colorScheme.copyWith(secondary: AppColors.red),
-      bottomAppBarColor: AppColors.lightGray,
+      bottomAppBarColor: AppColors.lightGrey,
       backgroundColor: AppColors.background,
       dialogBackgroundColor: AppColors.backgroundLight,
       errorColor: AppColors.red,
@@ -83,16 +97,7 @@ class CustomAppTheme {
       appBarTheme: theme.appBarTheme.copyWith(
         color: AppColors.white,
         iconTheme: const IconThemeData(color: AppColors.black),
-        toolbarTextStyle: theme.textTheme
-            .copyWith(
-              caption: const TextStyle(
-                color: AppColors.white,
-                fontSize: 18,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w400,
-              ),
-            )
-            .bodyText2,
+        toolbarTextStyle: appBarTextStyle,
         titleTextStyle: theme.textTheme
             .copyWith(
               caption: const TextStyle(
@@ -112,7 +117,7 @@ class CustomAppTheme {
             ),
             //product price
             headline2: theme.textTheme.headline2?.copyWith(
-              color: AppColors.lightGray,
+              color: AppColors.lightGrey,
               fontSize: 14,
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w400,
@@ -142,7 +147,7 @@ class CustomAppTheme {
             ),
             subtitle1: theme.textTheme.headline5?.copyWith(
               fontSize: 24,
-              color: AppColors.darkGray,
+              color: AppColors.darkGrey,
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w500,
             ),
@@ -165,7 +170,7 @@ class CustomAppTheme {
               fontWeight: FontWeight.w700,
             ),
             bodyText1: theme.textTheme.bodyText1?.copyWith(
-              color: AppColors.lightGray,
+              color: AppColors.lightGrey,
               fontSize: 11,
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w400,
@@ -182,6 +187,113 @@ class CustomAppTheme {
         minWidth: 50,
         buttonColor: AppColors.red,
       ),
+    );
+  }
+}
+
+class CustomAppThemeDark {
+  static ThemeData of(context) {
+    var theme = Theme.of(context);
+    return theme.copyWith(
+      brightness: Brightness.dark,
+      primaryColor: AppColors.primaryColor,
+      primaryColorLight: AppColors.lightGrey,
+      dialogBackgroundColor: AppColors.black,
+      backgroundColor: AppColors.black,
+      dividerColor: Colors.transparent,
+      appBarTheme: theme.appBarTheme.copyWith(
+        color: AppColors.black,
+        iconTheme: const IconThemeData(color: AppColors.white),
+        toolbarTextStyle: appBarTextStyleDark,
+        titleTextStyle: theme.textTheme
+            .copyWith(
+          caption: const TextStyle(
+            color: AppColors.white,
+            fontSize: 18,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w400,
+          ),
+        )
+            .headline6,
+      ),
+      textTheme: theme.textTheme
+          .copyWith(
+        headline1: theme.textTheme.headline1?.copyWith(
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w500,
+        ),
+        //product price
+        headline2: theme.textTheme.headline2?.copyWith(
+          color: AppColors.white,
+          fontSize: 14,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+        ),
+        headline3: theme.textTheme.headline3?.copyWith(
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+        ),
+        //product title
+        headline4: theme.textTheme.headline4?.copyWith(
+          color: AppColors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          fontFamily: 'Montserrat',
+        ),
+        headline5: theme.textTheme.headline5?.copyWith(
+          fontSize: 48,
+          color: AppColors.white,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w900,
+        ),
+        headline6: theme.textTheme.headline6?.copyWith(
+          fontSize: 24,
+          color: AppColors.white,
+          fontWeight: FontWeight.w900,
+          fontFamily: 'Montserrat',
+        ),
+        subtitle1: theme.textTheme.headline5?.copyWith(
+          fontSize: 24,
+          color: AppColors.white,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w500,
+        ),
+        subtitle2: theme.textTheme.headline5?.copyWith(
+          fontSize: 18,
+          color: AppColors.white,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+        ),
+        button: theme.textTheme.button?.copyWith(
+          fontSize: 14,
+          color: AppColors.white,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w500,
+        ),
+        caption: theme.textTheme.caption?.copyWith(
+          fontSize: 34,
+          color: AppColors.white,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w700,
+        ),
+        bodyText1: theme.textTheme.bodyText1?.copyWith(
+          color: AppColors.lightGrey,
+          fontSize: 11,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+        ),
+        bodyText2: theme.textTheme.bodyText2?.copyWith(
+          color: AppColors.white,
+          fontSize: 11,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+        ),
+      )
+          .apply(fontFamily: 'Montserrat'),
+      buttonTheme: theme.buttonTheme.copyWith(
+        minWidth: 50,
+        buttonColor: AppColors.red,
+      ), bottomAppBarTheme: BottomAppBarTheme(color: AppColors.black), colorScheme: theme.colorScheme.copyWith(secondary: AppColors.red).copyWith(background: AppColors.black).copyWith(error: AppColors.red),
     );
   }
 }

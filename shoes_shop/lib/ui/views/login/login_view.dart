@@ -16,7 +16,6 @@ class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
 
   final TextEditingController _controllerUser = TextEditingController();
-
   final TextEditingController _controllerPass = TextEditingController();
 
   @override
@@ -67,6 +66,7 @@ class LoginView extends StatelessWidget {
                                       _controllerPass.text);
                                   buildToast(model.errorMessage);
                                   if (loginSuccess) {
+                                    // ignore: use_build_context_synchronously
                                     Navigator.pushNamed(
                                         context, RoutePaths.home);
                                   }

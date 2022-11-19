@@ -9,6 +9,7 @@ import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/already_have_an_account_acheck.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
 import 'package:shoes_shop/ui/views/register/components/register_header.dart';
+import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -43,7 +44,6 @@ class _RegisterViewState extends State<RegisterView> {
                       controllerUser: _controllerUser,
                       controllerPass: _controllerPass,
                       controllerRePass: _controllerRePass,
-                      validationMessage: model.errorMessage,
                     ),
                     model.state == ViewState.Busy
                         ? const CircularProgressIndicator()
@@ -63,9 +63,11 @@ class _RegisterViewState extends State<RegisterView> {
                                     _controllerUser.text,
                                     _controllerPass.text,
                                     _controllerRePass.text);
+                                buildToast(model.errorMessage);
                                 if (registerSuccess) {
+                                  // ignore: use_build_context_synchronously
                                   Navigator.pushNamed(
-                                      context, RoutePaths.insertUser);
+                                      context, RoutePaths.insertUser, arguments: _controllerUser.text);
                                 }
                               },
                             ),

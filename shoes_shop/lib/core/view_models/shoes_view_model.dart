@@ -370,7 +370,7 @@ class ShoesViewModel extends BaseViewModel {
           s.s46! <= 0 && title == "46" ||
           s.s47! <= 0 && title == "47" ||
           s.s48! <= 0 && title == "48") {
-        return _color = AppColors.lightGray;
+        return _color = AppColors.lightGrey;
       } else {
         return _color = AppColors.white;
       }

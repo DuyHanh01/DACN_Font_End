@@ -17,10 +17,10 @@ class ProfileView extends StatelessWidget {
     return BaseView<UserViewModel>(
         onModelReady: (model) => model.getUser(account.accountid),
         builder: (BuildContext context, UserViewModel model, Widget? child) =>
-            const Scaffold(
-              body: Body(),
+            Scaffold(
+              body: Body(userViewModel:model),
               bottomNavigationBar:
-                  CustomBottomNavBar(selectedMenu: MenuState.profile),
+                  const CustomBottomNavBar(selectedMenu: MenuState.profile),
             ));
   }
 }

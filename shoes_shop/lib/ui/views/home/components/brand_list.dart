@@ -51,8 +51,8 @@ class _HomeBrandListState extends State<HomeBrandList> {
                                     width: 70,
                                     decoration: BoxDecoration(
                                       color: currentSelected == i
-                                          ? AppColors.darkGray
-                                          : AppColors.lightGray,
+                                          ? AppColors.darkGrey
+                                          : AppColors.lightGrey,
                                       borderRadius: BorderRadius.circular(15),
                                       image: DecorationImage(
                                         image: const AssetImage(
@@ -74,7 +74,7 @@ class _HomeBrandListState extends State<HomeBrandList> {
                                         width: 24,
                                         color: currentSelected == i
                                             ? Colors.white
-                                            : AppColors.lightGray),
+                                            : AppColors.lightGrey),
                                   ),
                                   const SizedBox(height: 5),
                                   Text(

@@ -57,7 +57,7 @@ class ListComment extends StatelessWidget {
                                     fontWeight: FontWeight.w600)),
                             Text(model.cmt![i]!.createdate.toString(),
                                 style: shoesTextStyle.copyWith(
-                                    color: AppColors.darkGray)),
+                                    color: AppColors.darkGrey)),
                           ],
                         ),
                       ],

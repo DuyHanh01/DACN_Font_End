@@ -10,8 +10,10 @@ import 'package:shoes_shop/ui/views/user/components/user_header.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key, required this.userViewModel}) : super(key: key);
+  const Body({Key? key, required this.userViewModel, required this.username})
+      : super(key: key);
   final UserViewModel userViewModel;
+  final String username;
 
   @override
   State<Body> createState() => _BodyViewState();
@@ -21,7 +23,6 @@ class _BodyViewState extends State<Body> {
   final TextEditingController _controllerFirstName = TextEditingController();
   final TextEditingController _controllerLastName = TextEditingController();
   final TextEditingController _controllerPhone = TextEditingController();
-  final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerAddress = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,6 @@ class _BodyViewState extends State<Body> {
                   controllerFirstName: _controllerFirstName,
                   controllerLastName: _controllerLastName,
                   controllerAddress: _controllerAddress,
-                  controllerMail: _controllerEmail,
                   controllerPhone: _controllerPhone,
                 ),
                 widget.userViewModel.state == ViewState.Busy
@@ -56,19 +56,21 @@ class _BodyViewState extends State<Body> {
                             primary: AppColors.primaryColor,
                             onPrimary: AppColors.white,
                           ),
-                          child: const Text('Confirm', style: signInSignUpStyle),
+                          child:
+                              const Text('Confirm', style: signInSignUpStyle),
                           onPressed: () async {
-                            var suerSuccess =
+                            var userSuccess =
                                 await widget.userViewModel.insertUser(
                               register.accountid!,
                               _controllerFirstName.text,
                               _controllerLastName.text,
                               _controllerPhone.text,
-                              _controllerEmail.text,
+                              widget.username,
                               _controllerAddress.text,
                             );
                             buildToast(widget.userViewModel.errorMessage);
-                            if (suerSuccess) {
+                            if (userSuccess) {
+                              // ignore: use_build_context_synchronously
                               Navigator.pushNamed(context, RoutePaths.success);
                             }
                           },

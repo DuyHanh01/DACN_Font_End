@@ -7,29 +7,40 @@ const subHeaderStyle = TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500);
 const wellComeStyle = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w600,
-    color: AppColors.blackGray,
+    color: AppColors.blackGrey,
     shadows: <Shadow>[
       Shadow(
         offset: Offset(0, 5.0),
         blurRadius: 30.0,
-        color: AppColors.blackGray,
+        color: AppColors.blackGrey,
       )
     ]);
 
 const shoesTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
 
 const appBarTextStyle = TextStyle(
-  fontSize: 16.0,
-  fontWeight: FontWeight.w600,
-  color: AppColors.blackGray,
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blackGrey,
     shadows: <Shadow>[
       Shadow(
         offset: Offset(0, 5.0),
         blurRadius: 80.0,
         color: AppColors.primaryColor,
       )
-    ]
-);
+    ]);
+
+const appBarTextStyleDark = TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.white,
+    shadows: <Shadow>[
+      Shadow(
+        offset: Offset(0, 5.0),
+        blurRadius: 80.0,
+        color: AppColors.primaryColor,
+      )
+    ]);
 
 const hinTextStyle = TextStyle(
   fontSize: 16,
@@ -60,4 +71,4 @@ const dialogStyle = TextStyle(
     fontSize: 18.0, fontWeight: FontWeight.w500, color: AppColors.primaryColor);
 
 const dialogDescriptionStyle = TextStyle(
-    fontSize: 15.0, fontWeight: FontWeight.w500, color: AppColors.blackGray);
+    fontSize: 15.0, fontWeight: FontWeight.w500, color: AppColors.blackGrey);

@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
         ),
         SliverToBoxAdapter(child: SizedBox(height: size.height * 0.4)),
         SliverPadding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           sliver: SliverToBoxAdapter(
               child: SizedBox(
             height: 55,

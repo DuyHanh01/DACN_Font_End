@@ -9,19 +9,18 @@ class UserHeader extends StatelessWidget {
       required this.controllerFirstName,
       required this.controllerLastName,
       required this.controllerPhone,
-      required this.controllerMail,
       required this.controllerAddress})
       : super(key: key);
 
   final TextEditingController controllerFirstName;
   final TextEditingController controllerLastName;
   final TextEditingController controllerPhone;
-  final TextEditingController controllerMail;
   final TextEditingController controllerAddress;
 
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
+      UIHelper.verticalSpaceMedium(),
       const Text('Complete Profile', style: wellComeStyle),
       UIHelper.verticalSpaceMedium(),
       RegisterTextField(controllerFirstName, TextInputType.name, 'Enter your firstname'),
@@ -29,10 +28,9 @@ class UserHeader extends StatelessWidget {
           'Enter your lastname'),
       RegisterTextField(controllerPhone, TextInputType.phone,
           'Enter your phone'),
-      RegisterTextField(controllerMail, TextInputType.emailAddress,
-          'Enter your mail'),
       RegisterTextField(controllerAddress, TextInputType.streetAddress,
           'Enter your address'),
+      UIHelper.verticalSpaceMedium(),
     ]);
   }
 }
@@ -56,6 +54,7 @@ class RegisterTextField extends StatelessWidget {
         cursorColor: AppColors.primaryColor,
         controller: controller,
         keyboardType: textInputType,
+        style: shoesTextStyle.copyWith(fontSize: 16),
         decoration: InputDecoration(
             floatingLabelStyle:
                 const TextStyle(color: AppColors.primaryColor, fontSize: 13),
