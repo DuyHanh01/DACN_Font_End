@@ -33,29 +33,14 @@ class HomeView extends StatelessWidget {
                 FloatingActionButtonLocation.endDocked,
             floatingActionButton: Padding(
               padding: const EdgeInsets.symmetric(vertical: 70),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  FloatingActionButton(
-                    heroTag: "btn1",
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(RoutePaths.ui);
-                    },
-                    backgroundColor: AppColors.primaryColor.withOpacity(0.6),
-                    child: const Icon(Icons.image_search,
-                        color: AppColors.secondaryColor),
-                  ),
-                  const SizedBox(height: 10),
-                  FloatingActionButton(
-                    heroTag: "btn2",
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(RoutePaths.ui);
-                    },
-                    backgroundColor: AppColors.primaryColor.withOpacity(0.6),
-                    child: const Icon(Icons.image_search,
-                        color: AppColors.secondaryColor),
-                  ),
-                ],
+              child: FloatingActionButton(
+                heroTag: "btn1",
+                onPressed: () {
+                  Navigator.of(context).pushNamed(RoutePaths.ui);
+                },
+                backgroundColor: AppColors.primaryColor.withOpacity(0.6),
+                child: const Icon(Icons.image_search,
+                    color: AppColors.secondaryColor),
               ),
             ),
             bottomNavigationBar:

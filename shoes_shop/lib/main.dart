@@ -6,6 +6,8 @@ import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/services/authentication_service.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/core/view_models/sizetable_view_model.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/locator.dart';
 import 'package:shoes_shop/ui/route/router.dart';
@@ -39,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: UserViewModel(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ShoesViewModel(),
         ),
       ],
       child: MaterialApp(

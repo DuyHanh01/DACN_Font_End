@@ -29,4 +29,6 @@ class SizeTableViewModel extends BaseViewModel {
     }
   }
 
+
+
 }

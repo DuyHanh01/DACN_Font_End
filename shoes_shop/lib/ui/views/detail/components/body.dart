@@ -7,6 +7,7 @@ import 'package:shoes_shop/ui/views/comment/comment_view.dart';
 import 'package:shoes_shop/ui/views/detail/components/counter.dart';
 import 'package:shoes_shop/ui/views/detail/components/rating_detail.dart';
 import 'package:shoes_shop/ui/views/detail/components/select_size.dart';
+import 'package:shoes_shop/ui/views/detail/components/shoes_purchased_together_list.dart';
 
 class Body extends StatelessWidget {
   const Body(
@@ -134,9 +135,6 @@ class Body extends StatelessWidget {
           child: SelectSize(shoes: shoes, shoesViewModel: model),
         ),
         const SliverToBoxAdapter(
-          child: SizedBox(height: 10),
-        ),
-        const SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
@@ -158,6 +156,30 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 10),
+        ),
+        model.shoesPurchasedTogether!.isNotEmpty
+            ? SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        'Shoes purchased together',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 14),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    ShoesPurchasedTogether(model: model),
+                  ],
+                ),
+              )
+            : const SliverToBoxAdapter(
+                child: SizedBox(width: 1,),
+              ),
         const SliverToBoxAdapter(
           child: SizedBox(height: 10),
         ),

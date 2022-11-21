@@ -16,6 +16,9 @@ class ShoesService {
   List<Shoes?>? _shoes = <Shoes>[];
   List<Shoes?>? get shoes => _shoes;
 
+  List<Shoes?>? _shoesPurchasedTogether = <Shoes>[];
+  List<Shoes?>? get shoesPurchasedTogether => _shoesPurchasedTogether;
+
   List<Shoes?>? _saleshoes = <Shoes>[];
   List<Shoes?>? get saleshoes => _saleshoes;
 
@@ -61,6 +64,22 @@ class ShoesService {
       }
     }else{
       _saleshoes = [];
+    }
+
+    return isSuccessShoes ?? false;
+  }
+
+  Future<bool> getShoesPurchasedTogether(int shoeid, int accountid) async {
+    var fetchedShoes = await _api.getShoesPurchasedTogether(shoeid, accountid);
+    var isSuccessShoes = fetchedShoes.isSuccess;
+
+    message = fetchedShoes.Message!;
+    if (isSuccessShoes != null && isSuccessShoes) {
+      if (fetchedShoes.data != null) {
+        _shoesPurchasedTogether = fetchedShoes.data;
+      }
+    }else{
+      _shoesPurchasedTogether = [];
     }
 
     return isSuccessShoes ?? false;

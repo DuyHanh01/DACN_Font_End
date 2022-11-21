@@ -62,11 +62,11 @@ class _BodyViewState extends State<Body> {
                             var userSuccess =
                                 await widget.userViewModel.insertUser(
                               register.accountid!,
-                              _controllerFirstName.text,
-                              _controllerLastName.text,
-                              _controllerPhone.text,
-                              widget.username,
-                              _controllerAddress.text,
+                              _controllerFirstName.text.trim(),
+                              _controllerLastName.text.trim(),
+                              _controllerPhone.text.trim(),
+                              widget.username.trim(),
+                              _controllerAddress.text.trim(),
                             );
                             buildToast(widget.userViewModel.errorMessage);
                             if (userSuccess) {

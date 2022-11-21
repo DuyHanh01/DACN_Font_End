@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/core/view_models/sizetable_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 class CartCounter extends StatelessWidget {
-  const CartCounter({Key? key, required this.cart, required this.cartViewModel})
+  const CartCounter({Key? key, required this.cart, required this.cartViewModel, required this.sizeTableViewModel})
       : super(key: key);
 
   final Cart cart;
   final CartViewModel cartViewModel;
+  final SizeTableViewModel sizeTableViewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +70,7 @@ class CartCounter extends StatelessWidget {
         buildOutlineButton(
             icon: Icons.add,
             press: () {
-              if (cart.quantity == 5) {
+              if (cart.quantity == 5 ) {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: const Text('Liên hệ shop để order!'),

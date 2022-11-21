@@ -20,7 +20,7 @@ class DetailView extends StatelessWidget {
     final account = Provider.of<Account>(context);
     Size size = MediaQuery.of(context).size;
     return BaseView<ShoesViewModel>(
-        onModelReady: (model) => model.getAllShoes(account.accountid),
+        onModelReady: (model) => model.getShoesPurchasedTogether(shoes.shoeid, account.accountid),
         builder: (BuildContext context, ShoesViewModel model, Widget? chill) =>
             Scaffold(
               appBar: buildAppBar(context, shoes.shoename),

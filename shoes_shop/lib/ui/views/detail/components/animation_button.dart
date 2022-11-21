@@ -28,8 +28,9 @@ class _ButtonStatesState extends State<ButtonStates> {
 
   @override
   Widget build(BuildContext context) {
-    final buttonWidth = MediaQuery.of(context).size.width;
 
+
+    final buttonWidth = MediaQuery.of(context).size.width;
     // update the UI depending on below variable values
     final isInit = isAnimating || state == ButtonState.init;
     final isDone = state == ButtonState.completed;
@@ -71,19 +72,19 @@ class _ButtonStatesState extends State<ButtonStates> {
             state = ButtonState.submitting;
           });
           //await 2 sec // you need to implement your server response here.
-          if(widget.cartViewModel.addCart(context, widget.shoesViewModel, widget.cartViewModel, widget.shoes)==true){
-            await Future.delayed(const Duration(seconds: 2));
+          if(widget.cartViewModel.addCart(context, widget.shoesViewModel, widget.cartViewModel, widget.shoes, widget.shoesViewModel.number)==true){
+            await Future.delayed(const Duration(seconds: 1));
             setState(() {
               state = ButtonState.completed;
             });
           }else{
-            await Future.delayed(const Duration(seconds: 2));
+            await Future.delayed(const Duration(seconds: 1));
             setState(() {
               state = ButtonState.cancel;
             });
           }
 
-          await Future.delayed(const Duration(seconds: 2));
+          await Future.delayed(const Duration(seconds: 1));
           setState(() {
             state = ButtonState.init;
           });
@@ -118,4 +119,11 @@ class _ButtonStatesState extends State<ButtonStates> {
       ),
     );
   }
+
+  @override
+  void dispose(){
+    ButtonState.init;
+    super.dispose();
+  }
+
 }

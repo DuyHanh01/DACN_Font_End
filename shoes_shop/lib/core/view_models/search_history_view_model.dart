@@ -16,8 +16,7 @@ class SearchHistoryViewModel extends BaseViewModel {
   Future<bool> insertSearchHistory(SearchHistory searchHistory) async {
     setState(ViewState.Busy);
 
-    var success =
-        await _searchHistoryService.insertSearchHistory(searchHistory);
+    var success = await _searchHistoryService.insertSearchHistory(searchHistory);
     String message = _searchHistoryService.message;
 
     if (!success) {
@@ -34,8 +33,7 @@ class SearchHistoryViewModel extends BaseViewModel {
   Future<bool> getShoesSearch(int accountid) async {
     setState(ViewState.Busy);
 
-    var success =
-    await _searchHistoryService.getShoesSearch(accountid);
+    var success = await _searchHistoryService.getShoesSearch(accountid);
     String message = _searchHistoryService.message;
 
     if (!success) {

@@ -13,20 +13,6 @@ class LoginViewModel extends BaseViewModel {
 
   String errorMessage = '';
 
-  bool isEmail(String email) {
-    String p =
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-    RegExp regExp = RegExp(p);
-    return regExp.hasMatch(email);
-  }
-
-  bool checkPassLength(String password){
-    if(password.length>=8&&password.length<=30){
-      return true;
-    }
-    return false;
-  }
-
   bool checkEmailPassNull(String email, String password){
     if(email=="" || password==""){
       return false;
@@ -41,36 +27,28 @@ class LoginViewModel extends BaseViewModel {
 
   Future<bool> login(String username, String password) async {
     setState(ViewState.Busy);
-
-    var passWord = generateMd5(password);
-    var account = Account(0, username, null, passWord,null, 0);
-    var success = await _authenticationService.login(account);
-    String message = _authenticationService.message;
-
     if(!checkEmailPassNull(username,password)){
       errorMessage = "Vui lòng điền đầy đủ thông tin";
       setState(ViewState.Idle);
       return false;
     }
-    if(!isEmail(username)){
-      errorMessage = "Email không hợp lệ";
-      setState(ViewState.Idle);
-      return false;
+    else{
+      var passWord = generateMd5(password);
+      var account = Account(0, username, null, passWord,null, 0);
+      var success = await _authenticationService.login(account);
+      String message = _authenticationService.message;
+
+      if (!success) {
+        errorMessage = message;
+        //"Tài khoản hoặc mật khẩu không chính xác";
+        setState(ViewState.Idle);
+        return false;}
+      else{
+        errorMessage = message;
+        setState(ViewState.Idle);
+        return success;
+      }
     }
-    if(checkPassLength(password)){
-      errorMessage = "Mật khẩu từ 8->30 ký tự";
-      setState(ViewState.Idle);
-      return false;
-    }if (!success) {
-      errorMessage = message;
-      //"Tài khoản hoặc mật khẩu không chính xác";
-      setState(ViewState.Idle);
-      return false;
-    }
-    if(success){
-      errorMessage = message;
-    }
-    setState(ViewState.Idle);
-    return success;
+
   }
 }

@@ -13,7 +13,7 @@ import 'package:shoes_shop/ui/widgets/default_button.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class Body extends StatefulWidget {
-  Body({Key? key}) : super(key: key);
+  const Body({Key? key}) : super(key: key);
 
   @override
   State<Body> createState() => _BodyState();
@@ -134,65 +134,20 @@ class _BodyState extends State<Body> {
                       child: DefaultButton(
                           text: "Save",
                           press: () async {
+
                             String firstName = "";
                             String lastName = "";
                             String phone = "";
                             String email = "";
                             String address = "";
                             String avatar = "";
-                            if (_controllerFirstName.text != "") {
-                              firstName = _controllerFirstName.text;
-                            } else {
-                              firstName = userViewModel.users!.firstName!;
-                            }
-                            if (_controllerLastName.text != "") {
-                              lastName = _controllerLastName.text;
-                            } else {
-                              lastName = userViewModel.users!.lastName!;
-                            }
-                            if (_controllerPhone.text != "") {
-                              phone = _controllerPhone.text;
-                            } else {
-                              phone = userViewModel.users!.phone!;
-                            }
-                            if (_controllerEmail.text != "") {
-                              email = _controllerEmail.text;
-                            } else {
-                              email = userViewModel.users!.email!;
-                            }
-                            if (_controllerAddress.text != "") {
-                              address = _controllerAddress.text;
-                            } else {
-                              address = userViewModel.users!.address!;
-                            }
 
-                            final res = await cloudinary
-                                .uploadFile(CloudinaryFile.fromFile(
-                              _image!.path,
-                              folder: 'ShoeStore',
-                              context: {
-                                'alt': 'Hello',
-                                'caption': 'An example image',
-                              },
-                            ));
+                            var isSuccess =  await userViewModel.editProfile(firstName, lastName, phone, email, address, avatar, _controllerFirstName, _controllerLastName, _controllerPhone, _controllerEmail, _controllerAddress, userViewModel, _image, cloudinary);
 
-                            if (_image != null) {
-                              avatar = res.secureUrl;
-                            } else {
-                              avatar = userViewModel.users!.avatar!;
-                            }
-                            var loginSuccess = await userViewModel.updateUser(
-                                userViewModel.users!.accountid!,
-                                userViewModel.users!.userid!,
-                                firstName,
-                                lastName,
-                                phone,
-                                email,
-                                address,
-                                avatar);
                             buildToast(userViewModel.errorMessage);
 
-                            if (loginSuccess) {
+                            if ( isSuccess) {
+                              // ignore: use_build_context_synchronously
                               Navigator.pushNamed(context, RoutePaths.profile);
                             }
                           },

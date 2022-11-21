@@ -1,6 +1,7 @@
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/orderdetails.dart';
 import 'package:shoes_shop/core/models/rating.dart';
+import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/services/orderdetails_service.dart';
 import 'package:shoes_shop/core/view_models/base_view_model.dart';
 import 'package:shoes_shop/locator.dart';
@@ -46,5 +47,12 @@ class OrderDetailsViewModel extends BaseViewModel {
       setState(ViewState.Idle);
       return success;
     }
+  }
+
+  bool checkShoeName(OrderDetails? shoes) {
+    if (shoes!.shoename!.length > 26) {
+      return true;
+    }
+    return false;
   }
 }

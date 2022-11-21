@@ -19,8 +19,10 @@ class SuggestedProducts extends StatelessWidget {
         builder: (BuildContext context, SearchHistoryViewModel model,
                 Widget? child) =>
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: 135,
+              child:
+              model.shoesSearch!.isNotEmpty ?
+              SizedBox(
+                height: 145,
                 child: model.state == ViewState.Busy
                     ? const CircleDelay()
                     : ListView.builder(
@@ -40,7 +42,7 @@ class SuggestedProducts extends StatelessWidget {
                           );
                         },
                       ),
-              ),
+              ):null,
             ));
   }
 }

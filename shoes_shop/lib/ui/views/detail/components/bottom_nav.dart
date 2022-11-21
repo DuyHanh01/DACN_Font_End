@@ -20,6 +20,7 @@ class BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: 60,
       width: double.infinity,
@@ -55,7 +56,7 @@ class BottomNav extends StatelessWidget {
           ),
           const SizedBox(width: 35),
           Expanded(
-            child: ButtonStates(cartViewModel: cartViewModel, shoes: shoes, shoesViewModel: shoesViewModel,),
+            child: ButtonStates(cartViewModel: cartViewModel, shoes: shoes, shoesViewModel: shoesViewModel),
           ),
         ],
       ),

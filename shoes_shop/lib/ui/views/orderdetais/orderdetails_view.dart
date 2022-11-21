@@ -14,6 +14,7 @@ import 'package:shoes_shop/ui/widgets/app_bar.dart';
 import 'package:shoes_shop/ui/widgets/circle_delay.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
+// ignore: must_be_immutable
 class OrderDetailsView extends StatelessWidget {
   final Order order;
   OrderDetailsView({Key? key, required this.order}) : super(key: key);
@@ -102,48 +103,56 @@ class OrderDetailsView extends StatelessWidget {
                             },
                             child: Card(
                               color: AppColors.white,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Image.network(
-                                        model.orderDetails![index]!.image1!,
-                                        height: 100,
-                                        width: 100,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 95,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      image: DecorationImage(
+                                        image: NetworkImage(model.orderDetails![index]!.image1!),
+                                        fit: BoxFit.cover,
+                                        colorFilter: ColorFilter.mode(
+                                          AppColors.black.withOpacity(.05),
+                                          BlendMode.darken,
+                                        ),
                                       ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                              model.orderDetails![index]!
-                                                  .shoename!,
-                                              style: orderTextStyle.copyWith(
-                                                  color: AppColors.primaryColor,
-                                                  fontSize: 15)),
-                                          const SizedBox(height: 3),
-                                          buildTextSpan(
-                                              'Size: ',
-                                              model.orderDetails![index]!.size
-                                                  .toString()),
-                                          const SizedBox(height: 2),
-                                          buildTextSpan('Price: ',
-                                              '\$${model.orderDetails![index]!.price}'),
-                                          const SizedBox(height: 2),
-                                          buildTextSpan(
-                                              'Quantity: ',
-                                              model.orderDetails![index]!
-                                                  .quantity
-                                                  .toString()),
-                                          const SizedBox(height: 2),
-                                          buildTextSpan('Total: ',
-                                              '\$${model.orderDetails![index]!.total}'),
-                                        ],
-                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      const SizedBox(height: 3),
+                                      model.checkShoeName(model.orderDetails![index]!)
+                                          ? Text(
+                                          '${model.orderDetails![index]!.shoename!.substring(0, 26)}...',
+                                          style: shoesTextStyle.copyWith(color: AppColors.primaryColor, fontSize: 13))
+                                          : Text(model.orderDetails![index]!.shoename!,
+                                          style: shoesTextStyle.copyWith(color: AppColors.primaryColor, fontSize: 13)),
+                                      const SizedBox(height: 3),
+                                      buildTextSpan(
+                                          'Size: ',
+                                          model.orderDetails![index]!.size
+                                              .toString()),
+                                      const SizedBox(height: 3),
+                                      buildTextSpan('Price: ',
+                                          '\$${model.orderDetails![index]!.price}'),
+                                      const SizedBox(height: 3),
+                                      buildTextSpan(
+                                          'Quantity: ',
+                                          model.orderDetails![index]!
+                                              .quantity
+                                              .toString()),
+                                      const SizedBox(height: 3),
+                                      buildTextSpan('Total: ',
+                                          '\$${model.orderDetails![index]!.total}'),
+                                      const SizedBox(height: 3),
                                     ],
-                                  )),
+                                  ),
+                                ],
+                              ),
                             ));
                       }),
             ));

@@ -824,5 +824,34 @@ class Api {
     }
   }
 
+  //get shoes purchased together
+  Future<BaseResult<Shoes>> getShoesPurchasedTogether(int shoeid, int accountid) async {
+    var shoes = <Shoes>[];
+    token = await checkToken(ExpiredDateTime, token, Username, Password);
+    final response = await client.get(
+      Uri.parse('$endpoint/Apriori/$shoeid/$accountid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'bearer $token',
+      },
+    );
+
+    var s;
+
+    if (response.statusCode == 200) {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      List<dynamic> data = s.data;
+
+      for (var shoe in data) {
+        shoes.add(Shoes.fromJson(shoe));
+      }
+
+      return BaseResult(s.isSuccess, s.status, s.Message, shoes);
+    } else {
+      s = BaseResult<dynamic>.fromJson(jsonDecode(response.body));
+      return BaseResult(s.isSuccess, s.status, s.Message, []);
+    }
+  }
+
 
 }

@@ -29,6 +29,7 @@ class ShoesViewModel extends BaseViewModel {
 
   Shoes? get shoe => _shoesService.shoe;
   List<Shoes?>? get shoes => _shoesService.shoes;
+  List<Shoes?>? get shoesPurchasedTogether => _shoesService.shoesPurchasedTogether;
   List<Shoes?>? get saleshoes => _shoesService.saleshoes;
   List<Shoes?>? get brandshoes => _shoesService.brandshoes;
 
@@ -114,6 +115,23 @@ class ShoesViewModel extends BaseViewModel {
     var accountId = accountid;
     var saleId = saleid;
     var success = await _shoesService.getAllShoesBySaleId(accountId, saleId);
+    String message = _shoesService.message;
+
+    if (!success) {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return false;
+    } else {
+      errorMessage = message;
+      setState(ViewState.Idle);
+      return success;
+    }
+  }
+
+  Future<bool> getShoesPurchasedTogether(int shoeid, int accountid) async {
+    setState(ViewState.Busy);
+
+    var success = await _shoesService.getShoesPurchasedTogether(shoeid, accountid);
     String message = _shoesService.message;
 
     if (!success) {

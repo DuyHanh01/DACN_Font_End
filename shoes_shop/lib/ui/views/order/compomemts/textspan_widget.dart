@@ -6,7 +6,7 @@ Widget buildTextSpan(String textSpan, String text) {
       children: <TextSpan>[
         TextSpan(
           text: textSpan,
-          style: orderTextStyle,
+          style: shoesTextStyle,
         ),
         TextSpan(text: text, style: orderTextSpanStyle),
       ],
