@@ -13,13 +13,14 @@ class CommentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<CommentViewModel>(
         onModelReady: (model) => model.getCommentByShoesId(shoes.shoeid),
-    builder: (BuildContext context, CommentViewModel model,
-    Widget? child) => Column(
-      children: [
-        ListComment(shoes: shoes, model: model),
-        const SizedBox(height: 10),
-        CommentBox(shoes: shoes, model: model)
-      ],
-    ));
+        builder:
+            (BuildContext context, CommentViewModel model, Widget? child) =>
+                Column(
+                  children: [
+                    ListComment(shoes: shoes, model: model),
+                    const SizedBox(height: 10),
+                    CommentBox(shoes: shoes, model: model)
+                  ],
+                ));
   }
 }

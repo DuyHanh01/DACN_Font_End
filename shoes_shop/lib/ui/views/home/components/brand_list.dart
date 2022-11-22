@@ -24,9 +24,11 @@ class _HomeBrandListState extends State<HomeBrandList> {
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 90,
-                child: model.state == ViewState.Busy
-                    ? const CircleDelay()
-                    : ListView.builder(
+                child:
+                // model.state == ViewState.Busy
+                //     ? const CircleDelay()
+                //     :
+                ListView.builder(
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(),
                         itemCount: model.brands?.length,

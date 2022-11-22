@@ -15,9 +15,11 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     model.sortOrder(model.orders);
-    return model.state == ViewState.Busy
-        ? const CircleDelay()
-        : ListView.builder(
+    return
+      // model.state == ViewState.Busy
+      //   ? const CircleDelay()
+      //   :
+    ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: model.orders!.length,
         itemBuilder: (BuildContext context, int index) {

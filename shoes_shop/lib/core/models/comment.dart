@@ -3,11 +3,11 @@ class Comment {
   int accountid;
   int shoeid;
   String content;
-  String? image;
+  String? avatar;
   String? createdate;
   String? username;
 
-  Comment(this.cmtid, this.accountid, this.shoeid, this.content, this.image,
+  Comment(this.cmtid, this.accountid, this.shoeid, this.content, this.avatar,
       this.createdate, this.username);
 
   Comment.fromJson(Map<String, dynamic> json)
@@ -15,7 +15,7 @@ class Comment {
         accountid = json['accountid'],
         shoeid = json['shoeid'],
         content = json['content'],
-        image = json['image'],
+        avatar = json['avatar'],
         createdate = json['createdate'],
         username = json['username'];
 
@@ -25,7 +25,7 @@ class Comment {
     data['accountid'] = accountid;
     data['shoeid'] = shoeid;
     data['content'] = content;
-    data['image'] = image;
+    data['avatar'] = avatar;
     data['createdate'] = createdate;
     data['username'] = username;
     return data;

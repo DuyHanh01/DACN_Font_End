@@ -30,7 +30,7 @@ class RegisterViewModel extends BaseViewModel {
     return regExp.hasMatch(value);
   }
 
-  bool checkEmailPassNull(String email, String password, String repassword){
+  bool checkNull(String email, String password, String repassword){
     if(email == "" || password == ""|| repassword == ""){
       return false;
     }
@@ -48,7 +48,7 @@ class RegisterViewModel extends BaseViewModel {
       String username, String password, String rePassword) async {
     setState(ViewState.Busy);
 
-    if(!checkEmailPassNull(username,password, rePassword)){
+    if(!checkNull(username,password, rePassword)){
       errorMessage = "Vui lòng điền đầy đủ thông tin";
       setState(ViewState.Idle);
       return false;
@@ -59,7 +59,7 @@ class RegisterViewModel extends BaseViewModel {
       return false;
     }
     else if(!validateStructure(password)){
-      errorMessage = "Mật khẩu bao gồm từ 8 -> 30 ký tự gồm chữ, số và in hoa chữ cái đầu";
+      errorMessage = "Mật khẩu từ 8 -> 30 ký tự bao gồm chữ, số và in hoa chữ cái đầu";
       setState(ViewState.Idle);
       return false;
     }

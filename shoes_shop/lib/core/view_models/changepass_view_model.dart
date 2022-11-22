@@ -17,6 +17,26 @@ class ChangePassViewModel extends BaseViewModel {
     return md5.convert(utf8.encode(input)).toString();
   }
 
+  bool validateStructure(String value){
+    String  pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,30}$';
+    RegExp regExp = RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
+  bool checkNull(String olPass, String pass, String rePass){
+    if(olPass == "" || pass == ""|| rePass == ""){
+      return false;
+    }
+    return true;
+  }
+
+  bool checkPassAndRePass(String pass, String rePass){
+    if(pass.compareTo(rePass) != 0){
+      return false;
+    }
+    return true;
+  }
+
   Future<bool> changePass(Account account) async {
     setState(ViewState.Busy);
 
@@ -26,17 +46,32 @@ class ChangePassViewModel extends BaseViewModel {
 
     var acc = Account(account.accountid, account.username, oldPass, passWord,rePass, 0);
 
-    var success = await _authenticationService.changePass(acc);
-    String message = _authenticationService.message;
-
-    if (!success) {
-      errorMessage = message;
+    if(!checkNull(account.Oldpassword!, account.password!, account.Repassword!)){
+      errorMessage = "Vui lòng điền đầy đủ thông tin";
       setState(ViewState.Idle);
       return false;
-    } else {
-      errorMessage = message;
+    }
+    else if(!validateStructure(account.password!)){
+      errorMessage = "Mật khẩu từ 8 -> 30 ký tự bao gồm chữ, số và in hoa chữ cái đầu";
       setState(ViewState.Idle);
-      return success;
+      return false;
+    }else if(!checkPassAndRePass(account.password!, account.Repassword!)){
+      errorMessage = "Mật khẩu không khớp";
+      setState(ViewState.Idle);
+      return false;
+    }else{
+      var success = await _authenticationService.changePass(acc);
+      String message = _authenticationService.message;
+
+      if (!success) {
+        errorMessage = message;
+        setState(ViewState.Idle);
+        return false;
+      } else {
+        errorMessage = message;
+        setState(ViewState.Idle);
+        return success;
+      }
     }
   }
 

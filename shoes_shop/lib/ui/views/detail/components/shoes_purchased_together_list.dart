@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/widgets/circle_delay.dart';
 import 'package:shoes_shop/ui/widgets/shoe_not_fav_item.dart';
 
@@ -23,9 +24,13 @@ class ShoesPurchasedTogether extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: GestureDetector(
-                    onTap: () {},
-                    child: ShoeNotFavItem(model: model, index: i, shoesList: model.shoesPurchasedTogether,)
-                  ),
+                      onTap: () => Navigator.pushNamed(
+                          context, RoutePaths.detailView,
+                          arguments: model.shoesPurchasedTogether![i]!),
+                      child: ShoeNotFavItem(
+                        model: model,
+                        shoes: model.shoesPurchasedTogether![i]!,
+                      )),
                 );
               },
             ),

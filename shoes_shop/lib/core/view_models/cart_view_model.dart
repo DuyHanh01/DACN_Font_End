@@ -80,8 +80,8 @@ class CartViewModel extends BaseViewModel {
     setState(ViewState.Idle);
   }
 
-  bool addCart(BuildContext context, ShoesViewModel shoesViewModel,
-      CartViewModel cartViewModel, Shoes shoes, int number) {
+  Future<bool> addCart(BuildContext context, ShoesViewModel shoesViewModel,
+      CartViewModel cartViewModel, Shoes shoes, int number) async {
     if (shoesViewModel.size == 0) {
       Fluttertoast.showToast(
           msg: "Vui lòng chọn size",

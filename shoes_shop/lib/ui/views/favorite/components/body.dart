@@ -15,32 +15,34 @@ class Body extends StatelessWidget {
     List<Shoes> list = [];
     model.listFav(list, model);
 
-    return model.state == ViewState.Busy
-        ? const SliverToBoxAdapter(
-            child: CircleDelay()
-          )
-        : SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200.0,
-                mainAxisSpacing: 5,
-                crossAxisSpacing: 3,
-                childAspectRatio: .7,
+    return
+        // model.state == ViewState.Busy
+        //   ? const SliverToBoxAdapter(
+        //       child: CircleDelay()
+        //     )
+        //   :
+        SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      sliver: SliverGrid(
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200.0,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 3,
+          childAspectRatio: .7,
+        ),
+        delegate: SliverChildBuilderDelegate(
+          (ctx, i) {
+            return GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed(
+                RoutePaths.detailView,
+                arguments: list[i],
               ),
-              delegate: SliverChildBuilderDelegate(
-                (ctx, i) {
-                  return GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(
-                      RoutePaths.detailView,
-                      arguments: list[i],
-                    ),
-                    child: ShoeItem(model: model, listFav: list, index: i),
-                  );
-                },
-                childCount: list.length,
-              ),
-            ),
-          );
+              child: ShoeItem(model: model, listFav: list, index: i),
+            );
+          },
+          childCount: list.length,
+        ),
+      ),
+    );
   }
 }

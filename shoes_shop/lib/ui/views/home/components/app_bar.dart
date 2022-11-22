@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
@@ -17,16 +16,19 @@ AppBar appBar(BuildContext context) {
     ),
     actions: [
       Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Badge(
-              badgeContent: Text(cartViewModel.itemCount.toString(), style: numberSoppingCart),
-              badgeColor: AppColors.red,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.shopping_cart_outlined,
-                  size: 25,
+              label: Text(cartViewModel.itemCount.toString(), style: numberSoppingCart),
+              backgroundColor: AppColors.red,
+              child: Padding(
+                padding: const EdgeInsets.only(top:10),
+                child: GestureDetector(
+                  child: const Icon(
+                    Icons.shopping_cart_outlined,
+                    size: 25,
+                  ),
+                  onTap: () {Navigator.pushNamed(context, RoutePaths.cart);},
                 ),
-                onPressed: () {Navigator.pushNamed(context, RoutePaths.cart);},
               ))),
       const SizedBox(width: 15)
     ],

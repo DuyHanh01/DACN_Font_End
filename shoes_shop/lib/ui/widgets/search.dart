@@ -32,8 +32,7 @@ class Search extends StatelessWidget {
     }
 
     Account account = Provider.of<Account>(context);
-    SearchHistoryViewModel searchHistoryViewModel =
-        Provider.of<SearchHistoryViewModel>(context);
+    SearchHistoryViewModel searchHistoryViewModel = Provider.of<SearchHistoryViewModel>(context);
 
     return SliverToBoxAdapter(
       child: Autocomplete<Shoes>(
@@ -160,8 +159,8 @@ class Search extends StatelessWidget {
                                 SearchHistory(null, account.accountid, search);
                             await searchHistoryViewModel
                                 .insertSearchHistory(searchHistory);
-                            Navigator.of(context)
-                                .pushNamed(RoutePaths.searchHistory);
+                            // ignore: use_build_context_synchronously
+                            Navigator.of(context).pushNamed(RoutePaths.searchHistory);
                           },
                           icon: const Icon(
                             Icons.search_rounded,

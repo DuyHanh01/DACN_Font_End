@@ -7,13 +7,8 @@ import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
 class ShoeNotFavItem extends StatelessWidget {
   final dynamic model;
-  final int index;
-  final List<Shoes?>? shoesList;
-  const ShoeNotFavItem(
-      {Key? key,
-      required this.model,
-      required this.index,
-      required this.shoesList})
+  final Shoes shoes;
+  const ShoeNotFavItem({Key? key, required this.model, required this.shoes})
       : super(key: key);
 
   @override
@@ -33,7 +28,7 @@ class ShoeNotFavItem extends StatelessWidget {
                       topRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(shoesList![index]!.image1),
+                      image: NetworkImage(shoes.image1),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         AppColors.black.withOpacity(.05),
@@ -43,7 +38,7 @@ class ShoeNotFavItem extends StatelessWidget {
                   ),
                   width: 120,
                 ),
-                model.checkShoeNew(shoesList![index])
+                model.checkShoeNew(shoes)
                     ? Positioned(
                         top: -10,
                         left: 0,
@@ -54,7 +49,7 @@ class ShoeNotFavItem extends StatelessWidget {
                         ),
                       )
                     : const Text(''),
-                model.checkTimeSale(shoesList![index])
+                model.checkTimeSale(shoes)
                     ? Positioned(
                         top: -8,
                         right: 0,
@@ -69,7 +64,7 @@ class ShoeNotFavItem extends StatelessWidget {
                                 top: 10,
                                 right: 6,
                                 child: Text(
-                                  '${shoesList![index]!.percent?.round()}%',
+                                  '${shoes.percent?.round()}%',
                                   style: shoesTextStyle.copyWith(fontSize: 10),
                                 ))
                           ],
@@ -83,39 +78,39 @@ class ShoeNotFavItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                shoesList![index]!.shoename.length > 18
-                    ? Text('${shoesList![index]!.shoename.substring(0, 18)}...',
+                shoes.shoename.length > 18
+                    ? Text('${shoes.shoename.substring(0, 18)}...',
                         style: shoesTextStyle.copyWith(fontSize: 10))
-                    : Text(shoesList![index]!.shoename,
+                    : Text(shoes.shoename,
                         style: shoesTextStyle.copyWith(fontSize: 10)),
                 const SizedBox(height: 2),
-                model.checkTimeSale(shoesList![index])
+                model.checkTimeSale(shoes)
                     ? Text.rich(
                         TextSpan(
                           text: '',
                           children: <TextSpan>[
                             TextSpan(
-                              text: '\$${shoesList![index]!.saleprice}  ',
+                              text: '\$${shoes.saleprice}  ',
                               style: shoesSalePrice.copyWith(fontSize: 10),
                             ),
                             TextSpan(
-                                text: '\$${shoesList![index]!.price}',
+                                text: '\$${shoes.price}',
                                 style: shoesPriceOld.copyWith(fontSize: 10)),
                           ],
                         ),
                       )
                     : Text(
-                        '\$${shoesList![index]!.price}',
+                        '\$${shoes.price}',
                         style: shoesTextStyle.copyWith(fontSize: 10),
                       ),
                 const SizedBox(height: 2),
-                model.checkPurchased(shoesList![index])
+                model.checkPurchased(shoes)
                     ? Text.rich(
                         TextSpan(
                           text: 'Purchased: ', // default text style
                           children: <TextSpan>[
                             TextSpan(
-                                text: '${shoesList![index]!.purchased}',
+                                text: '${shoes.purchased}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 10)),
                           ],
@@ -133,7 +128,7 @@ class ShoeNotFavItem extends StatelessWidget {
                         ),
                       ),
                 const SizedBox(height: 2),
-                RatingHome(shoes: shoesList![index]!),
+                RatingHome(shoes: shoes),
                 UIHelper.verticalSpaceVerySmall(),
               ],
             ),

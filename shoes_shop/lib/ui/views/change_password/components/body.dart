@@ -36,10 +36,7 @@ class Body extends StatelessWidget {
             child: DefaultButton(
                 text: "Confirm",
                 press: () async {
-                  String Oldpassword = controllerCurrentPass.text;
-                  String password = controllerNewPass.text;
-                  String Repassword = controllerReNewPass.text;
-                  var acc = Account(account.accountid, account.username,Oldpassword, password, Repassword, 0);
+                  var acc = Account(account.accountid, account.username,controllerCurrentPass.text.trim(), controllerNewPass.text.trim(), controllerReNewPass.text.trim(), 0);
                   await model.changePass(acc);
                   buildToast(model.errorMessage);
                 },

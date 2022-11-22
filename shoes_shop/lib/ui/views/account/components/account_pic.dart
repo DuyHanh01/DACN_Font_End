@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
 
+// ignore: must_be_immutable
 class AccountPic extends StatefulWidget {
   XFile? image;
   AccountPic({

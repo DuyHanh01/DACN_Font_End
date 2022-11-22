@@ -1,9 +1,9 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/detail/components/animation_button.dart';
 
@@ -20,7 +20,6 @@ class BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: 60,
       width: double.infinity,
@@ -39,24 +38,29 @@ class BottomNav extends StatelessWidget {
         children: [
           const SizedBox(width: 10),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Badge(
-                badgeContent: Text('${cartViewModel.itemCount}',
-                    style: numberSoppingCart),
-                badgeColor: AppColors.red,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.shopping_cart_outlined,
-                    size: 26,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/cart');
-                  },
-                )),
-          ),
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Badge(
+                  label: Text(cartViewModel.itemCount.toString(),
+                      style: numberSoppingCart),
+                  backgroundColor: AppColors.red,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: GestureDetector(
+                      child: const Icon(
+                        Icons.shopping_cart_outlined,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutePaths.cart);
+                      },
+                    ),
+                  ))),
           const SizedBox(width: 35),
           Expanded(
-            child: ButtonStates(cartViewModel: cartViewModel, shoes: shoes, shoesViewModel: shoesViewModel),
+            child: ButtonStates(
+                cartViewModel: cartViewModel,
+                shoes: shoes,
+                shoesViewModel: shoesViewModel),
           ),
         ],
       ),

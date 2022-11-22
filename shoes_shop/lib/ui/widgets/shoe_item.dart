@@ -3,18 +3,19 @@ import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/favorite.dart';
+import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
+// ignore: must_be_immutable
 class ShoeItem extends StatelessWidget {
-  ShoesViewModel model;
-  int index;
-  ShoeItem({Key? key, required this.model, required this.index})
+  final ShoesViewModel model;
+  final Shoes shoes;
+  ShoeItem({Key? key, required this.shoes, required this.model})
       : super(key: key);
-
   bool? x;
 
   @override
@@ -35,7 +36,7 @@ class ShoeItem extends StatelessWidget {
                       topRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(model.shoes![index]!.image1),
+                      image: NetworkImage(shoes.image1),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         AppColors.black.withOpacity(.05),
@@ -44,7 +45,7 @@ class ShoeItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                model.checkShoeNew(model.shoes![index]!)
+                model.checkShoeNew(shoes)
                     ? Positioned(
                         top: -10,
                         left: 0,
@@ -55,7 +56,7 @@ class ShoeItem extends StatelessWidget {
                         ),
                       )
                     : const Text(''),
-                model.checkTimeSale(model.shoes![index]!)
+                model.checkTimeSale(shoes)
                     ? Positioned(
                         top: -10,
                         right: 0,
@@ -70,7 +71,7 @@ class ShoeItem extends StatelessWidget {
                                 top: 20,
                                 right: 15,
                                 child: Text(
-                                  '${model.shoes![index]!.percent?.round()}%',
+                                  '${shoes.percent?.round()}%',
                                   style: shoesTextStyle,
                                 ))
                           ],
@@ -84,42 +85,39 @@ class ShoeItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.checkShoeName(model.shoes![index]!)
-                    ? Text(
-                        '${model.shoes![index]!.shoename.substring(0, 20)}...',
+                model.checkShoeName(shoes)
+                    ? Text('${shoes.shoename.substring(0, 20)}...',
                         style: shoesTextStyle)
-                    : Text(model.shoes![index]!.shoename,
-                        style: shoesTextStyle),
+                    : Text(shoes.shoename, style: shoesTextStyle),
                 UIHelper.verticalSpaceVerySmall(),
-                model.checkTimeSale(model.shoes![index]!)
+                model.checkTimeSale(shoes)
                     ? Text.rich(
                         TextSpan(
                           text: '',
                           children: <TextSpan>[
                             TextSpan(
-                              text: '\$${model.shoes![index]!.saleprice}  ',
+                              text: '\$${shoes.saleprice}  ',
                               style: shoesSalePrice,
                             ),
                             TextSpan(
-                                text: '\$${model.shoes![index]!.price}',
-                                style: shoesPriceOld),
+                                text: '\$${shoes.price}', style: shoesPriceOld),
                           ],
                         ),
                       )
                     : Text(
-                        '\$${model.shoes![index]!.price}',
+                        '\$${shoes.price}',
                         style: shoesTextStyle,
                       ),
                 UIHelper.verticalSpaceVerySmall(),
-                RatingHome(shoes:model.shoes![index]!),
+                RatingHome(shoes: shoes),
                 UIHelper.verticalSpaceVerySmall(),
-                model.checkPurchased(model.shoes![index]!)
+                model.checkPurchased(shoes)
                     ? Text.rich(
                         TextSpan(
                           text: 'Purchased: ', // default text style
                           children: <TextSpan>[
                             TextSpan(
-                                text: '${model.shoes![index]!.purchased}',
+                                text: '${shoes.purchased}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600)),
                           ],
@@ -146,11 +144,11 @@ class ShoeItem extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () async {
                     Favorite favorite =
-                    Favorite(account.accountid, model.shoes![index]!.shoeid);
+                        Favorite(account.accountid, shoes.shoeid);
                     await model.addOrDeleteFav(favorite);
                     buildToast(model.errorMessage);
                   },
-                  child:model.shoes![index]!.isfavorite!
+                  child: shoes.isfavorite!
                       ? const Icon(
                           Icons.favorite,
                           color: AppColors.red,

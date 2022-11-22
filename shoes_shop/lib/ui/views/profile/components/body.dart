@@ -21,9 +21,7 @@ class Body extends StatelessWidget {
           UIHelper.verticalSpaceMedium(),
           const Text('Profile', style: wellComeStyle),
           UIHelper.verticalSpaceMedium(),
-          userViewModel.state == ViewState.Busy
-              ? const CircleDelay()
-              : ProfilePic(userViewModel: userViewModel),
+          ProfilePic(userViewModel: userViewModel),
           UIHelper.verticalSpaceMedium(),
           ProfileMenu(
             text: "My Account",

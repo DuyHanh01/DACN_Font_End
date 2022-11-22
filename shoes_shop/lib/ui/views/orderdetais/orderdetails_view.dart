@@ -29,9 +29,11 @@ class OrderDetailsView extends StatelessWidget {
                 Widget? child) =>
             Scaffold(
               appBar: buildAppBar(context, 'Order: ${order.orderid}'),
-              body: model.state == ViewState.Busy
+              body:
+              model.state == ViewState.Busy
                   ? const CircleDelay()
-                  : ListView.builder(
+                  :
+              ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemCount: model.orderDetails!.length,
                       itemBuilder: (BuildContext context, int index) {

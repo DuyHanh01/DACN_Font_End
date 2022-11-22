@@ -68,14 +68,15 @@ class _ButtonStatesState extends State<ButtonStates> {
           setState(() {
             state = ButtonState.submitting;
           });
+          var success = await widget.cartViewModel.addCart(context, widget.shoesViewModel, widget.cartViewModel, widget.shoes, widget.shoesViewModel.number);
           //await 2 sec // you need to implement your server response here.
-          if(widget.cartViewModel.addCart(context, widget.shoesViewModel, widget.cartViewModel, widget.shoes, widget.shoesViewModel.number)==true){
-            await Future.delayed(const Duration(seconds: 1));
+          if(success==true){
+            await Future.delayed(const Duration(milliseconds: 1500));
             setState(() {
               state = ButtonState.completed;
             });
           }else{
-            await Future.delayed(const Duration(seconds: 1));
+            await Future.delayed(const Duration(milliseconds: 1500));
             setState(() {
               state = ButtonState.cancel;
             });
@@ -119,7 +120,7 @@ class _ButtonStatesState extends State<ButtonStates> {
 
   @override
   void dispose(){
-    ButtonState.init;
+    state = ButtonState.init;
     super.dispose();
   }
 

@@ -194,7 +194,8 @@ class UserViewModel extends BaseViewModel {
     Account.initial();
     Token.initial();
     Register.initial();
-    setState(ViewState.Idle);
+    User.initial();
     dispose();
+    setState(ViewState.Idle);
   }
 }

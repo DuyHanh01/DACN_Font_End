@@ -23,9 +23,11 @@ class _SaleNewsState extends State<SaleNews> {
         onModelReady: (model) => model.getAllSales(),
         builder: (BuildContext context, SalesViewModel model, Widget? child) =>
             SliverToBoxAdapter(
-              child: model.state == ViewState.Busy
-                  ? const CircleDelay()
-                  : Stack(
+              child:
+              // model.state == ViewState.Busy
+              //     ? const CircleDelay()
+              //     :
+              Stack(
                       children: [
                         SizedBox(
                           height: 180,

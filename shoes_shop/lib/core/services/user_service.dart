@@ -37,6 +37,12 @@ class UserSerVice{
     var fetchedUser = await _api.updateUser(user);
     var isSuccessUser= fetchedUser.isSuccess;
     message = fetchedUser.Message!;
+    if (isSuccessUser != null && isSuccessUser) {
+      if (fetchedUser.data != null) {
+        userController.add(fetchedUser.data![0]!);
+        users = fetchedUser.data![0]!;
+      }
+    }
     return isSuccessUser ?? false;
   }
 

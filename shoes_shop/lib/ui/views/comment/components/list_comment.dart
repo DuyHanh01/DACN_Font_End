@@ -38,8 +38,12 @@ class ListComment extends StatelessWidget {
                         SizedBox(
                           height: 35,
                           width: 35,
-                          child: CircleAvatar(
-                            backgroundImage: model.cmt![i]!.image != null ? NetworkImage(model.cmt![i]!.image!) : const AssetImage(AppUI.profilePic) as ImageProvider,
+                          child: model.state == ViewState.Busy
+                              ? const CircleAvatar(
+                            backgroundImage: AssetImage(AppUI.profilePic),
+                          )
+                              : CircleAvatar(
+                            backgroundImage: NetworkImage(model.cmt![i]!.avatar!),
                           ),
                         ),
                         const SizedBox(width: 5),

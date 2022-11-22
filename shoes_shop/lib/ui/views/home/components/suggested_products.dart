@@ -25,9 +25,10 @@ class SuggestedProducts extends StatelessWidget {
         onModelReady: (model) => model.getShoesSearch(account.accountid),
         builder: (BuildContext context, SearchHistoryViewModel model,
                 Widget? child) =>
-            model.state == ViewState.Busy
-                ? const SliverToBoxAdapter(child: CircleDelay())
-                : SliverToBoxAdapter(
+            // model.state == ViewState.Busy
+            //     ? const SliverToBoxAdapter(child: CircleDelay())
+            //     :
+            SliverToBoxAdapter(
                     child: model.shoesSearch!.isNotEmpty
                         ? SizedBox(
                             height: 150,
@@ -46,8 +47,7 @@ class SuggestedProducts extends StatelessWidget {
                                     ),
                                     child: ShoeNotFavItem(
                                         model: model,
-                                        index: i,
-                                        shoesList: model.shoesSearch),
+                                        shoes: model.shoesSearch![i]!),
                                   ),
                                 );
                               },
@@ -69,9 +69,8 @@ class SuggestedProducts extends StatelessWidget {
                                       arguments: list[i],
                                     ),
                                     child: ShoeNotFavItem(
-                                        index: i,
-                                        model: shoesViewModel,
-                                        shoesList: list),
+                                        shoes: shoesViewModel.shoes![i]!,
+                                        model: shoesViewModel),
                                   ),
                                 );
                               },

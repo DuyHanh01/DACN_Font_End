@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
         const CategoryTitle(title: 'Suggest for you', trailingTitle: ''),
         SuggestedProducts(shoesViewModel: model),
         const CategoryTitle(title: 'Popular', trailingTitle: 'View All'),
-        HomePopularList(model: model),
+        HomePopularList(),
       ],
     );
   }
