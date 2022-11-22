@@ -26,8 +26,7 @@ class CommentBox extends StatelessWidget {
             height: 35,
             width: 35,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'),
+              backgroundImage: AssetImage(AppUI.profilePic),
             ),
           ),
           const SizedBox(width: 5),

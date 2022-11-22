@@ -9,7 +9,7 @@ class AccountView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, 'Edit your profile'),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

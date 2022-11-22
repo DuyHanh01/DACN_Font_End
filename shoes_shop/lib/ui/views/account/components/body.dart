@@ -79,15 +79,14 @@ class _BodyState extends State<Body> {
                     clipBehavior: Clip.none,
                     children: [
                       SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: _image != null
-                              ? Image(
-                                  image: FileImage(File(_image!.path)),
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.network(userViewModel.users!.avatar!,
-                                  fit: BoxFit.cover)),
+                        height: 100,
+                        width: 100,
+                        child: CircleAvatar(
+                            backgroundImage: _image != null
+                                ? FileImage(File(_image!.path))
+                                : NetworkImage(userViewModel.users!.avatar!)
+                                    as ImageProvider),
+                      ),
                       Positioned(
                         right: -16,
                         bottom: 0,
@@ -134,7 +133,6 @@ class _BodyState extends State<Body> {
                       child: DefaultButton(
                           text: "Save",
                           press: () async {
-
                             String firstName = "";
                             String lastName = "";
                             String phone = "";
@@ -142,11 +140,25 @@ class _BodyState extends State<Body> {
                             String address = "";
                             String avatar = "";
 
-                            var isSuccess =  await userViewModel.editProfile(firstName, lastName, phone, email, address, avatar, _controllerFirstName, _controllerLastName, _controllerPhone, _controllerEmail, _controllerAddress, userViewModel, _image, cloudinary);
+                            var isSuccess = await userViewModel.editProfile(
+                                firstName,
+                                lastName,
+                                phone,
+                                email,
+                                address,
+                                avatar,
+                                _controllerFirstName,
+                                _controllerLastName,
+                                _controllerPhone,
+                                _controllerEmail,
+                                _controllerAddress,
+                                userViewModel,
+                                _image,
+                                cloudinary);
 
                             buildToast(userViewModel.errorMessage);
 
-                            if ( isSuccess) {
+                            if (isSuccess) {
                               // ignore: use_build_context_synchronously
                               Navigator.pushNamed(context, RoutePaths.profile);
                             }

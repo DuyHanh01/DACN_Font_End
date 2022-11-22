@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
-import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/core/view_models/sizetable_view_model.dart';
-import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
+import 'package:shoes_shop/ui/views/cart/components/alertDialogCart.dart';
+import 'package:shoes_shop/ui/views/cart/components/snack_bar_cart.dart';
 
 class CartCounter extends StatelessWidget {
-  const CartCounter({Key? key, required this.cart, required this.cartViewModel, required this.sizeTableViewModel})
+  const CartCounter(
+      {Key? key,
+      required this.cart,
+      required this.cartViewModel,
+      required this.sizeTableViewModel})
       : super(key: key);
 
   final Cart cart;
@@ -26,36 +28,8 @@ class CartCounter extends StatelessWidget {
             cart.quantity == 1
                 ? showDialog(
                     context: context,
-                    builder: (ctx) => AlertDialog(
-                          title: const Text('Are you sure?',
-                              style: shoesTextStyle),
-                          content: const Text(
-                            'Do you want to remove the item from the cart?',
-                            style: shoesTextStyle,
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text(
-                                'No',
-                                style: shoesTextStyle,
-                              ),
-                              onPressed: () {
-                                Navigator.of(ctx).pop(false);
-                              },
-                            ),
-                            TextButton(
-                              child: const Text(
-                                'Yes',
-                                style: shoesTextStyle,
-                              ),
-                              onPressed: () {
-                                Navigator.of(ctx).pop(true);
-                                cartViewModel.removeItem(
-                                    cart.shoeid, cart.size);
-                              },
-                            ),
-                          ],
-                        ))
+                    builder: (ctx) =>
+                        buildAlertDialog(context, cartViewModel, cart))
                 : cartViewModel.subPurchased(cart);
           },
         ),
@@ -69,22 +43,23 @@ class CartCounter extends StatelessWidget {
         ),
         buildOutlineButton(
             icon: Icons.add,
-            press: () {
-              if (cart.quantity == 5 ) {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: const Text('Liên hệ shop để order!'),
-                  duration: const Duration(seconds: 2),
-                  action: SnackBarAction(
-                    label: "Contacts",
-                    textColor: AppColors.primaryColor,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(RoutePaths.contact);
-                    },
-                  ),
-                ));
+            press: () async {
+              await sizeTableViewModel.getSizeTableByShoeId(cart.shoeid);
+              if (sizeTableViewModel.checkAmountSize(
+                  sizeTableViewModel.sizetables![0]!, cart)) {
+                if (cart.quantity < 5) {
+                  cartViewModel.addPurchased(cart);
+                } else {
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  // ignore: use_build_context_synchronously
+                  ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
+                }
               } else {
-                cartViewModel.addPurchased(cart);
+                // ignore: use_build_context_synchronously
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                // ignore: use_build_context_synchronously
+                ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
               }
             }),
       ],

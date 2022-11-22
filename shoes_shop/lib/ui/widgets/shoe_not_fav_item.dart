@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
-import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
+import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
 
-class ShoesSearchItem extends StatelessWidget {
-  final SearchHistoryViewModel model;
+class ShoeNotFavItem extends StatelessWidget {
+  final dynamic model;
   final int index;
-
-  const ShoesSearchItem({Key? key, required this.model, required this.index})
+  final List<Shoes?>? shoesList;
+  const ShoeNotFavItem(
+      {Key? key,
+      required this.model,
+      required this.index,
+      required this.shoesList})
       : super(key: key);
 
   @override
@@ -29,7 +33,7 @@ class ShoesSearchItem extends StatelessWidget {
                       topRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(model.shoesSearch![index]!.image1),
+                      image: NetworkImage(shoesList![index]!.image1),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         AppColors.black.withOpacity(.05),
@@ -39,7 +43,7 @@ class ShoesSearchItem extends StatelessWidget {
                   ),
                   width: 120,
                 ),
-                model.checkShoeNew(model.shoesSearch![index]!)
+                model.checkShoeNew(shoesList![index])
                     ? Positioned(
                         top: -10,
                         left: 0,
@@ -50,7 +54,7 @@ class ShoesSearchItem extends StatelessWidget {
                         ),
                       )
                     : const Text(''),
-                model.checkTimeSale(model.shoesSearch![index]!)
+                model.checkTimeSale(shoesList![index])
                     ? Positioned(
                         top: -8,
                         right: 0,
@@ -65,7 +69,7 @@ class ShoesSearchItem extends StatelessWidget {
                                 top: 10,
                                 right: 6,
                                 child: Text(
-                                  '${model.shoesSearch![index]!.percent?.round()}%',
+                                  '${shoesList![index]!.percent?.round()}%',
                                   style: shoesTextStyle.copyWith(fontSize: 10),
                                 ))
                           ],
@@ -79,34 +83,57 @@ class ShoesSearchItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                model.shoesSearch![index]!.shoename.length > 18
-                    ? Text(
-                        '${model.shoesSearch![index]!.shoename.substring(0, 18)}...',
+                shoesList![index]!.shoename.length > 18
+                    ? Text('${shoesList![index]!.shoename.substring(0, 18)}...',
                         style: shoesTextStyle.copyWith(fontSize: 10))
-                    : Text(model.shoesSearch![index]!.shoename,
+                    : Text(shoesList![index]!.shoename,
                         style: shoesTextStyle.copyWith(fontSize: 10)),
-                UIHelper.verticalSpaceVerySmall(),
-                model.checkTimeSale(model.shoesSearch![index]!)
+                const SizedBox(height: 2),
+                model.checkTimeSale(shoesList![index])
                     ? Text.rich(
                         TextSpan(
                           text: '',
                           children: <TextSpan>[
                             TextSpan(
-                              text: '\$${model.shoesSearch![index]!.saleprice}  ',
+                              text: '\$${shoesList![index]!.saleprice}  ',
                               style: shoesSalePrice.copyWith(fontSize: 10),
                             ),
                             TextSpan(
-                                text: '\$${model.shoesSearch![index]!.price}',
+                                text: '\$${shoesList![index]!.price}',
                                 style: shoesPriceOld.copyWith(fontSize: 10)),
                           ],
                         ),
                       )
                     : Text(
-                        '\$${model.shoesSearch![index]!.price}',
+                        '\$${shoesList![index]!.price}',
                         style: shoesTextStyle.copyWith(fontSize: 10),
                       ),
-                UIHelper.verticalSpaceVerySmall(),
-                RatingHome(shoes: model.shoesSearch![index]!),
+                const SizedBox(height: 2),
+                model.checkPurchased(shoesList![index])
+                    ? Text.rich(
+                        TextSpan(
+                          text: 'Purchased: ', // default text style
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '${shoesList![index]!.purchased}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 10)),
+                          ],
+                        ),
+                      )
+                    : const Text.rich(
+                        TextSpan(
+                          text: 'Purchased: ', // default text style
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '0',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 10)),
+                          ],
+                        ),
+                      ),
+                const SizedBox(height: 2),
+                RatingHome(shoes: shoesList![index]!),
                 UIHelper.verticalSpaceVerySmall(),
               ],
             ),

@@ -35,12 +35,11 @@ class ListComment extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(
+                        SizedBox(
                           height: 35,
                           width: 35,
                           child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'),
+                            backgroundImage: model.cmt![i]!.image != null ? NetworkImage(model.cmt![i]!.image!) : const AssetImage(AppUI.profilePic) as ImageProvider,
                           ),
                         ),
                         const SizedBox(width: 5),

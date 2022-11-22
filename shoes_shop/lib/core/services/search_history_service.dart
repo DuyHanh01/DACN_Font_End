@@ -8,8 +8,8 @@ class SearchHistoryService {
 
   String message = "";
 
-  List<Shoes?>? _shoes = <Shoes>[];
-  List<Shoes?>? get shoesSearch => _shoes;
+  List<Shoes?>? _shoesSearch = <Shoes>[];
+  List<Shoes?>? get shoesSearch => _shoesSearch;
 
   Future<bool> insertSearchHistory(SearchHistory searchHistory) async {
     var fetchedSearchHistory = await _api.insertSearchHistory(searchHistory);
@@ -18,7 +18,7 @@ class SearchHistoryService {
     message = fetchedSearchHistory.Message!;
     if (isSuccessSearchHistory != null && isSuccessSearchHistory) {
       if (fetchedSearchHistory.data != null) {
-        _shoes = fetchedSearchHistory.data;
+        _shoesSearch = fetchedSearchHistory.data;
       }
     }
     return isSuccessSearchHistory ?? false;
@@ -31,10 +31,10 @@ class SearchHistoryService {
     message = fetchedSearchHistory.Message!;
     if (isSuccessSearchHistory != null && isSuccessSearchHistory) {
       if (fetchedSearchHistory.data != null) {
-        _shoes = fetchedSearchHistory.data;
+        _shoesSearch = fetchedSearchHistory.data;
       }
     } else {
-      _shoes = [];
+      _shoesSearch = [];
     }
     return isSuccessSearchHistory ?? false;
   }

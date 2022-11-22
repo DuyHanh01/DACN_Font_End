@@ -178,7 +178,9 @@ class Body extends StatelessWidget {
                 ),
               )
             : const SliverToBoxAdapter(
-                child: SizedBox(width: 1,),
+                child: SizedBox(
+                  width: 1,
+                ),
               ),
         const SliverToBoxAdapter(
           child: SizedBox(height: 10),

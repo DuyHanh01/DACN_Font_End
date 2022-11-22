@@ -65,9 +65,6 @@ class _ButtonStatesState extends State<ButtonStates> {
           style: shoesTextStyle,
         ),
         onPressed: () async {
-          // here when button is pressed
-          // we are changing the state
-          // therefore depending on state our button UI changed.
           setState(() {
             state = ButtonState.submitting;
           });

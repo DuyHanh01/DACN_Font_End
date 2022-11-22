@@ -164,6 +164,14 @@ class ShoesViewModel extends BaseViewModel {
     }
   }
 
+  void getShoesTopPurchased(List<Shoes> list) async {
+    for(var element in shoes!){
+      if(element!.purchased !=0 && element.purchased!= null){
+        list.add(element);
+      }
+    }
+  }
+
   Future<bool> addOrDeleteFav(Favorite favorite) async {
     setState(ViewState.Busy);
 

@@ -17,7 +17,6 @@ class CartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<SizeTableViewModel>(
-        onModelReady: (model) => model.getSizeTableByShoeId(cart.shoeid),
         builder: (BuildContext context, SizeTableViewModel model,
                 Widget? child) =>
             Card(
