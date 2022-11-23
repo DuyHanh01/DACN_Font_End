@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/widgets/default_button.dart';
@@ -45,7 +46,7 @@ class CheckoutCard extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     style: shoesTextStyle.copyWith(fontWeight: FontWeight.w500),
-                    text: "Total:\n",
+                    text: "${S.of(context).total}:\n",
                     children: [
                       TextSpan(
                         text: "\$${cartViewModel.totalAmount}",
@@ -58,7 +59,7 @@ class CheckoutCard extends StatelessWidget {
                   width: 200,
                   height: 50,
                   child: DefaultButton(
-                      text: "Check Out",
+                      text: S.of(context).checkout,
                       press: () {
                         if (cartViewModel.itemCount != 0) {
                           Navigator.of(context).pushNamed(RoutePaths.checkout);

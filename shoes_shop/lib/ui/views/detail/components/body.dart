@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/comment/comment_view.dart';
 import 'package:shoes_shop/ui/views/detail/components/counter.dart';
@@ -119,12 +120,12 @@ class Body extends StatelessWidget {
         const SliverToBoxAdapter(
           child: SizedBox(height: 10),
         ),
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'Select Size',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              S.of(context).selectSize,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
         ),
@@ -134,12 +135,12 @@ class Body extends StatelessWidget {
         SliverToBoxAdapter(
           child: SelectSize(shoes: shoes, shoesViewModel: model),
         ),
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'Description',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              S.of(context).description,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
         ),
@@ -164,11 +165,11 @@ class Body extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        'Shoes purchased together',
-                        style: TextStyle(
+                        S.of(context).shoesPurchasedTogether,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                     ),
@@ -185,12 +186,12 @@ class Body extends StatelessWidget {
         const SliverToBoxAdapter(
           child: SizedBox(height: 10),
         ),
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'Comment',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              S.of(context).comment,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
         ),

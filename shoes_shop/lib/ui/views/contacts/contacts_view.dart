@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/views/contacts/components/body.dart';
 import 'package:shoes_shop/ui/widgets/app_bar.dart';
 class ContactsView extends StatelessWidget {
@@ -7,8 +8,8 @@ class ContactsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, 'Contacts'),
-      body: Body(),
+      appBar: buildAppBar(context, S.of(context).contacts),
+      body: const Body(),
     );
   }
 }

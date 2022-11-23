@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -44,7 +45,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        buildTextButton("Phone: 0369880609", AppUI.mobilePhone, () async {
+        buildTextButton("${S.of(context).phone}: 0369880609", AppUI.mobilePhone, () async {
           FlutterPhoneDirectCaller.callNumber('+84369880609');
         }),
         buildTextButton("Email: trananhvuiato@gmail.com", AppUI.mail, () async {
@@ -60,7 +61,7 @@ class _BodyState extends State<Body> {
           }
         }),
         buildTextButton(
-          "Address",
+          S.of(context).address,
           AppUI.maps,
           () => Navigator.of(context).pushNamed(
             RoutePaths.googleMap,

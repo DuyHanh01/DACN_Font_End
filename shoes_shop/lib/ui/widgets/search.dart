@@ -6,6 +6,7 @@ import 'package:shoes_shop/core/models/search_history.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:substring_highlight/substring_highlight.dart';
@@ -146,7 +147,7 @@ class Search extends StatelessWidget {
                     onEditingComplete: onEditingComplete,
                     autofocus: false,
                     decoration: InputDecoration(
-                      hintText: 'Search',
+                      hintText: S.of(context).search,
                       hintStyle: TextStyle(
                           color: AppColors.primaryColor.withOpacity(0.5),
                           fontSize: 16),

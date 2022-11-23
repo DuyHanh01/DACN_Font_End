@@ -7,6 +7,7 @@ import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/order.dart';
 import 'package:shoes_shop/core/models/rating.dart';
 import 'package:shoes_shop/core/view_models/orderdetails_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/views/order/compomemts/textspan_widget.dart';
@@ -28,7 +29,7 @@ class OrderDetailsView extends StatelessWidget {
         builder: (BuildContext context, OrderDetailsViewModel model,
                 Widget? child) =>
             Scaffold(
-              appBar: buildAppBar(context, 'Order: ${order.orderid}'),
+              appBar: buildAppBar(context, '${S.of(context).orderId}: ${order.orderid}'),
               body:
               model.state == ViewState.Busy
                   ? const CircleDelay()
@@ -76,10 +77,10 @@ class OrderDetailsView extends StatelessWidget {
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
-                                                context, 'Cancel'),
-                                            child: const Text(
-                                              'Cancel',
-                                              style: TextStyle(
+                                                context, S.of(context).cancel),
+                                            child: Text(
+                                              S.of(context).orderId,
+                                              style: const TextStyle(
                                                   color:
                                                       AppColors.primaryColor),
                                             ),
@@ -91,12 +92,13 @@ class OrderDetailsView extends StatelessWidget {
                                               {
                                                 await model.insertRating(rating);buildToast(model.errorMessageRating);
                                               } else {
-                                                buildToast('Bạn chưa thể đánh giá sản phẩm này');
+                                                buildToast(S.of(context).toastRate);
                                               }
-                                              Navigator.pop(context, 'OK');
+                                              // ignore: use_build_context_synchronously
+                                              Navigator.pop(context, S.of(context).ok);
                                             },
-                                            child: const Text('OK',
-                                                style: TextStyle(
+                                            child: Text( S.of(context).ok,
+                                                style: const TextStyle(
                                                     color: AppColors
                                                         .primaryColor)),
                                           ),
@@ -139,16 +141,16 @@ class OrderDetailsView extends StatelessWidget {
                                           model.orderDetails![index]!.size
                                               .toString()),
                                       const SizedBox(height: 3),
-                                      buildTextSpan('Price: ',
+                                      buildTextSpan('${ S.of(context).price}: ',
                                           '\$${model.orderDetails![index]!.price}'),
                                       const SizedBox(height: 3),
                                       buildTextSpan(
-                                          'Quantity: ',
+                                          '${ S.of(context).quantity}: ',
                                           model.orderDetails![index]!
                                               .quantity
                                               .toString()),
                                       const SizedBox(height: 3),
-                                      buildTextSpan('Total: ',
+                                      buildTextSpan('${ S.of(context).total}: ',
                                           '\$${model.orderDetails![index]!.total}'),
                                       const SizedBox(height: 3),
                                     ],

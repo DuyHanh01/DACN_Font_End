@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
-AppBar buildAppBar(BuildContext context, String? title, TabController _tabController) {
+AppBar buildAppBar(
+    BuildContext context, String? title, TabController _tabController) {
   return AppBar(
     backgroundColor: AppColors.white,
     elevation: 0,
@@ -14,15 +16,18 @@ AppBar buildAppBar(BuildContext context, String? title, TabController _tabContro
     ),
     bottom: TabBar(
       controller: _tabController,
-      tabs: const <Widget>[
+      tabs: <Widget>[
         Tab(
-          child: Text('Bán chạy',style: TextStyle(color: AppColors.primaryColor)),
+          child: Text(S.of(context).selling,
+              style: const TextStyle(color: AppColors.primaryColor)),
         ),
         Tab(
-          child: Text('Giá cao\n-> thấp',style: TextStyle(color: AppColors.primaryColor)),
+          child: Text(S.of(context).expensive,
+              style: const TextStyle(color: AppColors.primaryColor)),
         ),
         Tab(
-          child: Text('Giá thấp\n-> cao',style: TextStyle(color: AppColors.primaryColor)),
+          child: Text(S.of(context).cheap,
+              style: const TextStyle(color: AppColors.primaryColor)),
         ),
       ],
     ),

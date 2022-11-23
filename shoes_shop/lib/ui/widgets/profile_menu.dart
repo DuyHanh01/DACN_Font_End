@@ -6,12 +6,13 @@ class ProfileMenu extends StatelessWidget {
     Key? key,
     required this.text,
     required this.icon,
-    this.press,
+    this.press, required this.widget,
   }) : super(key: key);
 
   final String text;
   final IconData icon;
   final VoidCallback? press;
+  final Widget widget;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,8 @@ class ProfileMenu extends StatelessWidget {
             ),
             const SizedBox(width: 20),
             Expanded(child: Text(text)),
-            const Icon(Icons.arrow_forward_ios),
+            widget
+            //const Icon(Icons.arrow_forward_ios),
           ],
         ),
       ),

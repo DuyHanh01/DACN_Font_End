@@ -24,6 +24,7 @@ import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/core/view_models/sizetable_view_model.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
+import 'package:shoes_shop/generated/assets.dart';
 import 'core/services/api.dart';
 import 'core/view_models/changepass_view_model.dart';
 
@@ -58,5 +59,6 @@ void setupLocator() {
   locator.registerFactory(() => CommentViewModel());
   locator.registerFactory(() => ChangePassViewModel());
   locator.registerFactory(() => SearchHistoryViewModel());
+  locator.registerFactory(() => LocaleProvider());
 
 }

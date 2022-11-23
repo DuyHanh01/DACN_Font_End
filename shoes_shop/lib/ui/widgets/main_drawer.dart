@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
+import 'package:shoes_shop/generated/assets.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
@@ -25,6 +27,7 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LocaleProvider>(context);
     Account account = Provider.of<Account>(context);
     return BaseView<UserViewModel>(
         onModelReady: (model) => model.getUser(account.accountid),
@@ -41,18 +44,18 @@ class MainDrawer extends StatelessWidget {
                     child: Image.asset(AppUI.img, height: 295),
                   ),
                   buildListTile(
-                    'Home',
+                    S.of(context).home,
                     () => Navigator.of(context).pushNamed(
                       RoutePaths.home,
                     ),
                   ),
                   buildListTile(
-                    'Contact',
+                    S.of(context).contacts,
                     () => Navigator.of(context).pushNamed(
                       RoutePaths.contact,
                     ),
                   ),
-                  buildListTile('Settings', () => Navigator.of(context).pushNamed(
+                  buildListTile(S.of(context).settings, () => Navigator.of(context).pushNamed(
                     RoutePaths.setting,
                   ),),
                   const Divider(color: AppColors.blackGrey),
@@ -83,9 +86,9 @@ class MainDrawer extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: const Text(
-                      'Logout',
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).logout,
+                      style: const TextStyle(
                           fontSize: 15,
                           color: AppColors.darkGrey,
                           fontWeight: FontWeight.w500),

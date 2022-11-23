@@ -4,6 +4,7 @@ import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/menu_state.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/assets.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/views/home/components/app_bar.dart';
@@ -17,6 +18,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LocaleProvider>(context);
     Account account = Provider.of<Account>(context);
     return WillPopScope(
         onWillPop: () async {
@@ -44,7 +46,7 @@ class HomeView extends StatelessWidget {
               ),
             ),
             bottomNavigationBar:
-                const CustomBottomNavBar(selectedMenu: MenuState.home),
+            CustomBottomNavBar(selectedMenu: MenuState.home, provider: provider,),
             drawer: const MainDrawer(),
           ),
         ));

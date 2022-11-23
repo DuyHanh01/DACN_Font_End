@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/menu_state.dart';
+import 'package:shoes_shop/generated/assets.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
     Key? key,
-    required this.selectedMenu,
+    required this.selectedMenu, required this.provider,
   }) : super(key: key);
 
   final MenuState selectedMenu;
+  final LocaleProvider provider;
 
   Widget buildButtonNav(
       MenuState menuState, Function? onTap, String text, IconData icon) {
@@ -66,16 +69,16 @@ class CustomBottomNavBar extends StatelessWidget {
             children: [
               buildButtonNav(MenuState.home, () {
                 Navigator.pushNamed(context, RoutePaths.home);
-              }, 'Home', Icons.home_rounded),
+              }, S.of(context).home, Icons.home_rounded),
               buildButtonNav(MenuState.favorite, () {
                 Navigator.pushNamed(context, RoutePaths.favorite);
-              }, 'Favorite', Icons.favorite_border_rounded),
+              }, S.of(context).favorite, Icons.favorite_border_rounded),
               buildButtonNav(MenuState.order, () {
                 Navigator.pushNamed(context, RoutePaths.order);
-              }, 'Order', Icons.shop_rounded),
+              }, S.of(context).order, Icons.shop_rounded),
               buildButtonNav(MenuState.profile, () {
                 Navigator.pushNamed(context, RoutePaths.profile);
-              }, 'Profile', Icons.person_rounded),
+              }, S.of(context).profile, Icons.person_rounded),
             ],
           )),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/sales_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/button_style.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
@@ -107,7 +108,7 @@ class _SaleNewsState extends State<SaleNews> {
                                               },
                                               height: 35,
                                               width: 100,
-                                              title: 'Buy Now',
+                                              title: S.of(context).buy,
                                               backgroundColor: Colors.white,
                                               shadow: false,
                                               titleColor: Colors.black,

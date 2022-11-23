@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/view_models/order_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/button_style.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
@@ -39,42 +40,42 @@ class Body extends StatelessWidget {
                     CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                          'OrderId: ${model.orders![index]!.orderid}',
+                          '${S.of(context).orderId}: ${model.orders![index]!.orderid}',
                           style: orderTextStyle.copyWith(
                               color: AppColors.primaryColor,
                               fontSize: 15)),
                       const SizedBox(height: 3),
-                      buildTextSpan('Name: ',
+                      buildTextSpan('${S.of(context).name}: ',
                           '${model.orders![index]!.firstName} ${model.orders![index]!.lastName}'),
                       const SizedBox(height: 2),
-                      buildTextSpan('Phone: ',
+                      buildTextSpan('${S.of(context).phone}: ',
                           model.orders![index]!.phone),
                       const SizedBox(height: 2),
-                      buildTextSpan('Email: ',
+                      buildTextSpan('${S.of(context).email}: ',
                           model.orders![index]!.email),
                       const SizedBox(height: 2),
-                      buildTextSpan('Address: ',
+                      buildTextSpan('${S.of(context).address}: ',
                           model.orders![index]!.address),
                       const SizedBox(height: 2),
-                      buildTextSpan('CreateDate: ',
+                      buildTextSpan('${S.of(context).createDate}: ',
                           model.orders![index]!.createdate!),
                       const SizedBox(height: 2),
-                      buildTextSpan('Total: ',
+                      buildTextSpan('${S.of(context).total}: ',
                           '\$${model.orders![index]!.total}'),
                       const SizedBox(height: 2),
                       buildTextSpan(
-                          'Status: ',
+                          '${S.of(context).status}: ',
                           model.orders![index]!.statusname
                               .toString()),
                       const SizedBox(height: 2),
                       buildTextSpan(
-                          'Payment: ',
-                          model.orders![index]!.payment ? 'paid' : 'unpaid'),
+                          '${S.of(context).payment}: ',
+                          model.orders![index]!.payment ? S.of(context).paid : S.of(context).unpaid),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           (model.orders![index]!.statusid==4 || model.orders![index]!.statusid==5) ? const Text(""):
-                          AppButton.normalButton(title: 'Cancel', onPress: () async {
+                          AppButton.normalButton(title: S.of(context).cancel, onPress: () async {
                             await model.cancelOrder(model.orders![index]!.orderid!);
                             buildToast(model.errorMessage);
                           }, height: 30, width: 100)

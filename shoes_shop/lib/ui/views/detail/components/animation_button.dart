@@ -4,6 +4,7 @@ import 'package:shoes_shop/core/enum/buttonstate.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 bool isAnimating = true;
@@ -28,8 +29,6 @@ class _ButtonStatesState extends State<ButtonStates> {
 
   @override
   Widget build(BuildContext context) {
-
-
     final buttonWidth = MediaQuery.of(context).size.width;
     // update the UI depending on below variable values
     final isInit = isAnimating || state == ButtonState.init;
@@ -46,7 +45,11 @@ class _ButtonStatesState extends State<ButtonStates> {
         width: state == ButtonState.init ? buttonWidth : 70,
         height: 53,
         // If Button State is Submiting or Completed  show 'buttonCircular' widget as below
-        child: isInit ? buildButton() : (isCancel ? circularCancelContainer(isCancel) : circularContainer(isDone)),
+        child: isInit
+            ? buildButton()
+            : (isCancel
+                ? circularCancelContainer(isCancel)
+                : circularContainer(isDone)),
       ),
     );
   }
@@ -60,22 +63,27 @@ class _ButtonStatesState extends State<ButtonStates> {
           ),
           fixedSize: const Size.fromHeight(53),
         ),
-        child: const Text(
-          "Add to bag",
+        child: Text(
+          S.of(context).addToBag,
           style: shoesTextStyle,
         ),
         onPressed: () async {
           setState(() {
             state = ButtonState.submitting;
           });
-          var success = await widget.cartViewModel.addCart(context, widget.shoesViewModel, widget.cartViewModel, widget.shoes, widget.shoesViewModel.number);
+          var success = await widget.cartViewModel.addCart(
+              context,
+              widget.shoesViewModel,
+              widget.cartViewModel,
+              widget.shoes,
+              widget.shoesViewModel.number);
           //await 2 sec // you need to implement your server response here.
-          if(success==true){
+          if (success == true) {
             await Future.delayed(const Duration(milliseconds: 1500));
             setState(() {
               state = ButtonState.completed;
             });
-          }else{
+          } else {
             await Future.delayed(const Duration(milliseconds: 1500));
             setState(() {
               state = ButtonState.cancel;
@@ -86,7 +94,6 @@ class _ButtonStatesState extends State<ButtonStates> {
           setState(() {
             state = ButtonState.init;
           });
-
         },
       );
 
@@ -119,9 +126,8 @@ class _ButtonStatesState extends State<ButtonStates> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     state = ButtonState.init;
     super.dispose();
   }
-
 }

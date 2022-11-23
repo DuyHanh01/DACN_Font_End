@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/assets.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/views/home/components/brand_list.dart';
 import 'package:shoes_shop/ui/views/home/components/category_title.dart';
 import 'package:shoes_shop/ui/views/home/components/popular_list.dart';
@@ -21,18 +24,18 @@ class Body extends StatelessWidget {
         ),
         Search(model: model),
         const SliverToBoxAdapter(
-          child: SizedBox(height: 15),
+          child: SizedBox(height: 10),
         ),
         const SaleNews(),
         const SliverToBoxAdapter(
-          child: SizedBox(height: 15),
+          child: SizedBox(height: 10),
         ),
-        const CategoryTitle(title: 'Category', trailingTitle: ''),
+        CategoryTitle(title: S.of(context).category, trailingTitle: ''),
         const HomeBrandList(),
-        const CategoryTitle(title: 'Suggest for you', trailingTitle: ''),
+        CategoryTitle(title: S.of(context).suggest, trailingTitle: ''),
         SuggestedProducts(shoesViewModel: model),
-        const CategoryTitle(title: 'Popular', trailingTitle: 'View All'),
-        HomePopularList(),
+        CategoryTitle(title: S.of(context).popular, trailingTitle: ''),
+        const HomePopularList(),
       ],
     );
   }

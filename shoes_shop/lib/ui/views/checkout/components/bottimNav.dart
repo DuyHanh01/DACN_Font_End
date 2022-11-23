@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:momo_vn/momo_vn.dart';
@@ -11,6 +9,7 @@ import 'package:shoes_shop/core/models/order.dart';
 import 'package:shoes_shop/core/models/orderdetails.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/order_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
@@ -123,7 +122,7 @@ class _BottomNavState extends State<BottomNav> {
             Text.rich(
               TextSpan(
                 style: shoesTextStyle.copyWith(fontWeight: FontWeight.w500),
-                text: "Total:\n",
+                text: "${S.of(context).total}:\n",
                 children: [
                   TextSpan(
                     text: "\$${widget.cartViewModel.totalAmount}",
@@ -178,6 +177,7 @@ class _BottomNavState extends State<BottomNav> {
                             await widget.orderViewModel.insertOrder(checkout);
                         buildToast(widget.orderViewModel.errorMessage);
                         if (isSuccess) {
+                          // ignore: use_build_context_synchronously
                           Navigator.of(context).pushNamed(
                             RoutePaths.home,
                           );

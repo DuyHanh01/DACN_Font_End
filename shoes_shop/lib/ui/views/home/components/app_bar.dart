@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
@@ -10,8 +11,8 @@ AppBar appBar(BuildContext context) {
   return AppBar(
     elevation: 0,
     centerTitle: true,
-    title: const Text(
-      'VHIT Sneaker',
+    title: Text(
+      S.of(context).titleAppBar,
       style: appBarTextStyle,
     ),
     actions: [

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/order_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/views/checkout/components/body.dart';
 import 'package:shoes_shop/ui/views/checkout/components/bottimNav.dart';
@@ -27,7 +28,7 @@ class _CheckoutViewState extends State<CheckoutView> {
     return BaseView<OrderViewModel>(
         builder: (BuildContext context, OrderViewModel model, Widget? child) => Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: buildAppBar(context, "Checkout"),
+      appBar: buildAppBar(context, S.of(context).checkout),
       body: Body(
           controllerFirstName: _controllerFirstName,
           controllerLastName: _controllerLastName,

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/account/components/account_header.dart';
@@ -131,7 +132,7 @@ class _BodyState extends State<Body> {
                       width: 150,
                       height: 50,
                       child: DefaultButton(
-                          text: "Save",
+                          text: S.of(context).save,
                           press: () async {
                             String firstName = "";
                             String lastName = "";
