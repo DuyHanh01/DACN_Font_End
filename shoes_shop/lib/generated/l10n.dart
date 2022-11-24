@@ -569,6 +569,356 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign In`
+  String get signIn {
+    return Intl.message(
+      'Sign In',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password`
+  String get forgotPass {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgotPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Your Email`
+  String get enterYourEmail {
+    return Intl.message(
+      'Enter Your Email',
+      name: 'enterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Your Password`
+  String get enterYourPass {
+    return Intl.message(
+      'Enter Your Password',
+      name: 'enterYourPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have an Account`
+  String get DontHaveAnAccount {
+    return Intl.message(
+      'Don’t have an Account',
+      name: 'DontHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an Account`
+  String get AlreadyHaveAnAccount {
+    return Intl.message(
+      'Already have an Account',
+      name: 'AlreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Email`
+  String get enterEmail {
+    return Intl.message(
+      'Enter Email',
+      name: 'enterEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Password`
+  String get enterPass {
+    return Intl.message(
+      'Enter Password',
+      name: 'enterPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter RePassword`
+  String get enterRePass {
+    return Intl.message(
+      'Enter RePassword',
+      name: 'enterRePass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter current password`
+  String get enterCurrentPass {
+    return Intl.message(
+      'Enter current password',
+      name: 'enterCurrentPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new password`
+  String get enterNewPass {
+    return Intl.message(
+      'Enter new password',
+      name: 'enterNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your firstname`
+  String get enterYourFirstName {
+    return Intl.message(
+      'Enter your firstname',
+      name: 'enterYourFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your lastname`
+  String get enterYourLastName {
+    return Intl.message(
+      'Enter your lastname',
+      name: 'enterYourLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone`
+  String get enterYourPhone {
+    return Intl.message(
+      'Enter your phone',
+      name: 'enterYourPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your Address`
+  String get enterYourAddress {
+    return Intl.message(
+      'Enter your Address',
+      name: 'enterYourAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a note`
+  String get enterANote {
+    return Intl.message(
+      'Enter a note',
+      name: 'enterANote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact the shop to order!`
+  String get contactTheShop {
+    return Intl.message(
+      'Contact the shop to order!',
+      name: 'contactTheShop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notify`
+  String get notify {
+    return Intl.message(
+      'Notify',
+      name: 'notify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to sign out`
+  String get signOut {
+    return Intl.message(
+      'Do you want to sign out',
+      name: 'signOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete Profile`
+  String get completeProfile {
+    return Intl.message(
+      'Complete Profile',
+      name: 'completeProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login Success`
+  String get loginSuccess {
+    return Intl.message(
+      'Login Success',
+      name: 'loginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter OTP`
+  String get enterOTP {
+    return Intl.message(
+      'Enter OTP',
+      name: 'enterOTP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request OTP`
+  String get requestOTP {
+    return Intl.message(
+      'Request OTP',
+      name: 'requestOTP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `time`
+  String get time {
+    return Intl.message(
+      'time',
+      name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify`
+  String get verify {
+    return Intl.message(
+      'Verify',
+      name: 'verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchased`
+  String get purchased {
+    return Intl.message(
+      'Purchased',
+      name: 'purchased',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPass {
+    return Intl.message(
+      'New Password',
+      name: 'newPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please choose size!`
+  String get chooseSize {
+    return Intl.message(
+      'Please choose size!',
+      name: 'chooseSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to remove the item from the cart?`
+  String get removeItem {
+    return Intl.message(
+      'Do you want to remove the item from the cart?',
+      name: 'removeItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are You Sure?`
+  String get areYouSure {
+    return Intl.message(
+      'Are You Sure?',
+      name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

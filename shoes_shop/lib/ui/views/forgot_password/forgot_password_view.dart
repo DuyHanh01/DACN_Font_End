@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
-import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/forgot_password/components/forgot_password_header.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
 

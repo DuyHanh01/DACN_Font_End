@@ -18,6 +18,10 @@ const wellComeStyle = TextStyle(
 
 const shoesTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
 
+const styleToggleSwitch = TextStyle(fontSize: 13.0,
+    fontWeight: FontWeight.w600,
+    color: AppColors.white);
+
 const appBarTextStyle = TextStyle(
     fontSize: 16.0,
     fontWeight: FontWeight.w600,

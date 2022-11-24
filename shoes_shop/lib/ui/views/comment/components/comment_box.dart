@@ -7,6 +7,7 @@ import 'package:shoes_shop/core/models/comment.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/comment_view_model.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/widgets/circle_delay.dart';
@@ -48,8 +49,8 @@ class CommentBox extends StatelessWidget {
                     keyboardType: TextInputType.text,
                     style: shoesTextStyle.copyWith(
                         fontWeight: FontWeight.w600, color: AppColors.black),
-                    decoration: const InputDecoration(
-                        hintText: "Add comment in this product",
+                    decoration: InputDecoration(
+                        hintText: S.of(context).addComment,
                         hintStyle: shoesTextStyle),
                   )),
                   GestureDetector(

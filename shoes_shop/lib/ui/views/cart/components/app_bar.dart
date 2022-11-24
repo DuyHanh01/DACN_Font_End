@@ -15,7 +15,7 @@ AppBar buildAppBar(BuildContext context, CartViewModel cart) {
           style: const TextStyle(color: Colors.black, fontSize: 14),
         ),
         Text(
-          "${cart.carts.length} ${S.of(context).items}",
+          "${S.of(context).items} ${cart.carts.length}",
           style: const TextStyle(fontSize: 12),
         ),
       ],

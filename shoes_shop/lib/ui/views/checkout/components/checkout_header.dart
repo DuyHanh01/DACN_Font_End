@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 
 import '../../../shared/ui_helpers.dart';
 
@@ -26,49 +27,49 @@ class CheckoutHeader extends StatelessWidget {
         children: <Widget>[
           CheckoutTextField(
               controller: controllerFirstName,
-              hinText: "Enter your firstname",
+              hinText: S.of(context).enterYourFirstName,
               textInputType: TextInputType.name,
               icon: Icons.person_rounded),
           UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerLastName,
-              hinText: "Enter your lastname",
+              hinText: S.of(context).enterYourLastName,
               textInputType: TextInputType.name,
               icon: Icons.person_rounded),
           UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerPhone,
-              hinText: "Enter your phone",
+              hinText: S.of(context).enterYourPhone,
               textInputType: TextInputType.phone,
               icon: Icons.phone_rounded),
           UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerMail,
-              hinText: "Enter your email",
+              hinText: S.of(context).enterYourEmail,
               textInputType: TextInputType.emailAddress,
               icon: Icons.email_rounded),
           UIHelper.verticalSpaceVerySmall(),
           CheckoutTextField(
               controller: controllerAddress,
-              hinText: "Enter your address",
+              hinText: S.of(context).enterYourAddress,
               textInputType: TextInputType.streetAddress,
               icon: Icons.location_on_rounded),
           UIHelper.verticalSpaceMedium(),
           SizedBox(
             height: 200,
             child: TextFormField(
-              style: TextStyle(fontSize: 16.0, height: 1.0, color: AppColors.black),
+              style: const TextStyle(fontSize: 16.0, height: 1.0, color: AppColors.black),
               cursorColor: AppColors.primaryColor,
               controller: controllerNote,
               keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                icon: Icon(Icons.note_alt, size: 20),
+              decoration: InputDecoration(
+                icon: const Icon(Icons.note_alt, size: 20),
                 iconColor: AppColors.primaryColor,
                 floatingLabelStyle:
-                TextStyle(color: AppColors.primaryColor, fontSize: 12),
+                const TextStyle(color: AppColors.primaryColor, fontSize: 12),
                 filled: true,
-                border: OutlineInputBorder(),
-                hintText: 'Enter a note',
+                border: const OutlineInputBorder(),
+                hintText: S.of(context).enterANote,
 
               ),
             ),

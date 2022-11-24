@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 
@@ -21,15 +22,15 @@ class UserHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       UIHelper.verticalSpaceMedium(),
-      const Text('Complete Profile', style: wellComeStyle),
+      Text(S.of(context).completeProfile, style: wellComeStyle),
       UIHelper.verticalSpaceMedium(),
-      RegisterTextField(controllerFirstName, TextInputType.name, 'Enter your firstname'),
+      RegisterTextField(controllerFirstName, TextInputType.name, S.of(context).enterYourFirstName),
       RegisterTextField(controllerLastName, TextInputType.name,
-          'Enter your lastname'),
+          S.of(context).enterYourLastName),
       RegisterTextField(controllerPhone, TextInputType.phone,
-          'Enter your phone'),
+          S.of(context).enterYourPhone),
       RegisterTextField(controllerAddress, TextInputType.streetAddress,
-          'Enter your address'),
+          S.of(context).enterYourAddress),
       UIHelper.verticalSpaceMedium(),
     ]);
   }

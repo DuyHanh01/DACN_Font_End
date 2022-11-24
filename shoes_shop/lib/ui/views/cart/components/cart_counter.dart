@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/view_models/cart_view_model.dart';
 import 'package:shoes_shop/core/view_models/sizetable_view_model.dart';
+import 'package:shoes_shop/generated/assets.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/cart/components/alertDialogCart.dart';
 import 'package:shoes_shop/ui/views/cart/components/snack_bar_cart.dart';
@@ -20,6 +22,7 @@ class CartCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LocaleProvider>(context);
     return Row(
       children: <Widget>[
         buildOutlineButton(

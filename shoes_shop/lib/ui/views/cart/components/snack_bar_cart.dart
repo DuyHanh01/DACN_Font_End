@@ -5,7 +5,7 @@ import 'package:shoes_shop/ui/route/route_paths.dart';
 
 SnackBar buildSnackBar(BuildContext context) {
   return SnackBar(
-    content: const Text('Liên hệ shop để order!'),
+    content: Text(S.of(context).contactTheShop),
     duration: const Duration(seconds: 2),
     action: SnackBarAction(
       label: S.of(context).contacts,

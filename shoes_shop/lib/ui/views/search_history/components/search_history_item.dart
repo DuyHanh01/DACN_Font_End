@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/search_history_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
+
 class SearchHistoryItem extends StatelessWidget {
   final SearchHistoryViewModel model;
   final int index;
   final int x;
-  const SearchHistoryItem({Key? key, required this.model, required this.index, required this.x}) : super(key: key);
+  const SearchHistoryItem(
+      {Key? key, required this.model, required this.index, required this.x})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +34,7 @@ class SearchHistoryItem extends StatelessWidget {
                       topRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(
-                          list![index]!.image1),
+                      image: NetworkImage(list![index]!.image1),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         AppColors.black.withOpacity(.05),
@@ -42,36 +45,35 @@ class SearchHistoryItem extends StatelessWidget {
                 ),
                 model.checkShoeNew(list[index]!)
                     ? Positioned(
-                  top: -10,
-                  left: 0,
-                  child: SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: Image.asset(AppUI.newTag),
-                  ),
-                )
+                        top: -10,
+                        left: 0,
+                        child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: Image.asset(AppUI.newTag),
+                        ),
+                      )
                     : const Text(''),
                 model.checkTimeSale(list[index]!)
                     ? Positioned(
-                    top: -10,
-                    right: 0,
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: 55,
-                          width: 55,
-                          child:
-                          Image.asset(AppUI.saleTag),
-                        ),
-                        Positioned(
-                            top: 20,
-                            right: 15,
-                            child: Text(
-                              '${list[index]!.percent?.round()}%',
-                              style: shoesTextStyle,
-                            ))
-                      ],
-                    ))
+                        top: -10,
+                        right: 0,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: 55,
+                              width: 55,
+                              child: Image.asset(AppUI.saleTag),
+                            ),
+                            Positioned(
+                                top: 20,
+                                right: 15,
+                                child: Text(
+                                  '${list[index]!.percent?.round()}%',
+                                  style: shoesTextStyle,
+                                ))
+                          ],
+                        ))
                     : const Text('')
               ],
             ),
@@ -82,64 +84,56 @@ class SearchHistoryItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 list[index]!.shoename.length > 22
-                    ? Text(
-                    '${list[index]!.shoename.substring(0, 20)}...',
-                    style: shoesTextStyle)
-                    : Text(list[index]!.shoename,
-                    style: shoesTextStyle),
+                    ? Text('${list[index]!.shoename.substring(0, 20)}...',
+                        style: shoesTextStyle)
+                    : Text(list[index]!.shoename, style: shoesTextStyle),
                 UIHelper.verticalSpaceVerySmall(),
                 model.checkTimeSale(list[index]!)
                     ? Text.rich(
-                  TextSpan(
-                    text: '',
-                    children: <TextSpan>[
-                      TextSpan(
-                        text:
-                        '\$${list[index]!.saleprice}  ',
-                        style: shoesSalePrice,
-                      ),
-                      TextSpan(
-                          text:
-                          '\$${list[index]!.price}',
-                          style: shoesPriceOld),
-                    ],
-                  ),
-                )
+                        TextSpan(
+                          text: '',
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: '\$${list[index]!.saleprice}  ',
+                              style: shoesSalePrice,
+                            ),
+                            TextSpan(
+                                text: '\$${list[index]!.price}',
+                                style: shoesPriceOld),
+                          ],
+                        ),
+                      )
                     : Text(
-                  '\$${list[index]!.price}',
-                  style: shoesTextStyle,
-                ),
+                        '\$${list[index]!.price}',
+                        style: shoesTextStyle,
+                      ),
                 UIHelper.verticalSpaceVerySmall(),
                 RatingHome(shoes: list[index]!),
                 UIHelper.verticalSpaceVerySmall(),
                 model.checkPurchased(list[index]!)
                     ? Text.rich(
-                  TextSpan(
-                    text:
-                    'Purchased: ', // default text style
-                    children: <TextSpan>[
-                      TextSpan(
+                        TextSpan(
                           text:
-                          '${list[index]!.purchased}',
-                          style: const TextStyle(
-                              fontWeight:
-                              FontWeight.w600)),
-                    ],
-                  ),
-                )
-                    : const Text.rich(
-                  TextSpan(
-                    text:
-                    'Purchased: ', // default text style
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: '0',
-                          style: TextStyle(
-                              fontWeight:
-                              FontWeight.w600)),
-                    ],
-                  ),
-                ),
+                              '${S.of(context).purchased}: ', // default text style
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '${list[index]!.purchased}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      )
+                    : Text.rich(
+                        TextSpan(
+                          text:
+                              '${S.of(context).purchased}: ', // default text style
+                          children: const <TextSpan>[
+                            TextSpan(
+                                text: '0',
+                                style: TextStyle(fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      ),
               ],
             ),
           ),

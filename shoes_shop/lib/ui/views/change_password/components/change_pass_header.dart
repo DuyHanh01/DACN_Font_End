@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 
 import '../../../shared/text_styles.dart';
@@ -21,11 +22,11 @@ class _ChangePassHeaderState extends State<ChangePassHeader> {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       UIHelper.verticalSpaceMedium(),
-      loginTextField(true, 'Enter current password', TextInputType.visiblePassword,
+      loginTextField(true, S.of(context).enterCurrentPass, TextInputType.visiblePassword,
           widget.controllerCurrentPass),
-      loginTextField(true, 'Enter new password', TextInputType.visiblePassword,
+      loginTextField(true, S.of(context).enterNewPass, TextInputType.visiblePassword,
           widget.controllerNewPass),
-      loginTextField(true, 'Enter RePassword', TextInputType.visiblePassword,
+      loginTextField(true, S.of(context).enterRePass, TextInputType.visiblePassword,
           widget.controllerReNewPass),
     ]);
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/view_models/changepass_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/views/new_password/components/newpass_header.dart';
 import 'package:shoes_shop/ui/widgets/default_button.dart';
@@ -26,12 +27,12 @@ class Body extends StatelessWidget {
         ),
         SliverToBoxAdapter(child: SizedBox(height: size.height * 0.4)),
         SliverPadding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           sliver: SliverToBoxAdapter(
               child: SizedBox(
                 height: 55,
                 child: DefaultButton(
-                    text: "Confirm",
+                    text: S.of(context).confirm,
                     press: () async {
                       var acc = Account(0, username, null, controllerNewPass.text, controllerReNewPass.text, 0);
                       var isSuccess = await model.newPassword(acc);

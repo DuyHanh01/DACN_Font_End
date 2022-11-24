@@ -259,6 +259,7 @@ class _BottomNavState extends State<BottomNav> {
       _paymentStatus += "\nSố điện thoại: ${_momoPaymentResult.phoneNumber}";
       widget.cartViewModel.clear();
       order.orderid = widget.orderViewModel.orders![0]!.orderid;
+      //order.createdate = DateTime.now().toString();
       order.momo = _momoPaymentResult.token.toString();
       order.payment = true;
       widget.orderViewModel.updateOrder(order);

@@ -4,6 +4,7 @@ import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
 import 'package:shoes_shop/core/models/register.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/user/components/user_header.dart';
@@ -56,8 +57,7 @@ class _BodyViewState extends State<Body> {
                             primary: AppColors.primaryColor,
                             onPrimary: AppColors.white,
                           ),
-                          child:
-                              const Text('Confirm', style: signInSignUpStyle),
+                          child: Text(S.of(context).confirm, style: signInSignUpStyle),
                           onPressed: () async {
                             var userSuccess =
                                 await widget.userViewModel.insertUser(

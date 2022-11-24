@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/views/login_success/components/body.dart';
 class LoginSuccessView extends StatelessWidget {
 
@@ -10,7 +11,7 @@ class LoginSuccessView extends StatelessWidget {
         leading: SizedBox(),
         elevation: 0,
         centerTitle: true,
-        title: Text("Login Success"),
+        title: Text(S.of(context).loginSuccess),
       ),
       body: Body(),
     );

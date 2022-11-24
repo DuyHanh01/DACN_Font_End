@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
@@ -107,7 +108,7 @@ class ShoeNotFavItem extends StatelessWidget {
                 model.checkPurchased(shoes)
                     ? Text.rich(
                         TextSpan(
-                          text: 'Purchased: ', // default text style
+                          text: '${S.of(context).purchased}: ', // default text style
                           children: <TextSpan>[
                             TextSpan(
                                 text: '${shoes.purchased}',
@@ -116,10 +117,10 @@ class ShoeNotFavItem extends StatelessWidget {
                           ],
                         ),
                       )
-                    : const Text.rich(
+                    : Text.rich(
                         TextSpan(
-                          text: 'Purchased: ', // default text style
-                          children: <TextSpan>[
+                          text: '${S.of(context).purchased}: ', // default text style
+                          children: const <TextSpan>[
                             TextSpan(
                                 text: '0',
                                 style: TextStyle(

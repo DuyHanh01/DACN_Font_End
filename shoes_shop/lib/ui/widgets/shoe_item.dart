@@ -5,6 +5,7 @@ import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/models/favorite.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 import 'package:shoes_shop/ui/views/home/components/rating_home.dart';
@@ -114,22 +115,22 @@ class ShoeItem extends StatelessWidget {
                 model.checkPurchased(shoes)
                     ? Text.rich(
                         TextSpan(
-                          text: 'Purchased: ', // default text style
+                          text: '${S.of(context).purchased}: ', // default text style
                           children: <TextSpan>[
                             TextSpan(
                                 text: '${shoes.purchased}',
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.w600)),
+                                    fontWeight: FontWeight.w700)),
                           ],
                         ),
                       )
-                    : const Text.rich(
+                    : Text.rich(
                         TextSpan(
-                          text: 'Purchased: ', // default text style
-                          children: <TextSpan>[
+                          text: '${S.of(context).purchased}: ', // default text style
+                          children: const <TextSpan>[
                             TextSpan(
                                 text: '0',
-                                style: TextStyle(fontWeight: FontWeight.w600)),
+                                style: TextStyle(fontWeight: FontWeight.w700)),
                           ],
                         ),
                       ),

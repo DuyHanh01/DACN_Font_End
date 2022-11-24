@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
@@ -9,9 +10,7 @@ class LoginHeader extends StatefulWidget {
   final TextEditingController controllerPass;
 
   const LoginHeader(
-      {Key? key,
-      required this.controllerUser,
-      required this.controllerPass})
+      {Key? key, required this.controllerUser, required this.controllerPass})
       : super(key: key);
 
   @override
@@ -29,17 +28,17 @@ class LoginHeaderState extends State<LoginHeader> {
       const Text('Welcome Back', style: wellComeStyle),
       UIHelper.verticalSpaceMedium(),
       SizedBox(width: 360, child: Image.asset('assets/images/main.png')),
-      loginTextField(false, 'Enter your email', TextInputType.emailAddress,
-          widget.controllerUser),
-      loginTextField(true, 'Enter your password', TextInputType.visiblePassword,
-          widget.controllerPass),
+      loginTextField(false, S.of(context).enterYourEmail,
+          TextInputType.emailAddress, widget.controllerUser),
+      loginTextField(true, S.of(context).enterYourPass,
+          TextInputType.visiblePassword, widget.controllerPass),
       TextButton(
         onPressed: () {
           Navigator.pushNamed(context, RoutePaths.forgotPass);
         },
-        child: const Text(
-          'Forgot Password',
-          style: TextStyle(
+        child: Text(
+          S.of(context).forgotPass,
+          style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
               color: AppColors.primaryColor),

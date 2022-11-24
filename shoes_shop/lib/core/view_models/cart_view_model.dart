@@ -7,7 +7,10 @@ import 'package:shoes_shop/core/models/cart.dart';
 import 'package:shoes_shop/core/models/shoes.dart';
 import 'package:shoes_shop/core/view_models/base_view_model.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
+import 'package:shoes_shop/ui/views/cart/components/snack_bar_cart.dart';
+import 'package:shoes_shop/ui/widgets/toast_widget.dart';
 
 class CartViewModel extends BaseViewModel {
   List<Cart> _carts = <Cart>[];
@@ -83,31 +86,14 @@ class CartViewModel extends BaseViewModel {
   Future<bool> addCart(BuildContext context, ShoesViewModel shoesViewModel,
       CartViewModel cartViewModel, Shoes shoes, int number) async {
     if (shoesViewModel.size == 0) {
-      Fluttertoast.showToast(
-          msg: "Vui lòng chọn size",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.SNACKBAR,
-          timeInSecForIosWeb: 1,
-          backgroundColor: AppColors.red.withOpacity(0.85),
-          textColor: AppColors.white,
-          fontSize: 14.0);
+      buildToast(S.of(context).chooseSize);
       return false;
     } else {
       Cart? cart = cartViewModel.getCart(shoes.shoeid, shoesViewModel.size);
       if (cart != null) {
         if ((cart.quantity + shoesViewModel.x) > number) {
           ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: const Text('Liên hệ shop để order!'),
-            duration: const Duration(seconds: 2),
-            action: SnackBarAction(
-              label: "Contacts",
-              textColor: AppColors.primaryColor,
-              onPressed: () {
-                Navigator.of(context).pushNamed(RoutePaths.contact);
-              },
-            ),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
           return false;
         } else if (cart.quantity < 5 &&
             (cart.quantity + shoesViewModel.x) <= 5) {
@@ -121,33 +107,13 @@ class CartViewModel extends BaseViewModel {
           return true;
         } else {
           ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: const Text('Liên hệ shop để order!'),
-            duration: const Duration(seconds: 2),
-            action: SnackBarAction(
-              label: "Contacts",
-              textColor: AppColors.primaryColor,
-              onPressed: () {
-                Navigator.of(context).pushNamed(RoutePaths.contact);
-              },
-            ),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
           return false;
         }
       } else {
         if (shoesViewModel.x > number) {
           ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: const Text('Liên hệ shop để order!'),
-            duration: const Duration(seconds: 2),
-            action: SnackBarAction(
-              label: "Contacts",
-              textColor: AppColors.primaryColor,
-              onPressed: () {
-                Navigator.of(context).pushNamed(RoutePaths.contact);
-              },
-            ),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
           return false;
         } else {
           int total = shoesViewModel.x;

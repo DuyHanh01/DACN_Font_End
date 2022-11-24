@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
 import 'package:shoes_shop/core/view_models/changepass_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/views/change_password/components/change_pass_header.dart';
 import 'package:shoes_shop/ui/widgets/default_button.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
@@ -34,7 +35,7 @@ class Body extends StatelessWidget {
               child: SizedBox(
             height: 55,
             child: DefaultButton(
-                text: "Confirm",
+                text: S.of(context).confirm,
                 press: () async {
                   var acc = Account(account.accountid, account.username,controllerCurrentPass.text.trim(), controllerNewPass.text.trim(), controllerReNewPass.text.trim(), 0);
                   await model.changePass(acc);

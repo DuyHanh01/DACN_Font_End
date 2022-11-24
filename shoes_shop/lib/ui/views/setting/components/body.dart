@@ -36,13 +36,15 @@ class Body extends StatelessWidget {
             totalSwitches: 2,
             labels: const ['EN', 'VN'],
             radiusStyle: true,
-            onToggle: (index)  {
+            onToggle: (index) async {
               if (index == 0) {
-                S.load(const Locale('en'));
-                provider.setLocale(Locale('en'));
+                await S.load(const Locale('en'));
+                print(Intl.defaultLocale);
+                provider.setLocale(const Locale('en'));
               } else {
-                S.load(const Locale('vn'));
-                provider.setLocale(Locale('vn'));
+                await S.load(const Locale('vn'));
+                print(Intl.defaultLocale);
+                provider.setLocale(const Locale('vn'));
               }
             },
           ),

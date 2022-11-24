@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/core/view_models/changepass_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/views/new_password/components/body.dart';
 
@@ -20,7 +21,7 @@ class _NewPassViewState extends State<NewPassView> {
         builder:
             (BuildContext context, ChangePassViewModel model, Widget? child) =>
             Scaffold(
-              appBar: buildAppBar(context, "New Password"),
+              appBar: buildAppBar(context, S.of(context).newPass),
               body: Body(model: model, username: widget.username),
             ));
   }

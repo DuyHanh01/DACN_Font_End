@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
@@ -77,10 +78,10 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      const Text('Forgot Password', style: wellComeStyle),
+      Text(S.of(context).forgotPass, style: wellComeStyle),
       UIHelper.verticalSpaceMedium(),
       SizedBox(width: 360, child: Image.asset('assets/images/main.png')),
-      loginTextField('Enter your email', TextInputType.emailAddress,
+      loginTextField(S.of(context).enterYourEmail, TextInputType.emailAddress,
           widget.controllerUser),
       TextButton(
           onPressed: () {
@@ -88,23 +89,23 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
             startTimer();
           },
           child: (!submitValid)
-              ? const Text(
-                  'Send OTP',
-                  style: TextStyle(
+              ? Text(
+                  S.of(context).requestOTP,
+                  style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w800,
                       color: AppColors.primaryColor),
                 )
               : (countdowntime
-                  ? Text('time $_start', style: shoesTextStyle)
-                  : const Text(
-                      'Send OTP',
-                      style: TextStyle(
+                  ? Text('${S.of(context).time} $_start', style: shoesTextStyle)
+                  : Text(
+            S.of(context).requestOTP,
+                      style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w800,
                           color: AppColors.primaryColor),
                     ))),
-      loginTextField('Enter OTP', TextInputType.number,
+      loginTextField(S.of(context).enterOTP, TextInputType.number,
           widget.controllerOTP),
       UIHelper.verticalSpaceMedium(),
       (submitValid & countdowntime)
@@ -112,7 +113,7 @@ class ForgotPasswordState extends State<ForgotPasswordHeader> {
               height: 55,
               width: 200,
               child: DefaultButton(
-                  text: "Verify",
+                  text: S.of(context).verify,
                   press: () {
                     verify();
                   },

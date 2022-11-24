@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
 
@@ -23,11 +24,11 @@ class RegisterHeader extends StatelessWidget {
       const Text('Let’s help you meet up your tasks'),
       UIHelper.verticalSpaceMedium(),
       RegisterTextField(false, controllerUser, TextInputType.emailAddress,
-          'Enter Email'),
+         S.of(context).enterEmail),
       RegisterTextField(true, controllerPass, TextInputType.visiblePassword,
-          'Enter Password'),
+          S.of(context).enterPass),
       RegisterTextField(true, controllerRePass, TextInputType.visiblePassword,
-          'Enter RePassword'),
+          S.of(context).enterRePass),
       UIHelper.verticalSpaceSmall(),
     ]);
   }

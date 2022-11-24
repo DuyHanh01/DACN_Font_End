@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
@@ -18,7 +19,7 @@ class Body extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[Text(
-            "Login Success",
+              S.of(context).loginSuccess,
             style: shoesTextStyle.copyWith(fontSize: 20)
           ),],
         ),
@@ -29,7 +30,7 @@ class Body extends StatelessWidget {
             height: 60,
             width: 200,
             child: DefaultButton(
-                text: "Confirm",
+                text: S.of(context).confirm,
                 press: () {
                   Navigator.of(context).pushNamed(
                     RoutePaths.login,

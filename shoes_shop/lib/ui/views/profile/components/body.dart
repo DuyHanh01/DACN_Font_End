@@ -4,6 +4,7 @@ import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/shared/ui_helpers.dart';
+import 'package:shoes_shop/ui/widgets/alertlog_logout.dart';
 import 'package:shoes_shop/ui/widgets/profile_menu.dart';
 import 'package:shoes_shop/ui/views/profile/components/profile_pic.dart';
 
@@ -50,7 +51,10 @@ class Body extends StatelessWidget {
             text: S.of(context).logout,
             icon: Icons.logout_rounded,
             widget: const Icon(Icons.arrow_forward_ios),
-            press: () {},
+            press: () => showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => buildAlertLogLogout(context, userViewModel)
+            ),
           ),
         ],
       ),

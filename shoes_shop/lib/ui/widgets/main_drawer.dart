@@ -6,8 +6,8 @@ import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/generated/assets.dart';
 import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
-import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
+import 'package:shoes_shop/ui/widgets/alertlog_logout.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -62,29 +62,7 @@ class MainDrawer extends StatelessWidget {
                   TextButton(
                     onPressed: () => showDialog<String>(
                       context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Notify', style: dialogStyle),
-                        content: const Text('Do you want to sign out?',
-                            style: dialogDescriptionStyle),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'Cancel'),
-                            child: const Text(
-                              'Cancel',
-                              style: TextStyle(color: AppColors.primaryColor),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              model.logout();
-                              Navigator.of(context).pushNamed(RoutePaths.login);
-                            },
-                            child: const Text('OK',
-                                style:
-                                    TextStyle(color: AppColors.primaryColor)),
-                          ),
-                        ],
-                      ),
+                      builder: (BuildContext context) => buildAlertLogLogout(context, model)
                     ),
                     child: Text(
                       S.of(context).logout,

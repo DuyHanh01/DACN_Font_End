@@ -3,6 +3,7 @@ import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
+import 'package:shoes_shop/ui/views/cart/components/snack_bar_cart.dart';
 
 class Counter extends StatelessWidget {
   const Counter({Key? key, required this.model}) : super(key: key);
@@ -34,18 +35,7 @@ class Counter extends StatelessWidget {
               press: () {
                 if (model.x == 5) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content:
-                        const Text('Liên hệ shop để order!'),
-                    duration: const Duration(seconds: 2),
-                    action: SnackBarAction(
-                      label: "Contacts",
-                      textColor: AppColors.primaryColor,
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(RoutePaths.contact);
-                      },
-                    ),
-                  ));
+                  ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
                 } else {
                   model.addPurchased();
                 }
