@@ -61,7 +61,7 @@ class _BodyState extends State<Body> {
           }
         }),
         buildTextButton(
-          S.of(context).address,
+          '${S.of(context).address}: 614/63 Đ79, Phước Long B, Tp Thủ Đức, TpHCM' ,
           AppUI.maps,
           () => Navigator.of(context).pushNamed(
             RoutePaths.googleMap,

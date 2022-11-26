@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoes_shop/config/theme.dart';
+import 'package:shoes_shop/generated/assets.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 AppBar buildAppBar(BuildContext context, String? title) {
@@ -18,7 +19,7 @@ AppBar buildAppBar(BuildContext context, String? title) {
         onPressed: () {
           Navigator.of(context).pop(true);
         },
-        icon: SvgPicture.asset(AppUI.back,
+        icon: SvgPicture.asset(Assets.svgBack,
             color: AppColors.black, height: 24, width: 24),
       ),
     ),

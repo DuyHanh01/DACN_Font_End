@@ -86,6 +86,9 @@
   "removeItem": "Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?",
   "areYouSure": "Bạn có chắc chắn?",
   "yes": "Có",
-  "no": "Không"
+  "no": "Không",
+  "productIsAvailable": "Sản phẩm này đã có sẵn tại cửa hàng",
+  "productIsNotAvailable": "Sản phẩm này chưa có sẵn tại cửa hàng",
+  "upLoadAnImage": "Tải ảnh lên"
 }
 

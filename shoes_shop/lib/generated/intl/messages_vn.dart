@@ -97,6 +97,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone": MessageLookupByLibrary.simpleMessage("Điện thoại"),
         "popular": MessageLookupByLibrary.simpleMessage("Phổ biến"),
         "price": MessageLookupByLibrary.simpleMessage("Giá"),
+        "productIsAvailable": MessageLookupByLibrary.simpleMessage(
+            "Sản phẩm này đã có sẵn tại cửa hàng"),
+        "productIsNotAvailable": MessageLookupByLibrary.simpleMessage(
+            "Sản phẩm này chưa có sẵn tại cửa hàng"),
         "profile": MessageLookupByLibrary.simpleMessage("Cá nhân"),
         "purchased": MessageLookupByLibrary.simpleMessage("Đã bán"),
         "quantity": MessageLookupByLibrary.simpleMessage("Số lượng"),
@@ -125,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bạn chưa thể đánh giá sản phẩm này"),
         "total": MessageLookupByLibrary.simpleMessage("Tổng tiền"),
         "unpaid": MessageLookupByLibrary.simpleMessage("Chưa thanh toán"),
+        "upLoadAnImage": MessageLookupByLibrary.simpleMessage("Tải ảnh lên"),
         "verify": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "yes": MessageLookupByLibrary.simpleMessage("Có")
       };

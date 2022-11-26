@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoes_shop/generated/assets.dart';
+import 'package:shoes_shop/core/view_models/locale_provider.dart';
 import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/views/setting/components/body.dart';
 import 'package:shoes_shop/ui/widgets/app_bar.dart';

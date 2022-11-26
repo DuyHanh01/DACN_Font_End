@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/view_models/shoes_view_model.dart';
+import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/shared/text_styles.dart';
 import 'package:shoes_shop/ui/views/base_view.dart';
 import 'package:shoes_shop/ui/views/image_search/components/camera_image_buton.dart';
@@ -111,7 +112,7 @@ class _UIState extends State<ImageSearch> {
                                         ? Column(
                                             children: <Widget>[
                                               Text(
-                                                  "Sản phẩm đang có sẵn trong shop",
+                                                  S.of(context).productIsAvailable,
                                                   style: shoesTextStyle
                                                       .copyWith(fontSize: 16)),
                                               ShoeItem(model, model.getShoesAi(_outputs?[0]["label"])!),
@@ -120,7 +121,7 @@ class _UIState extends State<ImageSearch> {
                                         : Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text(
-                                                "Mặt hàng này chưa có sẵn ở shop",
+                                                S.of(context).productIsNotAvailable,
                                                 style: shoesTextStyle.copyWith(
                                                     fontSize: 16)),
                                           ),

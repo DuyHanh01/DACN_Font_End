@@ -28,8 +28,8 @@ class ListComment extends StatelessWidget {
               itemCount: model.cmt!.length,
               itemBuilder: (ctx, i) {
                 return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 5),
-                    height: 50,
+                    margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    height: 60,
                     alignment: Alignment.center,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

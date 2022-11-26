@@ -29,12 +29,11 @@ class OrderDetailsView extends StatelessWidget {
         builder: (BuildContext context, OrderDetailsViewModel model,
                 Widget? child) =>
             Scaffold(
-              appBar: buildAppBar(context, '${S.of(context).orderId}: ${order.orderid}'),
-              body:
-              model.state == ViewState.Busy
+              appBar: buildAppBar(
+                  context, '${S.of(context).orderId}: ${order.orderid}'),
+              body: model.state == ViewState.Busy
                   ? const CircleDelay()
-                  :
-              ListView.builder(
+                  : ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemCount: model.orderDetails!.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -68,7 +67,7 @@ class OrderDetailsView extends StatelessWidget {
                                                       color: Colors.amber,
                                                     ),
                                                 onRatingUpdate: (rating) {
-                                                  if(rating!=0){
+                                                  if (rating != 0) {
                                                     rate = rating;
                                                   }
                                                 }),
@@ -77,9 +76,9 @@ class OrderDetailsView extends StatelessWidget {
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
-                                                context, S.of(context).cancel),
+                                                context, true),
                                             child: Text(
-                                              S.of(context).orderId,
+                                              S.of(context).cancel,
                                               style: const TextStyle(
                                                   color:
                                                       AppColors.primaryColor),
@@ -87,17 +86,20 @@ class OrderDetailsView extends StatelessWidget {
                                           ),
                                           TextButton(
                                             onPressed: () async {
-                                              var rating = Rating(account.accountid, model.orderDetails![index]!.shoeid, rate);
-                                              if (order.statusid == 4)
-                                              {
-                                                await model.insertRating(rating);buildToast(model.errorMessageRating);
+                                              var rating = Rating(
+                                                  account.accountid,
+                                                  model.orderDetails![index]!.shoeid,
+                                                  rate);
+                                              if (order.statusid == 4) {
+                                                await model.insertRating(rating);
+                                                buildToast(model.errorMessageRating);
                                               } else {
                                                 buildToast(S.of(context).toastRate);
                                               }
                                               // ignore: use_build_context_synchronously
                                               Navigator.pop(context, S.of(context).ok);
                                             },
-                                            child: Text( S.of(context).ok,
+                                            child: Text(S.of(context).ok,
                                                 style: const TextStyle(
                                                     color: AppColors
                                                         .primaryColor)),
@@ -115,7 +117,8 @@ class OrderDetailsView extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       image: DecorationImage(
-                                        image: NetworkImage(model.orderDetails![index]!.image1!),
+                                        image: NetworkImage(model
+                                            .orderDetails![index]!.image1!),
                                         fit: BoxFit.cover,
                                         colorFilter: ColorFilter.mode(
                                           AppColors.black.withOpacity(.05),
@@ -126,31 +129,38 @@ class OrderDetailsView extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 10),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       const SizedBox(height: 3),
-                                      model.checkShoeName(model.orderDetails![index]!)
+                                      model.checkShoeName(
+                                              model.orderDetails![index]!)
                                           ? Text(
-                                          '${model.orderDetails![index]!.shoename!.substring(0, 26)}...',
-                                          style: shoesTextStyle.copyWith(color: AppColors.primaryColor, fontSize: 13))
-                                          : Text(model.orderDetails![index]!.shoename!,
-                                          style: shoesTextStyle.copyWith(color: AppColors.primaryColor, fontSize: 13)),
+                                              '${model.orderDetails![index]!.shoename!.substring(0, 26)}...',
+                                              style: shoesTextStyle.copyWith(
+                                                  color: AppColors.primaryColor,
+                                                  fontSize: 13))
+                                          : Text(
+                                              model.orderDetails![index]!
+                                                  .shoename!,
+                                              style: shoesTextStyle.copyWith(
+                                                  color: AppColors.primaryColor,
+                                                  fontSize: 13)),
                                       const SizedBox(height: 3),
                                       buildTextSpan(
                                           'Size: ',
                                           model.orderDetails![index]!.size
                                               .toString()),
                                       const SizedBox(height: 3),
-                                      buildTextSpan('${ S.of(context).price}: ',
+                                      buildTextSpan('${S.of(context).price}: ',
                                           '\$${model.orderDetails![index]!.price}'),
                                       const SizedBox(height: 3),
                                       buildTextSpan(
-                                          '${ S.of(context).quantity}: ',
-                                          model.orderDetails![index]!
-                                              .quantity
+                                          '${S.of(context).quantity}: ',
+                                          model.orderDetails![index]!.quantity
                                               .toString()),
                                       const SizedBox(height: 3),
-                                      buildTextSpan('${ S.of(context).total}: ',
+                                      buildTextSpan('${S.of(context).total}: ',
                                           '\$${model.orderDetails![index]!.total}'),
                                       const SizedBox(height: 3),
                                     ],

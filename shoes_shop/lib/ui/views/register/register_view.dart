@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/viewstate.dart';
+import 'package:shoes_shop/core/view_models/locale_provider.dart';
 import 'package:shoes_shop/core/view_models/register_view_model.dart';
 import 'package:shoes_shop/generated/assets.dart';
 import 'package:shoes_shop/generated/l10n.dart';
@@ -14,6 +15,7 @@ import 'package:shoes_shop/ui/widgets/already_have_an_account_acheck.dart';
 import 'package:shoes_shop/ui/widgets/background.dart';
 import 'package:shoes_shop/ui/views/register/components/register_header.dart';
 import 'package:shoes_shop/ui/widgets/toast_widget.dart';
+import 'package:shoes_shop/ui/widgets/toggle_language.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class RegisterView extends StatefulWidget {
@@ -46,34 +48,7 @@ class _RegisterViewState extends State<RegisterView> {
                   Positioned(
                     right: 10,
                     top: 10,
-                    child: ToggleSwitch(
-                      minWidth: 40.0,
-                      cornerRadius: 10.0,
-                      activeBgColors: const [
-                        [AppColors.primaryColor],
-                        [AppColors.primaryColor]
-                      ],
-                      customTextStyles: const [
-                        styleToggleSwitch,
-                        styleToggleSwitch
-                      ],
-                      activeFgColor: Colors.white,
-                      inactiveBgColor: Colors.grey,
-                      inactiveFgColor: Colors.white,
-                      initialLabelIndex: Intl.defaultLocale == "en" ? 0 : 1,
-                      totalSwitches: 2,
-                      labels: const ['EN', 'VN'],
-                      radiusStyle: true,
-                      onToggle: (index) async {
-                        if (index == 0) {
-                          await S.load(const Locale('en'));
-                          provider.setLocale(const Locale('en'));
-                        } else {
-                          await S.load(const Locale('vn'));
-                          provider.setLocale(const Locale('vn'));
-                        }
-                      },
-                    ),
+                    child: ToggleLanguage(provider: provider),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,

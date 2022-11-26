@@ -21,7 +21,7 @@ import 'package:shoes_shop/core/models/user.dart';
 /// The service responsible for networking requests
 class Api {
   String token = '';
-  //static const endpoint = 'http://10.14.166.8/ShoesStore.com/api';
+  //static const endpoint = 'http://10.18.26.19/ShoesStore.com/api';
   static const endpoint = 'http://192.168.1.8/ShoesStore.com/api';
 
   String Username = '';
@@ -39,7 +39,7 @@ class Api {
     final expiredDateTime = ExpiredDateTime;
     final dateNow = DateTime.now();
     int difference = daysBetween(dateNow, expiredDateTime);
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     if (userName == null || passWord == null) {
       return token = '';
     } else if (token1 != '' && difference > 0) {
@@ -79,9 +79,9 @@ class Api {
     if (response.statusCode == 200) {
       var s = Token.fromJson(jsonDecode(response.body));
       token = s.access_token.toString();
-      int expires_in = 0;
-      expires_in = s.expires_in!;
-      ExpiredDateTime = DateTime.now().add(Duration(seconds: expires_in));
+      int expiresIn = 0;
+      expiresIn = s.expires_in!;
+      ExpiredDateTime = DateTime.now().add(Duration(seconds: expiresIn));
       return Token.fromJson(jsonDecode(response.body));
     } else {
       var s = Token.fromJson(jsonDecode(response.body));

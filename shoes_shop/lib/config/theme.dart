@@ -76,7 +76,6 @@ class AppUI {
   static const String momo = '${imagePath}momo.png';
   static const String maps = '${imagePath}ggmaps.png';
   static const String profilePic = '${imagePath}profile_pic.png';
-  static const String back = '${svgPath}back.svg';
   static const String favorite = '${svgPath}favorite.svg';
   static const String cart = '${svgPath}cart_icon.svg';
 }

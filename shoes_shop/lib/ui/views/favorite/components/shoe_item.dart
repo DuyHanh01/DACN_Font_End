@@ -147,7 +147,6 @@ class ShoeItem extends StatelessWidget {
                     Favorite favorite =
                         Favorite(account.accountid, listFav![index]!.shoeid);
                     await model.addOrDeleteFav(favorite);
-                    buildToast(model.errorMessage);
                   },
                   child: listFav![index]!.isfavorite!
                       ? const Icon(

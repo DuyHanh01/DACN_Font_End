@@ -86,5 +86,8 @@
   "removeItem": "Do you want to remove the item from the cart?",
   "areYouSure": "Are You Sure?",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "productIsAvailable": "This product is available in store",
+  "productIsNotAvailable": "This product is not available in store",
+  "upLoadAnImage": "Upload an image"
 }

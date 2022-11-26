@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/models/account.dart';
+import 'package:shoes_shop/core/view_models/locale_provider.dart';
 import 'package:shoes_shop/core/view_models/user_view_model.dart';
 import 'package:shoes_shop/generated/assets.dart';
 import 'package:shoes_shop/generated/l10n.dart';

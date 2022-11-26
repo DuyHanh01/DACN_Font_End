@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/generated/l10n.dart';
+import 'package:shoes_shop/ui/shared/text_styles.dart';
 
 import '../../../shared/ui_helpers.dart';
 
@@ -97,6 +98,7 @@ class CheckoutTextField extends StatelessWidget {
       cursorColor: AppColors.primaryColor,
       controller: controller,
       keyboardType: textInputType,
+      style: shoesTextStyle.copyWith(fontSize: 16),
       decoration: InputDecoration(
         icon: Icon(icon, size: 20),
         iconColor: AppColors.primaryColor,

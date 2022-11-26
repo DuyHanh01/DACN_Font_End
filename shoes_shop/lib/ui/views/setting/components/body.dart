@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shoes_shop/config/theme.dart';
-import 'package:shoes_shop/generated/assets.dart';
+import 'package:shoes_shop/core/view_models/locale_provider.dart';
 import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';
 import 'package:shoes_shop/ui/widgets/profile_menu.dart';
+import 'package:shoes_shop/ui/widgets/toggle_language.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class Body extends StatelessWidget {
@@ -22,32 +23,7 @@ class Body extends StatelessWidget {
         ProfileMenu(
           text: S.of(context).language,
           icon: Icons.language,
-          widget: ToggleSwitch(
-            minWidth: 50.0,
-            cornerRadius: 20.0,
-            activeBgColors: const [
-              [AppColors.primaryColor],
-              [AppColors.primaryColor]
-            ],
-            activeFgColor: Colors.white,
-            inactiveBgColor: Colors.grey,
-            inactiveFgColor: Colors.white,
-            initialLabelIndex: Intl.defaultLocale == "en" ? 0 : 1,
-            totalSwitches: 2,
-            labels: const ['EN', 'VN'],
-            radiusStyle: true,
-            onToggle: (index) async {
-              if (index == 0) {
-                await S.load(const Locale('en'));
-                print(Intl.defaultLocale);
-                provider.setLocale(const Locale('en'));
-              } else {
-                await S.load(const Locale('vn'));
-                print(Intl.defaultLocale);
-                provider.setLocale(const Locale('vn'));
-              }
-            },
-          ),
+          widget: ToggleLanguage(provider: provider),
           press: () {},
         ),
         ProfileMenu(

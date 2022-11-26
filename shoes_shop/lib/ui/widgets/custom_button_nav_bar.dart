@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_shop/config/theme.dart';
 import 'package:shoes_shop/core/enum/menu_state.dart';
+import 'package:shoes_shop/core/view_models/locale_provider.dart';
 import 'package:shoes_shop/generated/assets.dart';
 import 'package:shoes_shop/generated/l10n.dart';
 import 'package:shoes_shop/ui/route/route_paths.dart';

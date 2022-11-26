@@ -100,6 +100,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "popular": MessageLookupByLibrary.simpleMessage("Popular"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
+        "productIsAvailable": MessageLookupByLibrary.simpleMessage(
+            "This product is available in store"),
+        "productIsNotAvailable": MessageLookupByLibrary.simpleMessage(
+            "This product is not available in store"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "purchased": MessageLookupByLibrary.simpleMessage("Purchased"),
         "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
@@ -128,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don\'t rate this product now"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "unpaid": MessageLookupByLibrary.simpleMessage("unpaid"),
+        "upLoadAnImage":
+            MessageLookupByLibrary.simpleMessage("Upload an image"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

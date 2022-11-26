@@ -919,6 +919,36 @@ class S {
       args: [],
     );
   }
+
+  /// `This product is available in store`
+  String get productIsAvailable {
+    return Intl.message(
+      'This product is available in store',
+      name: 'productIsAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This product is not available in store`
+  String get productIsNotAvailable {
+    return Intl.message(
+      'This product is not available in store',
+      name: 'productIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload an image`
+  String get upLoadAnImage {
+    return Intl.message(
+      'Upload an image',
+      name: 'upLoadAnImage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
