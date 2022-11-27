@@ -77,7 +77,7 @@ class _BottomNavState extends State<BottomNav> {
           appScheme: "MOMOGEIB20220529",
           merchantCode: 'MOMOGEIB20220529',
           partnerCode: 'MOMOGEIB20220529',
-          amount: cartViewModel.totalAmount.round() * 22000,
+          amount: cartViewModel.totalAmount.round(),
           orderId: '$orderid',
           orderLabel: 'Gói combo',
           merchantNameLabel: "VHIT Sneaker",
@@ -259,7 +259,7 @@ class _BottomNavState extends State<BottomNav> {
       _paymentStatus += "\nSố điện thoại: ${_momoPaymentResult.phoneNumber}";
       widget.cartViewModel.clear();
       order.orderid = widget.orderViewModel.orders![0]!.orderid;
-      //order.createdate = DateTime.now().toString();
+      order.createdate = DateTime.now().toString();
       order.momo = _momoPaymentResult.token.toString();
       order.payment = true;
       widget.orderViewModel.updateOrder(order);
